@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Pressable, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { Image, ImageSourcePropType, Pressable, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { colors, radius, space } from '../theme';
 import { EventItem } from '../data/events';
 import { Club } from '../data/clubs';
@@ -67,7 +67,7 @@ export function SectionTitle({ children }: { children: React.ReactNode }) {
 }
 
 // Banner: foto se disponibile (con permesso del club), altrimenti monogramma elegante.
-export function Banner({ name, imageUrl, logo, height = 150 }: { name: string; imageUrl?: string; logo?: string; height?: number }) {
+export function Banner({ name, imageUrl, logo, height = 150 }: { name: string; imageUrl?: string; logo?: string | ImageSourcePropType; height?: number }) {
   return (
     <View style={[s.banner, { height }]}>
       {imageUrl ? (
@@ -76,10 +76,12 @@ export function Banner({ name, imageUrl, logo, height = 150 }: { name: string; i
         <>
           <View style={[s.ring, { width: height * 1.15, height: height * 1.15, borderRadius: height, borderColor: colors.brandDark, opacity: 0.35 }]} />
           {!logo && <View style={[s.ring, { width: height * 0.72, height: height * 0.72, borderRadius: height, borderColor: colors.brand, opacity: 0.5 }]} />}
-          {logo ? (
+          {typeof logo === 'string' ? (
             <View style={{ width: '68%', height: height * 0.4 }} accessibilityLabel={name}>
               <SvgXml xml={logo} width="100%" height="100%" />
             </View>
+          ) : logo ? (
+            <Image source={logo} accessibilityLabel={name} style={{ width: '70%', height: height * 0.66 }} resizeMode="contain" />
           ) : (
             <Text style={s.mono}>{initials(name)}</Text>
           )}
