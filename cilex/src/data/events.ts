@@ -13,7 +13,11 @@ export type EventItem = {
 };
 
 // ➜ Eventi reali inclusi nell'app (consigliato: usare invece il JSON remoto, CONTENT_URL).
-const realEvents: EventItem[] = [];
+// Fonte: pacha.com/events, verificato il 18/11/2026.
+const realEvents: EventItem[] = [
+  { id: 'pacha-2026-12-12-fiesta-solidaria', clubId: 'pacha', title: 'Gran Fiesta Solidaria', date: '2026-12-12', lineup: [], ticketUrl: 'https://pacha.com/event/gran-fiesta-solidaria-12-12-20261' },
+  { id: 'pacha-2026-12-31-music-on-nye', clubId: 'pacha', title: "Marco Carola presents Music On | New Year's Eve", date: '2026-12-31', lineup: ['Marco Carola', 'Seth Troxler', 'Ilario Alicante', 'Mason Collective', 'Frank Storm'], ticketUrl: 'https://pacha.com/event/marco-carola-presents-music-on--new-years-eve-31-12-2026' },
+];
 
 const demoEvents: EventItem[] = [
   { id: 'demo-1', clubId: 'pacha', title: 'Evento di esempio', date: '2027-06-05', lineup: ['Artista 1', 'Artista 2'], demo: true },

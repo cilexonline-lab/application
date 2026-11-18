@@ -31,6 +31,9 @@
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#050607"
+    },
+    "experiments": {
+      "baseUrl": "/application"
     }
   }
 }
