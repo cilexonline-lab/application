@@ -9,3 +9,7 @@ Build web (Expo / React Native Web) migrata dall'artifact claude.ai `VixzVTWmRNF
 python3 -m http.server 8765
 ```
 poi apri http://localhost:8765
+
+## Online (GitHub Pages)
+Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`.
+Link pubblico: https://cilexonline-lab.github.io/application/
