@@ -1,0 +1,24 @@
+{
+  "_come_si_usa": "Copia le voci che ti servono dentro la chiave \"faq\" del tuo content.json. Compila SOLO la risposta con ciò che è vero OGGI. Una voce con \"a\" vuota viene ignorata dal server (sicuro). Max 60 voci, risposta max 400 caratteri.",
+  "faq": [
+    { "q": "Fino a che ora si può entrare in lista?", "a": "" },
+    { "q": "Come si prenota un tavolo e quando è confermato?", "a": "" },
+    { "q": "Come si paga un tavolo (acconto, saldo, metodi)?", "a": "" },
+    { "q": "Posso cancellare o spostare un tavolo?", "a": "" },
+    { "q": "Come funziona la prenotazione di una barca?", "a": "" },
+    { "q": "Che cosa è incluso nel noleggio barca (skipper, carburante, bibite)?", "a": "" },
+    { "q": "Offrite transfer da/per aeroporto e hotel?", "a": "" },
+    { "q": "Come compro i biglietti dei club?", "a": "" },
+    { "q": "I biglietti sono rimborsabili?", "a": "" },
+    { "q": "C'è un'età minima per entrare nei club?", "a": "" },
+    { "q": "Quali documenti servono all'ingresso?", "a": "" },
+    { "q": "Che dress code c'è nei club?", "a": "" },
+    { "q": "Quanto tempo prima devo scrivervi per una richiesta?", "a": "" },
+    { "q": "Rispondete anche di notte? Qual è l'orario del servizio?", "a": "" },
+    { "q": "In che lingue parlate con i clienti?", "a": "" },
+    { "q": "Come si ottiene una cena/chef privato o una villa?", "a": "" },
+    { "q": "Dove vi trovo fisicamente / come ci incontriamo?", "a": "" },
+    { "q": "Cosa succede se un evento viene cancellato o cambia line-up?", "a": "" },
+    { "q": "Come funziona il codice PR?", "a": "" }
+  ]
+}

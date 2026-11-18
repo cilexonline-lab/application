@@ -1,0 +1,107 @@
+import React, { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { Pressable, Text } from 'react-native';
+import { DarkTheme, NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import HomeScreen from './src/screens/HomeScreen';
+import ExploreScreen from './src/screens/ExploreScreen';
+import PlaceDetailScreen from './src/screens/PlaceDetailScreen';
+import Map3DScreen from './src/screens/Map3DScreen';
+import RemindersSync from './src/components/RemindersSync';
+import WhatsAppFab from './src/components/WhatsAppFab';
+import ClubDetailScreen from './src/screens/ClubDetailScreen';
+import RequestScreen from './src/screens/RequestScreen';
+import InfoScreen from './src/screens/InfoScreen';
+import EventDetailScreen from './src/screens/EventDetailScreen';
+import ArtistScreen from './src/screens/ArtistScreen';
+import PlanScreen from './src/screens/PlanScreen';
+import AskScreen from './src/screens/AskScreen';
+import NewsStoryScreen from './src/screens/NewsStoryScreen';
+import StaysScreen from './src/screens/StaysScreen';
+import StayDetailScreen from './src/screens/StayDetailScreen';
+import { StoreProvider } from './src/store';
+import { ContentProvider } from './src/content';
+import { Icon, IconName } from './src/components/Icon';
+import { useT } from './src/i18n';
+import { colors } from './src/theme';
+
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+const navTheme = {
+  ...DarkTheme,
+  colors: { ...DarkTheme.colors, background: colors.bg, card: colors.bg, border: colors.border, primary: colors.brand, text: colors.text },
+};
+
+function Tabs() {
+  const t = useT();
+  const insets = useSafeAreaInsets();
+  const icon = (name: IconName) => ({ color }: { color: string }) => <Icon name={name} size={22} color={color} />;
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: colors.brand,
+        tabBarInactiveTintColor: colors.muted,
+        tabBarStyle: { backgroundColor: colors.bg, borderTopColor: colors.border },
+        headerStyle: { backgroundColor: colors.bg },
+        headerTitleStyle: { color: colors.text },
+        headerShadowVisible: false,
+        sceneStyle: { backgroundColor: colors.bg, paddingTop: insets.top },
+      }}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} options={{ title: t('tabHome'), headerShown: false, tabBarIcon: icon('home') }} />
+      <Tab.Screen name="Clubs" component={ExploreScreen} options={{ title: t('tabClubs'), headerShown: false, tabBarIcon: icon('clubs') }} />
+      <Tab.Screen name="Map3D" component={Map3DScreen} options={{ title: t('tabMap'), headerShown: false, tabBarIcon: icon('map') }} />
+      <Tab.Screen name="Ask" component={AskScreen} options={{ title: t('tabAsk'), headerShown: false, tabBarIcon: icon('ask') }} />
+      <Tab.Screen name="Plan" component={PlanScreen} options={{ title: t('tabPlan'), headerShown: false, tabBarIcon: icon('plan') }} />
+      <Tab.Screen name="Request" component={RequestScreen} options={{ title: t('tabRequest'), headerShown: false, tabBarIcon: icon('request') }} />
+    </Tab.Navigator>
+  );
+}
+
+export default function App() {
+  const navRef = useNavigationContainerRef();
+  const [route, setRoute] = useState<string | undefined>('Home');
+  const sync = () => setRoute((navRef as any).getCurrentRoute()?.name);
+  return (
+    <SafeAreaProvider>
+      <ContentProvider>
+      <StoreProvider>
+      <RemindersSync />
+      <NavigationContainer theme={navTheme} ref={navRef} onReady={sync} onStateChange={sync}>
+        <StatusBar style="light" />
+        <Stack.Navigator
+          screenOptions={({ navigation }) => ({
+            headerStyle: { backgroundColor: colors.bg },
+            headerTintColor: colors.brand,
+            headerTitleStyle: { color: colors.text },
+            headerShadowVisible: false,
+            headerBackVisible: false,
+            headerLeft: () =>
+              navigation.canGoBack() ? (
+                <Pressable accessibilityLabel="Back" onPress={() => navigation.goBack()} hitSlop={12} style={{ paddingLeft: 8 }}>
+                  <Text style={{ color: colors.brand, fontSize: 32, lineHeight: 34, paddingRight: 12 }}>‹</Text>
+                </Pressable>
+              ) : null,
+          })}
+        >
+          <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
+          <Stack.Screen name="ClubDetail" component={ClubDetailScreen} options={{ title: '' }} />
+          <Stack.Screen name="PlaceDetail" component={PlaceDetailScreen} options={{ title: '' }} />
+          <Stack.Screen name="Stays" component={StaysScreen} options={{ title: '' }} />
+          <Stack.Screen name="StayDetail" component={StayDetailScreen} options={{ title: '' }} />
+          <Stack.Screen name="Request" component={RequestScreen} options={{ title: '' }} />
+          <Stack.Screen name="Info" component={InfoScreen} options={{ title: '' }} />
+          <Stack.Screen name="EventDetail" component={EventDetailScreen} options={{ title: '' }} />
+          <Stack.Screen name="Artist" component={ArtistScreen} options={{ title: '' }} />
+          <Stack.Screen name="NewsStory" component={NewsStoryScreen} options={{ title: '' }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+      <WhatsAppFab route={route} />
+      </StoreProvider>
+      </ContentProvider>
+    </SafeAreaProvider>
+  );
+}

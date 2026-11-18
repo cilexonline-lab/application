@@ -1,0 +1,103 @@
+{
+  "clubs": [
+    {
+      "id": "pacha",
+      "name": "Pacha",
+      "ticketUrl": "https://example.com/tickets/pacha",
+      "description": "Testo breve approvato dal club.",
+      "imageUrl": "https://example.com/img/pacha.jpg",
+      "rules": "Dress code / età minima / regole, solo se confermati dal club."
+    }
+  ],
+  "events": [
+    {
+      "id": "pacha-2027-07-14-esempio",
+      "clubId": "pacha",
+      "title": "Nome evento",
+      "date": "2027-07-14",
+      "lineup": [
+        "Artista A",
+        "Artista B"
+      ],
+      "ticketUrl": "https://example.com/tickets/pacha/2027-07-14",
+      "imageUrl": ""
+    }
+  ],
+  "news": [
+    {
+      "id": "news-1",
+      "title": "Titolo news",
+      "date": "2027-05-20",
+      "body": "Testo della news."
+    }
+  ],
+  "tips": [
+    {
+      "id": "tip-1",
+      "title": "Titolo consiglio",
+      "body": "Testo del consiglio pratico confermato da voi."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Come si prenota un tavolo VIP?",
+      "a": "Dalla scheda Richiesta dell'app: scegli club, data e persone. Un membro del team Cilex conferma su WhatsApp; il tavolo è confermato solo dopo la sua risposta."
+    },
+    {
+      "q": "Come si prenota una barca?",
+      "a": "Dalla scheda Richiesta dell'app: scegli data e numero di persone. Un membro del team Cilex conferma su WhatsApp; la prenotazione è valida solo dopo la sua conferma."
+    }
+  ],
+  "_nota_faq": "faq = risposte approvate usate SOLO dall'assistente IA (l'app le ignora). Vedi backend/ai-worker/faq-template.json.",
+  "places": [
+    {
+      "id": "esempio-beachclub",
+      "kind": "beachclub",
+      "name": "Nome del beach club",
+      "area": "Zona (solo se confermata)",
+      "description": "Testo breve approvato da voi.",
+      "link": "https://esempio.com/prenota",
+      "mapQuery": "Nome del beach club Ibiza",
+      "bookable": false
+    },
+    {
+      "id": "esempio-ristorante",
+      "kind": "restaurant",
+      "name": "Nome del ristorante",
+      "description": "Testo breve approvato da voi.",
+      "link": "https://esempio.com/menu"
+    }
+  ],
+  "_nota_places": "kind: beachclub | beach | restaurant | day. lat/lng opzionali (devono cadere su Ibiza/Formentera, altrimenti scartati; togli le chiavi se non le hai). bookable:true mostra 'Richiedi via Cilex' SOLO dove avete davvero il servizio. link: solo http/https.",
+  "stays": [
+    {
+      "id": "esempio-villa",
+      "kind": "villa",
+      "name": "Nome della villa",
+      "area": "Zona generica (mai l'indirizzo esatto)",
+      "description": "Testo breve approvato da voi.",
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "guests": 10,
+      "amenities": [
+        "Piscina privata",
+        "Vista mare"
+      ],
+      "priceNote": "Da … a notte (solo se confermato)",
+      "minNights": 5,
+      "imageUrl": "https://esempio.com/foto-villa.jpg",
+      "link": "https://esempio.com/villa"
+    },
+    {
+      "id": "esempio-appartamento",
+      "kind": "apartment",
+      "name": "Nome dell'appartamento",
+      "area": "Zona generica",
+      "description": "Testo breve approvato da voi.",
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "guests": 4
+    }
+  ],
+  "_nota_stays": "kind: apartment | villa. bedrooms/bathrooms/guests/minNights sono numeri; amenities è una lista di testi; priceNote è testo libero: se lo togli l'app mostra 'Prezzo su richiesta'. Inserisci SOLO dati confermati (nessun prezzo o disponibilità inventati). Niente indirizzi esatti. imageUrl/link: solo http/https, foto solo con permesso."
+}

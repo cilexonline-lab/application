@@ -1,0 +1,14 @@
+name = "cilex-ai"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+# URL pubblico del JSON contenuti (lo stesso di CONTENT_URL nell'app)
+CONTENT_URL = ""
+# Modello: più economico = claude-haiku-5-5 ; più capace = claude-sonnet-5-5
+MODEL = "claude-haiku-5-5"
+
+# Per i limiti giornalieri crea un KV e decommenta:
+# [[kv_namespaces]]
+# binding = "RL"
+# id = "INSERIRE_ID_KV"

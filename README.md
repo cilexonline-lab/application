@@ -1,15 +1,16 @@
 # Cilex — Ibiza Luxury Concierge
 
-Build web (Expo / React Native Web) migrata dall'artifact claude.ai `VixzVTWmRNFyEg9MNG4AYk`.
+App iOS/Android/web (Expo SDK 58 / React Native) di Cilex Ibiza.
 
-`index.html` è il bundle compilato e autosufficiente (JS + immagini inline, nessun backend).
+## Struttura
+- `cilex/` — **codice sorgente dell'app** (vedi `cilex/CLAUDE.md` e `cilex/README.md`)
+- `backend/ai-worker/` — Cloudflare Worker per l'assistente IA ("Ask")
+- `index.html` — build web pubblicata su GitHub Pages: https://cilexonline-lab.github.io/application/
 
-## Avvio locale
+## Sviluppo
 ```bash
-python3 -m http.server 8765
+cd cilex
+npm install
+npx expo start
 ```
-poi apri http://localhost:8765
-
-## Online (GitHub Pages)
-Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`.
-Link pubblico: https://cilexonline-lab.github.io/application/
+Typecheck: `npx tsc --noEmit` · Build web: `npx expo export --platform web`

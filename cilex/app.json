@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Cilex",
+    "slug": "cilex",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.cilex.ibiza"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#050607",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.cilex.ibiza"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "backgroundColor": "#050607",
+    "plugins": [
+      "expo-notifications"
+    ],
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#050607"
+    }
+  }
+}
