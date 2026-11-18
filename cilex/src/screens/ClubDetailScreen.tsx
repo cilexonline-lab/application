@@ -5,6 +5,7 @@ import { Banner, Button, Card, EventCard, SectionTitle } from '../components/ui'
 import { useContent } from '../content';
 import { useT } from '../i18n';
 import { colors, space } from '../theme';
+import { clubLogo } from '../data/clubLogos';
 
 export default function ClubDetailScreen() {
   const t = useT();
@@ -18,7 +19,7 @@ export default function ClubDetailScreen() {
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: space.md, paddingBottom: 48 }}>
-      <Banner name={club.name} imageUrl={club.imageUrl} height={170} />
+      <Banner name={club.name} imageUrl={club.imageUrl} logo={clubLogo(club.id)} height={170} />
       <Text style={s.name}>{club.name}</Text>
       {!!club.description && <Text style={s.desc}>{club.description}</Text>}
 

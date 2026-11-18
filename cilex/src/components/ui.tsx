@@ -7,6 +7,7 @@ import { dayNum, initials, monthShort } from '../utils';
 import { Icon, IconName } from './Icon';
 import { LinearGradient } from 'expo-linear-gradient';
 import { LogoMark } from './Logo';
+import { SvgXml } from 'react-native-svg';
 
 export function Button({
   label, onPress, variant = 'gold', disabled, style, icon,
@@ -66,7 +67,7 @@ export function SectionTitle({ children }: { children: React.ReactNode }) {
 }
 
 // Banner: foto se disponibile (con permesso del club), altrimenti monogramma elegante.
-export function Banner({ name, imageUrl, height = 150 }: { name: string; imageUrl?: string; height?: number }) {
+export function Banner({ name, imageUrl, logo, height = 150 }: { name: string; imageUrl?: string; logo?: string; height?: number }) {
   return (
     <View style={[s.banner, { height }]}>
       {imageUrl ? (
@@ -74,8 +75,14 @@ export function Banner({ name, imageUrl, height = 150 }: { name: string; imageUr
       ) : (
         <>
           <View style={[s.ring, { width: height * 1.15, height: height * 1.15, borderRadius: height, borderColor: colors.brandDark, opacity: 0.35 }]} />
-          <View style={[s.ring, { width: height * 0.72, height: height * 0.72, borderRadius: height, borderColor: colors.brand, opacity: 0.5 }]} />
-          <Text style={s.mono}>{initials(name)}</Text>
+          {!logo && <View style={[s.ring, { width: height * 0.72, height: height * 0.72, borderRadius: height, borderColor: colors.brand, opacity: 0.5 }]} />}
+          {logo ? (
+            <View style={{ width: '68%', height: height * 0.4 }} accessibilityLabel={name}>
+              <SvgXml xml={logo} width="100%" height="100%" />
+            </View>
+          ) : (
+            <Text style={s.mono}>{initials(name)}</Text>
+          )}
         </>
       )}
     </View>

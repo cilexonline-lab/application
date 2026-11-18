@@ -6,6 +6,7 @@ import { useContent } from '../content';
 import { useT } from '../i18n';
 import type { Place, PlaceKind } from '../places';
 import { colors, space } from '../theme';
+import { clubLogo } from '../data/clubLogos';
 
 type Seg = 'club' | 'beach' | 'restaurant' | 'day';
 const SEGS: { k: Seg; label: string }[] = [
@@ -41,7 +42,7 @@ export default function ExploreScreen() {
             const n = upcoming.filter((e) => e.clubId === item.id).length;
             return (
               <Pressable accessibilityRole="button" style={s.tile} onPress={() => nav.navigate('ClubDetail', { clubId: item.id })}>
-                <Banner name={item.name} imageUrl={item.imageUrl} height={110} />
+                <Banner name={item.name} imageUrl={item.imageUrl} logo={clubLogo(item.id)} height={110} />
                 <View style={{ paddingTop: 10, paddingHorizontal: 4 }}>
                   <Text style={s.name} numberOfLines={1}>{item.name}</Text>
                   <Text style={s.sub}>{n === 1 ? t('eventCount1') : `${n} ${t('eventsCount')}`}</Text>

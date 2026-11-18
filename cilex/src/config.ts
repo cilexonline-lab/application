@@ -16,6 +16,9 @@ export const SUPPORT_URL = '';
 // Mostra eventi di esempio (marcati DEMO). Mettere false quando si inseriscono eventi reali.
 export const SHOW_DEMO_DATA = false;
 
+// Loghi ufficiali dei club (src/data/clubLogos.ts). Marchi di terzi: false per tornare ai monogrammi.
+export const SHOW_CLUB_LOGOS = true;
+
 // Argomenti suggeriti nella richiesta Concierge (chiavi i18n). Togli quelli che Cilex NON offre.
 export const CONCIERGE_TOPICS = ['topicTransfer', 'topicVilla', 'topicChef', 'topicPhoto', 'topicOther'];
 
