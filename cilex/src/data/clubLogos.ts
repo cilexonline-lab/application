@@ -12,6 +12,7 @@ export const CLUB_LOGOS: Record<string, string> = {
 // Loghi raster forniti da Cilex (PNG con sfondo trasparente).
 const CLUB_LOGO_IMAGES: Record<string, ImageSourcePropType> = {
   pacha: require('../../assets/logo-pacha.png'),
+  amnesia: require('../../assets/logo-amnesia.png'),
 };
 
 // string = SVG, altrimenti immagine inclusa nell'app.
