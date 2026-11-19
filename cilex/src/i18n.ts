@@ -24,7 +24,7 @@ const en: Dict = {
   heroSub: 'VIP tables, boats and concierge, confirmed by our team on WhatsApp.',
   quick: 'Quick requests', all: 'All',
   upcoming: 'Upcoming events', noEvents: 'No events yet. Check back soon.', noEventsFilter: 'No upcoming events for this club.',
-  news: 'News', clubsTitle: 'Clubs', eventsCount: 'upcoming', eventCount1: '1 event',
+  news: 'News', clubsTitle: 'Clubs', eventsCount: 'upcoming', eventCount1: '1 event', datesSoon: 'New dates coming soon', nextLabel: 'Next', allAreas: 'All areas',
   tickets: 'Buy tickets', ticketsSoon: 'Tickets coming soon', openMaps: 'Open in Maps', share: 'Share',
   table: 'VIP table', boat: 'Boat', concierge: 'Concierge',
   club: 'Club', date: 'Date', dateHint: 'DD/MM/YYYY', dateToday: 'Today', dateTomorrow: 'Tomorrow', dateOther: 'or type another date', people: 'People', name: 'Your name', nameOptional: 'Your name (optional)', notes: 'Notes (optional)',
@@ -68,7 +68,7 @@ const it: Dict = {
   heroSub: 'Tavoli VIP, barche e concierge, confermati dal nostro team su WhatsApp.',
   quick: 'Richieste rapide', all: 'Tutti',
   upcoming: 'Prossimi eventi', noEvents: 'Nessun evento per ora. Torna presto.', noEventsFilter: 'Nessun evento in arrivo per questo club.',
-  news: 'News', clubsTitle: 'Club', eventsCount: 'in arrivo', eventCount1: '1 evento',
+  news: 'News', clubsTitle: 'Club', eventsCount: 'in arrivo', eventCount1: '1 evento', datesSoon: 'Nuove date in arrivo', nextLabel: 'Prossimo', allAreas: 'Tutte le zone',
   tickets: 'Acquista biglietti', ticketsSoon: 'Biglietti in arrivo', openMaps: 'Apri su Mappe', share: 'Condividi',
   table: 'Tavolo VIP', boat: 'Barca', concierge: 'Concierge',
   club: 'Club', date: 'Data', dateHint: 'GG/MM/AAAA', dateToday: 'Oggi', dateTomorrow: 'Domani', dateOther: 'oppure scrivi un’altra data', people: 'Persone', name: 'Il tuo nome', nameOptional: 'Il tuo nome (facoltativo)', notes: 'Note (facoltativo)',
@@ -112,7 +112,7 @@ const es: Dict = {
   heroSub: 'Mesas VIP, barcos y concierge, confirmados por nuestro equipo en WhatsApp.',
   quick: 'Solicitudes rápidas', all: 'Todos',
   upcoming: 'Próximos eventos', noEvents: 'Aún no hay eventos. Vuelve pronto.', noEventsFilter: 'No hay próximos eventos para este club.',
-  news: 'Noticias', clubsTitle: 'Clubs', eventsCount: 'próximos', eventCount1: '1 evento',
+  news: 'Noticias', clubsTitle: 'Clubs', eventsCount: 'próximos', eventCount1: '1 evento', datesSoon: 'Nuevas fechas muy pronto', nextLabel: 'Próximo', allAreas: 'Todas las zonas',
   tickets: 'Comprar entradas', ticketsSoon: 'Entradas próximamente', openMaps: 'Abrir en Mapas', share: 'Compartir',
   table: 'Mesa VIP', boat: 'Barco', concierge: 'Concierge',
   club: 'Club', date: 'Fecha', dateHint: 'DD/MM/AAAA', dateToday: 'Hoy', dateTomorrow: 'Mañana', dateOther: 'o escribe otra fecha', people: 'Personas', name: 'Tu nombre', nameOptional: 'Tu nombre (opcional)', notes: 'Notas (opcional)',
@@ -160,6 +160,8 @@ const emit = () => listeners.forEach((l) => l());
 AsyncStorage.getItem(LANG_KEY)
   .then((v) => { if (isLang(v) && v !== current) { current = v; emit(); } })
   .catch(() => {});
+
+export const getLang = (): Lang => current;
 
 export function setLang(l: Lang) {
   current = l;

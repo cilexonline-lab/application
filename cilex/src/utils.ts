@@ -1,3 +1,4 @@
+import { getLang } from './i18n';
 export const pad = (n: number) => String(n).padStart(2, '0');
 
 export function todayStr(d = new Date()) {
@@ -9,7 +10,7 @@ export function fmtDate(iso: string) {
 }
 export const dayNum = (iso: string) => String(Number(iso.slice(8, 10)));
 export const monthShort = (iso: string) =>
-  new Date(iso + 'T12:00:00').toLocaleDateString(undefined, { month: 'short' }).toUpperCase();
+  new Date(iso + 'T12:00:00').toLocaleDateString(getLang(), { month: 'short' }).replace('.', '').toUpperCase();
 
 export function initials(name: string) {
   const w = name.replace(/[^\p{L}\p{N} ]/gu, '').trim().split(/\s+/);

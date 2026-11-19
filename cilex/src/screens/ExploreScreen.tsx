@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Banner, Chip, ScreenTitle } from '../components/ui';
 import { useContent } from '../content';
 import { useT } from '../i18n';
 import type { Place, PlaceKind } from '../places';
 import { colors, space } from '../theme';
-import { clubLogo } from '../data/clubLogos';
+import { ClubCard } from '../components/ClubCard';
+import { tap } from '../haptics';
 
 type Seg = 'club' | 'beach' | 'restaurant' | 'day';
 const SEGS: { k: Seg; label: string }[] = [
@@ -21,6 +22,14 @@ export default function ExploreScreen() {
   const { clubs, upcoming, places } = useContent();
   const [seg, setSeg] = useState<Seg>('club');
   const list: Place[] = places.filter((p) => kindsOf(seg).includes(p.kind));
+  const [area, setArea] = useState('');
+  const areas = ['', ...Array.from(new Set(clubs.map((c) => c.area).filter((a): a is string => !!a)))];
+  // Prima i club con eventi in arrivo, poi gli altri nell'ordine originale.
+  const shownClubs = clubs
+    .filter((c) => !area || c.area === area)
+    .map((c, i) => ({ c, i, has: upcoming.some((e) => e.clubId === c.id) }))
+    .sort((a, b) => Number(b.has) - Number(a.has) || a.i - b.i)
+    .map((x) => x.c);
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
@@ -33,23 +42,26 @@ export default function ExploreScreen() {
 
       {seg === 'club' && (
         <FlatList
-          contentContainerStyle={{ padding: space.md }}
-          columnWrapperStyle={{ gap: space.sm }}
-          numColumns={2}
-          data={clubs}
+          contentContainerStyle={{ paddingHorizontal: space.md, paddingBottom: 120 }}
+          data={shownClubs}
           keyExtractor={(c) => c.id}
-          renderItem={({ item }) => {
-            const n = upcoming.filter((e) => e.clubId === item.id).length;
-            return (
-              <Pressable accessibilityRole="button" style={s.tile} onPress={() => nav.navigate('ClubDetail', { clubId: item.id })}>
-                <Banner name={item.name} imageUrl={item.imageUrl} logo={clubLogo(item.id)} height={110} />
-                <View style={{ paddingTop: 10, paddingHorizontal: 4 }}>
-                  <Text style={s.name} numberOfLines={1}>{item.name}</Text>
-                  {n > 0 && <Text style={s.sub}>{n === 1 ? t('eventCount1') : `${n} ${t('eventsCount')}`}</Text>}
-                </View>
-              </Pressable>
-            );
-          }}
+          ListHeaderComponent={
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingBottom: space.md }}>
+              {areas.map((a) => (
+                <Chip key={a || 'all'} label={a || t('allAreas')} active={area === a} onPress={() => { tap(); setArea(a); }} />
+              ))}
+            </ScrollView>
+          }
+          renderItem={({ item, index }) => (
+            <ClubCard
+              club={item}
+              index={index}
+              next={upcoming.filter((e) => e.clubId === item.id).sort((a, b) => a.date.localeCompare(b.date))[0]}
+              labels={{ next: t('nextLabel'), soon: t('datesSoon'), table: t('table') }}
+              onOpen={() => nav.navigate('ClubDetail', { clubId: item.id })}
+              onTable={() => nav.navigate('Request', { kind: 'table', clubId: item.id })}
+            />
+          )}
         />
       )}
 
@@ -76,8 +88,6 @@ export default function ExploreScreen() {
 
 const s = StyleSheet.create({
   h1: { color: colors.text, fontSize: 26, fontWeight: '800', marginBottom: space.sm },
-  tile: { flexBasis: '48.5%', maxWidth: '48.5%', flexGrow: 0, marginBottom: space.md },
-  name: { color: colors.text, fontSize: 16, fontWeight: '800', letterSpacing: 0.5 },
   name2: { color: colors.text, fontSize: 18, fontWeight: '800', marginTop: 2 },
   sub: { color: colors.muted, fontSize: 12, marginTop: 2, lineHeight: 17 },
   kindTxt: { color: colors.brand, fontSize: 11, fontWeight: '800', letterSpacing: 1.2, marginTop: 10 },
