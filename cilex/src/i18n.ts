@@ -1,4 +1,5 @@
-import { useMemo } from 'react';
+import { useMemo, useSyncExternalStore } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Dict = Record<string, string>;
 
@@ -137,10 +138,43 @@ const es: Dict = {
 
 const dicts: Record<string, Dict> = { en, it, es };
 
+// Lingua: scelta dall'utente (salvata) > ?lang= nell'URL (web) > lingua del telefono > inglese.
+export type Lang = 'en' | 'it' | 'es';
+export const LANGS: Lang[] = ['it', 'en', 'es'];
+const LANG_KEY = 'cilex.lang';
+const isLang = (x: unknown): x is Lang => x === 'en' || x === 'it' || x === 'es';
+
+function initialLang(): Lang {
+  try {
+    const q = typeof window !== 'undefined' && window.location ? new URLSearchParams(window.location.search).get('lang') : null;
+    if (isLang(q)) return q;
+  } catch {}
+  const dev = (Intl.DateTimeFormat().resolvedOptions().locale || 'en').slice(0, 2).toLowerCase();
+  return isLang(dev) ? dev : 'en';
+}
+
+let current: Lang = initialLang();
+const listeners = new Set<() => void>();
+const emit = () => listeners.forEach((l) => l());
+
+AsyncStorage.getItem(LANG_KEY)
+  .then((v) => { if (isLang(v) && v !== current) { current = v; emit(); } })
+  .catch(() => {});
+
+export function setLang(l: Lang) {
+  current = l;
+  AsyncStorage.setItem(LANG_KEY, l).catch(() => {});
+  emit();
+}
+
+export function useLang(): Lang {
+  return useSyncExternalStore((cb) => { listeners.add(cb); return () => listeners.delete(cb); }, () => current, () => current);
+}
+
 export function useT() {
+  const lang = useLang();
   return useMemo(() => {
-    const lang = (Intl.DateTimeFormat().resolvedOptions().locale || 'en').slice(0, 2).toLowerCase();
     const d = dicts[lang] ?? en;
     return (k: string) => d[k] ?? en[k] ?? k;
-  }, []);
+  }, [lang]);
 }

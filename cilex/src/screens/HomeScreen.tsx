@@ -7,7 +7,7 @@ import { Icon, IconName } from '../components/Icon';
 import { useContent } from '../content';
 import { useStore } from '../store';
 import { BRAND_TAGLINE, CONTENT_URL } from '../config';
-import { useT } from '../i18n';
+import { LANGS, setLang, useLang, useT } from '../i18n';
 import { tap } from '../haptics';
 import { matchesTime, TimeFilter, todayStr } from '../utils';
 import { colors, radius, space } from '../theme';
@@ -24,6 +24,7 @@ const timeKey: Record<TimeFilter, string> = { all: 'all', tonight: 'tonight', we
 
 export default function HomeScreen() {
   const t = useT();
+  const lang = useLang();
   const nav = useNavigation<any>();
   const { clubs, upcoming, news, getClub, refresh, refreshing } = useContent();
   const { name, following } = useStore();
@@ -41,6 +42,13 @@ export default function HomeScreen() {
       refreshControl={CONTENT_URL ? <RefreshControl refreshing={refreshing} onRefresh={refresh} tintColor={colors.brand} /> : undefined}
     >
       <View style={{ alignItems: 'center', marginTop: space.md, marginBottom: space.lg }}>
+        <View style={s.langRow}>
+          {LANGS.map((l) => (
+            <Pressable key={l} accessibilityRole="button" accessibilityState={{ selected: l === lang }} onPress={() => setLang(l)} hitSlop={6}>
+              <Text style={[s.lang, l === lang && s.langOn]}>{l.toUpperCase()}</Text>
+            </Pressable>
+          ))}
+        </View>
         <Pressable accessibilityRole="button" accessibilityLabel="Info" onPress={() => nav.navigate('Info')} hitSlop={12} style={{ position: 'absolute', right: 0, top: 0 }}>
           <Icon name="info" size={24} color={colors.muted} />
         </Pressable>
@@ -143,6 +151,9 @@ export default function HomeScreen() {
 }
 
 const s = StyleSheet.create({
+  langRow: { position: 'absolute', left: 0, top: 2, flexDirection: 'row', gap: 10, zIndex: 1 },
+  lang: { color: colors.muted, fontSize: 13, fontWeight: '700', letterSpacing: 1 },
+  langOn: { color: colors.brand },
   root: { flex: 1, backgroundColor: colors.bg },
   tag: { color: colors.muted, fontSize: 11, letterSpacing: 3, marginTop: 6 },
   hello: { color: colors.text, fontSize: 15, marginTop: 10, fontWeight: '600' },
