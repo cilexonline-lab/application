@@ -2,6 +2,25 @@
 
 Una voce per esecuzione, la più recente in cima.
 
+## 2026-11-19 (seconda sessione, su richiesta di Francesco) — Conversione: il modulo Richiedi
+
+Budget usato: 1 ricerca YouTube, 0 trascrizioni, 1 pagina letta + 1 ricerca web.
+YouTube: ricerca "luxury hospitality app UX design booking concierge" (ultimo anno) **senza risultati utili**: tutorial di siti fatti con l'IA, recensioni di hotel, video sotto le 20.000 visualizzazioni. Nessuna trascrizione scaricata.
+
+1. **Baymard, "8 Recommendations for Creating Effective Input Fields"** (aggiornato 17/01/2025) — https://baymard.com/blog/input-fields
+   - FATTO (linea guida #668): mostrare meno campi possibile; nascondere dietro un link i campi facoltativi usati di rado; togliere quelli irrilevanti nel contesto; usare valori predefiniti e precompilati.
+   - FATTO (linea guida #568): precompilare quello che l'utente ha già scritto. Cilex lo fa già con nome e codice PR salvati. ✅
+   - FATTO (linea guida #659): l'89% dei partecipanti ignora l'esempio di formato e scrive a modo suo: bisogna accettare formati diversi. Cilex lo fa già: `parseDate` accetta GG/MM/AAAA, GG-MM, GG.MM e AAAA-MM-GG. ✅
+   - IPOTESI NOSTRA: il campo **Codice PR** è visibile a tutti, ma solo una parte dei clienti ha un codice. Candidato per #668 (link "Hai un codice PR?"). Il rischio è di perdere attribuzioni per le commissioni dei PR, quindi **decide Francesco**.
+2. **NN/g, "10 Design Guidelines for Reporting Errors in Forms"** — https://www.nngroup.com/articles/errors-forms-design-guidelines/
+   - FATTO (dall'estratto): le linee guida chiedono validazione inline e messaggi d'errore vicino al campo sbagliato, espliciti e costruttivi.
+   - Situazione di Cilex: in `RequestScreen.tsx` l'errore compare solo in fondo, sopra il pulsante. Su un telefono, se manca il nome (che sta in alto), il cliente vede l'errore lontano dal campo da correggere.
+3. **NN/g, "Hostile Patterns in Error Messages"** — https://www.nngroup.com/articles/hostile-error-messages/
+   - FATTO (dall'estratto): non mostrare errori prima che l'utente abbia sbagliato; i campi obbligatori vanno indicati in modo esplicito (basta un asterisco).
+   - Situazione di Cilex: nome e data sono obbligatori ma non hanno nessun segno; "Note" ha già "(facoltativo)".
+
+**Proposte (nessuna implementata: Francesco vuole approvare prima ogni modifica al codice)**: vedi backlog.
+
 ## 2026-11-19 (giovedì, esecuzione straordinaria di avvio) — Conversione: richieste tavolo/barca/villa, WhatsApp
 
 Budget usato: 1 ricerca YouTube (Firecrawl `youtube-com`), 1 trascrizione (la prima conteneva già un'idea applicabile, la seconda non è stata scaricata), 2 ricerche web.

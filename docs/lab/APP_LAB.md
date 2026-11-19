@@ -15,7 +15,10 @@ Lingua dei report: **italiano**. Testi nell'app: EN/IT/ES (`cilex/src/i18n.ts`).
    Se nessuna idea supera la soglia (impatto alto, rischio basso), non toccare il codice: solo ricerca.
 4. Non toccare `src/config.ts` (numero WhatsApp, endpoint, flag) senza richiesta esplicita.
 5. Ogni fonte va citata con link. Distingui FATTO / OPINIONE DELL'AUTORE / IPOTESI NOSTRA.
-6. Niente dipendenze nuove con codice nativo (romperebbero Expo Go). Usa `npx expo install`.
+6. **Dal 19/11/2026 (richiesta di Francesco): nessuna modifica al codice dell'app senza il suo via libera esplicito.**
+   L'agente studia, aggiorna diario e backlog, e **propone** la modifica (cosa, perché, fonte, rischio).
+   Ramo e PR solo dopo il "sì" di Francesco.
+7. Niente dipendenze nuove con codice nativo (romperebbero Expo Go). Usa `npx expo install`.
 
 ## Budget: spendi solo per cose utili
 Gira **lunedì, mercoledì e venerdì**. Ogni esecuzione rispetta questi limiti, in quest'ordine:
