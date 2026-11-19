@@ -4,14 +4,12 @@ Ordinato per punteggio ICE (Impact × Confidence × Ease, 1–10 ciascuno → so
 Aggiornato dall'agente a ogni esecuzione.
 
 **Top 3 consigliate (19/11/2026)**
-1. Esplora: togliere "0 in arrivo" dai club senza eventi (ICE 24): l'app smette di sembrare vuota fuori stagione.
-2. Promessa del tempo di risposta accanto a "Invia su WhatsApp" (ICE 22): **serve il tempo reale da Francesco**.
-3. Fotografie vere nella Home (ICE 20): **servono foto con permesso da Francesco**; impatto più alto sul "lusso percepito".
+1. Fotografie vere nella Home (ICE 20): **servono foto con permesso da Francesco**; impatto più alto sul "lusso percepito".
+2. Crediti della mappa leggibili (ICE 22): piccolo, a norma Apple.
+3. Home: meno filtri quando gli eventi sono pochi (ICE 20).
 
 | ICE | Idea | Tema | Note / fonte |
 |---|---|---|---|
-| 24 | Esplora: nascondere "0 in arrivo" sui club senza eventi | Design | I7 C8 E9. Screenshot 19/11. Rischio basso |
-| 22 | "Ti rispondiamo su WhatsApp entro X" sotto il pulsante Invia — **X da Francesco** | Conversione | I7 C6 E9. Benchmark The Ibiza Social Club ("within 24 hours") |
 | 22 | Crediti della mappa leggibili: 11 pt e contrasto più alto (attribuzione OSM) | Design | I3 C9 E10. Apple HIG Typography (minimo 11 pt) |
 | 20 | Fotografie reali (barche, ville, team) in Home e nelle schede — **servono foto con permesso** | Design | I9 C7 E4 |
 | 20 | Home: nascondere i filtri quando ci sono meno di 5 eventi | Design | I5 C7 E8 |
@@ -24,7 +22,7 @@ Aggiornato dall'agente a ogni esecuzione.
 | 16 | Piano condiviso con link per il gruppo di amici | Crescita | I7 C5 E4. Benchmark Tickets Ibiza ("Shared Trips") |
 | 16 | Date rapide per check-in/check-out di ville e appartamenti | Conversione | I5 C5 E6 |
 
-Fatto il 19/11/2026: date rapide (PR #1), errori sotto il campo, asterisco, nome facoltativo (PR #2), anteprima web (PR #3).
+Fatto il 19/11/2026: niente "0 in arrivo" in Esplora e promessa "Ti rispondiamo su WhatsApp entro 15 minuti" (dato di Francesco); date rapide (PR #1), errori sotto il campo, asterisco, nome facoltativo (PR #2), anteprima web (PR #3).
 
 ## In attesa di dati da Francesco (non implementabili dall'agente)
 - Logo SWAG.
