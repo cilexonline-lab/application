@@ -21,8 +21,17 @@ Lingua dei report: **italiano**. Testi nell'app: EN/IT/ES (`cilex/src/i18n.ts`).
 1. **Setup**: collega e clona `cilexonline-lab/application`, `cd cilex && npm ci`.
    Leggi `docs/lab/backlog.md` e le ultime 3 voci di `docs/lab/research-log.md`.
 2. **Ricerca (tema del giorno, vedi sotto)** con Firecrawl/ricerca web:
-   - YouTube: cerca video recenti (ultimi 12 mesi) sul tema; leggi titolo, descrizione,
-     capitoli e trascrizione quando accessibile. Non puoi "guardare" il video: dichiara cosa hai letto.
+   - **YouTube (via Firecrawl / Alexandria, provider `youtube-com`)**:
+     1. `videos/search_videos` con `query` sul tema e `upload_date: "year"`;
+     2. scegli **massimo 3 video** al giorno: preferisci i canali della lista sotto, oppure video con
+        almeno 20.000 visualizzazioni; scarta clickbait, video sotto i 3 minuti e tutorial di altri framework
+        non trasferibili;
+     3. `videos/video_transcript` (`video_id`, `language: "en"`) e studia la trascrizione completa;
+     4. nel diario cita titolo, canale, link e i minuti dei passaggi usati.
+     Se Firecrawl non è disponibile nella sessione, usa la ricerca web normale e scrivilo nel report.
+     Canali di riferimento (verifica che siano ancora attivi): Apple Developer, Expo, Figma,
+     NN/g (Nielsen Norman Group), Flux Academy, DesignCourse, Malewicz, Juxtopposed,
+     Simon Grimm (Galaxies.dev), William Candillon (Can it be done in React Native?).
    - Altre fonti: Apple Human Interface Guidelines, docs/blog Expo (SDK della versione in `package.json`),
      Material Design, Nielsen Norman Group, Baymard, Mobbin/Dribbble per pattern visivi,
      case study di app di hospitality/lusso/travel, recensioni App Store di app concorrenti.
