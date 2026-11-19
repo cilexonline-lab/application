@@ -9,15 +9,17 @@ Lingua dei report: **italiano**. Testi nell'app: EN/IT/ES (`cilex/src/i18n.ts`).
 ## Regole non negoziabili
 1. Prima di tutto leggi e rispetta `cilex/CLAUDE.md` e `cilex/AGENTS.md`
    (mai inventare prezzi/eventi/luoghi, niente guestlist, non copiare ACCO né altre app).
-2. **Mai push su `main`.** `main` è l'app pubblicata. Lavori solo su un ramo `lab/AAAA-MM-GG-tema`
-   e apri una Pull Request: la decide Francesco.
+2. **Mai push diretto su `main`.** `main` è l'app pubblicata. Lavori solo su un ramo `lab/AAAA-MM-GG-tema`
+   e apri una Pull Request; la unisci solo con il "sì" di Francesco in chat (regola 6).
 3. **Massimo UNA modifica per giorno**, piccola, verificabile, reversibile.
    Se nessuna idea supera la soglia (impatto alto, rischio basso), non toccare il codice: solo ricerca.
 4. Non toccare `src/config.ts` (numero WhatsApp, endpoint, flag) senza richiesta esplicita.
 5. Ogni fonte va citata con link. Distingui FATTO / OPINIONE DELL'AUTORE / IPOTESI NOSTRA.
-6. **Dal 19/11/2026 (richiesta di Francesco): nessuna modifica al codice dell'app senza il suo via libera esplicito.**
-   L'agente studia, aggiorna diario e backlog, e **propone** la modifica (cosa, perché, fonte, rischio).
-   Ramo e PR solo dopo il "sì" di Francesco.
+6. **Dal 19/11/2026 (richiesta di Francesco): Francesco autorizza tutto in questa chat, mai su GitHub.**
+   - L'agente studia e **propone** in chat ogni modifica al codice (cosa, perché, fonte, rischio) con una domanda a scelta.
+   - Solo dopo il "sì" in chat: ramo `lab/…`, modifica, test, PR. Poi mostra gli screenshot e chiede "pubblico?".
+   - Solo dopo il secondo "sì" in chat: l'agente unisce la PR su `main` e, se richiesto, aggiorna l'anteprima (`npm run build:pages`).
+   - Nessuna risposta = non si tocca niente: la proposta resta nel backlog.
 7. Niente dipendenze nuove con codice nativo (romperebbero Expo Go). Usa `npx expo install`.
 
 ## Budget: spendi solo per cose utili
