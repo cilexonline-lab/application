@@ -67,6 +67,7 @@ export default function RequestScreen() {
   const fail = (msg: string, field: Field | null) => {
     setError(msg);
     setErrField(field);
+    setSentRef('');
     const y = field ? fieldY.current[field] : undefined;
     if (y !== undefined) scrollRef.current?.scrollTo({ y: Math.max(0, y - space.md), animated: true });
   };
