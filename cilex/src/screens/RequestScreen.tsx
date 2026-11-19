@@ -144,11 +144,11 @@ export default function RequestScreen() {
           </>
         )}
 
-        <Text style={s.label} onLayout={markY('name')}>{t('name')}</Text>
+        <Text style={s.label} onLayout={markY('name')}>{t('name')}<Text style={s.req}> *</Text></Text>
         <TextInput style={[s.input, errField === 'name' && s.inputErr]} value={name} onChangeText={(v) => { setName(v); clearErr('name'); }} autoCapitalize="words" textContentType="name" placeholderTextColor={colors.muted} />
         {fieldError('name')}
 
-        <Text style={s.label} onLayout={markY('date')}>{t(isApt ? 'checkIn' : 'date')}</Text>
+        <Text style={s.label} onLayout={markY('date')}>{t(isApt ? 'checkIn' : 'date')}<Text style={s.req}> *</Text></Text>
         {!isApt && (
           <View style={s.row}>
             {quickDates().map((iso, i) => (
@@ -207,6 +207,7 @@ const s = StyleSheet.create({
   stepVal: { color: colors.text, fontSize: 24, fontWeight: '800', minWidth: 40, textAlign: 'center' },
   ref: { color: colors.muted, textAlign: 'center', marginTop: space.md, letterSpacing: 2, fontWeight: '700' },
   error: { color: colors.danger, marginTop: space.md, fontWeight: '600' },
+  req: { color: colors.brand },
   fieldError: { color: colors.danger, marginTop: 6, fontWeight: '600' },
   inputErr: { borderColor: colors.danger },
 });
