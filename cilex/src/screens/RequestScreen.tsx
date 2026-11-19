@@ -14,7 +14,7 @@ import { openWhatsApp } from '../whatsapp';
 import { colors, radius, space } from '../theme';
 
 type Kind = 'table' | 'boat' | 'concierge' | 'apartment' | 'villa';
-type Field = 'name' | 'date' | 'checkout';
+type Field = 'date' | 'checkout';
 const KINDS: { k: Kind; icon: IconName }[] = [
   { k: 'table', icon: 'table' },
   { k: 'boat', icon: 'boat' },
@@ -76,7 +76,6 @@ export default function RequestScreen() {
 
   const send = () => {
     const iso = parseDate(date);
-    if (!name.trim()) return fail(t('errName'), 'name');
     if (!iso) return fail(t('errDate'), 'date');
     if (people < 1) return fail(t('errPeople'), null);
     const outIso = isApt && checkout.trim() ? parseDate(checkout) : null;
@@ -91,7 +90,7 @@ export default function RequestScreen() {
     const lines = [
       `Cilex App · ${ref}`,
       `${t(kind)}`,
-      `${t('name')}: ${name.trim()}`,
+      name.trim() ? `${t('name')}: ${name.trim()}` : '',
       showClub && clubId ? `${t('club')}: ${getClub(clubId)?.name}` : '',
       `${t(isApt ? 'checkIn' : 'date')}: ${fmtDate(iso)} (${iso})`,
       outIso ? `${t('checkOut')}: ${fmtDate(outIso)} (${outIso})` : '',
@@ -144,9 +143,8 @@ export default function RequestScreen() {
           </>
         )}
 
-        <Text style={s.label} onLayout={markY('name')}>{t('name')}<Text style={s.req}> *</Text></Text>
-        <TextInput style={[s.input, errField === 'name' && s.inputErr]} value={name} onChangeText={(v) => { setName(v); clearErr('name'); }} autoCapitalize="words" textContentType="name" placeholderTextColor={colors.muted} />
-        {fieldError('name')}
+        <Text style={s.label}>{t('nameOptional')}</Text>
+        <TextInput style={s.input} value={name} onChangeText={setName} autoCapitalize="words" textContentType="name" placeholderTextColor={colors.muted} />
 
         <Text style={s.label} onLayout={markY('date')}>{t(isApt ? 'checkIn' : 'date')}<Text style={s.req}> *</Text></Text>
         {!isApt && (
