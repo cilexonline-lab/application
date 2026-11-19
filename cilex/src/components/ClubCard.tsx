@@ -11,6 +11,7 @@ import { colors, radius, space } from '../theme';
 import { Icon } from './Icon';
 
 const native = Platform.OS !== 'web';
+const FILL_CIRCLE = new Set(['amnesia']);
 
 // "#RRGGBB" + opacità → "#RRGGBBAA"
 const alpha = (hex: string, a: number) => hex + Math.round(a * 255).toString(16).padStart(2, '0');
@@ -60,11 +61,18 @@ export function ClubCard({ club, next, index, labels, onOpen, onTable }: Props) 
           style={StyleSheet.absoluteFill}
         />
 
-        <View style={s.logoBox}>
+        <View style={[s.logoCircle, { borderColor: accent, backgroundColor: alpha(accent, 0.12) }]}>
           {typeof logo === 'string' ? (
-            <SvgXml xml={logo} width="100%" height="100%" />
+            <View style={s.logoInner}>
+              <SvgXml xml={logo} width="100%" height="100%" />
+            </View>
           ) : logo ? (
-            <Image source={logo as ImageSourcePropType} style={{ width: '100%', height: '100%' }} resizeMode="contain" />
+            // Loghi raster quadrati (es. Amnesia) riempiono il cerchio; gli altri restano interi.
+            <Image
+              source={logo as ImageSourcePropType}
+              style={FILL_CIRCLE.has(club.id) ? { width: '100%', height: '100%' } : s.logoInner}
+              resizeMode={FILL_CIRCLE.has(club.id) ? 'cover' : 'contain'}
+            />
           ) : (
             <Text style={[s.mono, { color: accent }]}>{initials(club.name)}</Text>
           )}
@@ -112,8 +120,17 @@ const s = StyleSheet.create({
     padding: space.md,
     gap: space.md,
   },
-  logoBox: { width: '42%', height: 96, alignItems: 'center', justifyContent: 'center' },
-  mono: { fontSize: 40, fontWeight: '900', letterSpacing: 4 },
+  logoCircle: {
+    width: 116,
+    height: 116,
+    borderRadius: 58,
+    borderWidth: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  logoInner: { width: '76%', height: '56%' },
+  mono: { fontSize: 34, fontWeight: '900', letterSpacing: 3 },
   info: { flex: 1, gap: 6 },
   area: { color: colors.muted, fontSize: 10, fontWeight: '800', letterSpacing: 1.4 },
   name: { color: colors.text, fontSize: 22, fontWeight: '900', letterSpacing: 0.3 },
