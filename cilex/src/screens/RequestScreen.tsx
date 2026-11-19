@@ -6,7 +6,7 @@ import { Icon, IconName } from '../components/Icon';
 import { useContent } from '../content';
 import { useStore } from '../store';
 import { useT } from '../i18n';
-import { fmtDate, parseDate, requestRef } from '../utils';
+import { fmtDate, parseDate, requestRef, todayStr } from '../utils';
 import { CONCIERGE_TOPICS } from '../config';
 import { success } from '../haptics';
 import { openWhatsApp } from '../whatsapp';
@@ -22,6 +22,11 @@ const KINDS: { k: Kind; icon: IconName }[] = [
 ];
 
 const isoToInput = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}/${iso.slice(0, 4)}`;
+
+// Date rapide a un tocco (oggi + 5 giorni): niente formato da indovinare, mese scritto per esteso.
+const QUICK_DAYS = 6;
+const quickDates = (now = new Date()) =>
+  Array.from({ length: QUICK_DAYS }, (_, i) => todayStr(new Date(now.getFullYear(), now.getMonth(), now.getDate() + i)));
 
 export default function RequestScreen() {
   const t = useT();
@@ -126,7 +131,19 @@ export default function RequestScreen() {
         <TextInput style={s.input} value={name} onChangeText={setName} autoCapitalize="words" textContentType="name" placeholderTextColor={colors.muted} />
 
         <Text style={s.label}>{t(isApt ? 'checkIn' : 'date')}</Text>
-        <TextInput style={s.input} value={date} onChangeText={setDate} placeholder={t('dateHint')} keyboardType="numbers-and-punctuation" placeholderTextColor={colors.muted} />
+        {!isApt && (
+          <View style={s.row}>
+            {quickDates().map((iso, i) => (
+              <Chip
+                key={iso}
+                label={i === 0 ? t('dateToday') : i === 1 ? t('dateTomorrow') : fmtDate(iso)}
+                active={parseDate(date) === iso}
+                onPress={() => { setDate(isoToInput(iso)); setError(''); }}
+              />
+            ))}
+          </View>
+        )}
+        <TextInput style={s.input} value={date} onChangeText={setDate} placeholder={isApt ? t('dateHint') : `${t('dateOther')} · ${t('dateHint')}`} keyboardType="numbers-and-punctuation" placeholderTextColor={colors.muted} />
         {isApt && (
           <>
             <Text style={s.label}>{t('checkOut')}</Text>
