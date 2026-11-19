@@ -50,15 +50,15 @@ export function ClubCard({ club, next, index, labels, onOpen, onTable }: Props) 
         onPressIn={() => press(0.97)}
         onPressOut={() => press(1)}
         onPress={() => { tap(); onOpen(); }}
-        style={[s.card, { borderColor: alpha(accent, 0.35) }]}
+        style={[s.card, { borderColor: alpha(accent, 0.22) }]}
       >
         <LinearGradient
-          colors={[alpha(accent, 0.38), alpha(accent, 0.08), 'transparent']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
+          colors={[alpha(accent, 0.30), alpha(accent, 0.10), alpha(accent, 0.0)]}
+          locations={[0, 0.45, 1]}
+          start={{ x: 0, y: 0.5 }}
+          end={{ x: 1, y: 0.5 }}
           style={StyleSheet.absoluteFill}
         />
-        <View style={[s.glow, { backgroundColor: alpha(accent, 0.22) }]} />
 
         <View style={s.logoBox}>
           {typeof logo === 'string' ? (
@@ -112,7 +112,6 @@ const s = StyleSheet.create({
     padding: space.md,
     gap: space.md,
   },
-  glow: { position: 'absolute', left: -40, top: -40, width: 200, height: 200, borderRadius: 100, opacity: 0.6 },
   logoBox: { width: '42%', height: 96, alignItems: 'center', justifyContent: 'center' },
   mono: { fontSize: 40, fontWeight: '900', letterSpacing: 4 },
   info: { flex: 1, gap: 6 },
