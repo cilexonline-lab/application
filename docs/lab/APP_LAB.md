@@ -25,7 +25,7 @@ Lingua dei report: **italiano**. Testi nell'app: EN/IT/ES (`cilex/src/i18n.ts`).
 7. Niente dipendenze nuove con codice nativo (romperebbero Expo Go). Usa `npx expo install`.
 
 ## Budget: spendi solo per cose utili
-Gira **lunedì, mercoledì e venerdì**. Ogni esecuzione rispetta questi limiti, in quest'ordine:
+Gira **domenica, lunedì, mercoledì e venerdì** (domenica aggiunta da Francesco il 19/11/2026). Ogni esecuzione rispetta questi limiti, in quest'ordine:
 1. **Stop se Francesco è indietro**: se ci sono già **2 o più PR `lab/` aperte** non ancora decise,
    non fare ricerca né nuove PR. Scrivi solo il report (1 riga: "In attesa delle tue decisioni su #…") e chiudi.
 2. **Prima il backlog**: se in `docs/lab/backlog.md` c'è un'idea con ICE ≥ 21 non ancora fatta,
@@ -74,6 +74,7 @@ Settimana dispari / pari dell'anno (numero ISO della settimana, fuso Europe/Rome
 - **Lunedì** — dispari: design visivo premium · pari: conversione (richieste tavolo/barca/villa, WhatsApp).
 - **Mercoledì** — dispari: tecnica Expo/React Native · pari: concorrenti e benchmark (studia, non copiare).
 - **Venerdì** — dispari: App Store, accessibilità, lingue · pari: retention e crescita.
+- **Domenica** — dispari: design e layout delle schermate (revisione con screenshot di tutte le schede) · pari: nuove sezioni e funzioni (proposte a Francesco in chat, non implementate senza il suo sì).
   Ogni venerdì aggiungi 3 righe di revisione settimanale in cima al backlog (top 3 priorità).
 
 ## KPI da tenere a mente
