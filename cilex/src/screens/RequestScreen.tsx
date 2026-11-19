@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import type { ScrollViewInstance } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { Button, Chip, ScreenTitle } from '../components/ui';
 import { Icon, IconName } from '../components/Icon';
@@ -13,6 +14,7 @@ import { openWhatsApp } from '../whatsapp';
 import { colors, radius, space } from '../theme';
 
 type Kind = 'table' | 'boat' | 'concierge' | 'apartment' | 'villa';
+type Field = 'name' | 'date' | 'checkout';
 const KINDS: { k: Kind; icon: IconName }[] = [
   { k: 'table', icon: 'table' },
   { k: 'boat', icon: 'boat' },
@@ -41,6 +43,10 @@ export default function RequestScreen() {
   const [people, setPeople] = useState(2);
   const [notes, setNotes] = useState(params.note ?? '');
   const [error, setError] = useState('');
+  // Campo con l'errore: il messaggio appare sotto quel campo (NN/g) e la pagina ci scorre sopra.
+  const [errField, setErrField] = useState<Field | null>(null);
+  const scrollRef = useRef<ScrollViewInstance>(null);
+  const fieldY = useRef<Partial<Record<Field, number>>>({});
   const [pr, setPr] = useState(savedPr);
   const [topic, setTopic] = useState('');
   const [sentRef, setSentRef] = useState('');
@@ -58,14 +64,25 @@ export default function RequestScreen() {
   const showClub = kind === 'table';
   const isApt = kind === 'apartment' || kind === 'villa';
 
+  const fail = (msg: string, field: Field | null) => {
+    setError(msg);
+    setErrField(field);
+    const y = field ? fieldY.current[field] : undefined;
+    if (y !== undefined) scrollRef.current?.scrollTo({ y: Math.max(0, y - space.md), animated: true });
+  };
+  const clearErr = (field: Field) => { if (errField === field) { setErrField(null); setError(''); } };
+  const markY = (field: Field) => (e: { nativeEvent: { layout: { y: number } } }) => { fieldY.current[field] = e.nativeEvent.layout.y; };
+  const fieldError = (field: Field) => (errField === field && !!error ? <Text style={s.fieldError}>{error}</Text> : null);
+
   const send = () => {
     const iso = parseDate(date);
-    if (!name.trim()) return setError(t('errName'));
-    if (!iso) return setError(t('errDate'));
-    if (people < 1) return setError(t('errPeople'));
+    if (!name.trim()) return fail(t('errName'), 'name');
+    if (!iso) return fail(t('errDate'), 'date');
+    if (people < 1) return fail(t('errPeople'), null);
     const outIso = isApt && checkout.trim() ? parseDate(checkout) : null;
-    if (isApt && checkout.trim() && (!outIso || outIso <= iso)) return setError(t('errCheckOut'));
+    if (isApt && checkout.trim() && (!outIso || outIso <= iso)) return fail(t('errCheckOut'), 'checkout');
     setError('');
+    setErrField(null);
     saveName(name.trim());
     setPrCode(pr.trim());
     const ref = requestRef();
@@ -88,7 +105,7 @@ export default function RequestScreen() {
 
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.bg }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <ScrollView contentContainerStyle={{ padding: space.md, paddingBottom: 64 }} keyboardShouldPersistTaps="handled">
+      <ScrollView ref={scrollRef} contentContainerStyle={{ padding: space.md, paddingBottom: 64 }} keyboardShouldPersistTaps="handled">
         <ScreenTitle style={s.h1}>{t('reqTitle')}</ScreenTitle>
         <Text style={s.sub}>{t('reqSubtitle')}</Text>
 
@@ -127,10 +144,11 @@ export default function RequestScreen() {
           </>
         )}
 
-        <Text style={s.label}>{t('name')}</Text>
-        <TextInput style={s.input} value={name} onChangeText={setName} autoCapitalize="words" textContentType="name" placeholderTextColor={colors.muted} />
+        <Text style={s.label} onLayout={markY('name')}>{t('name')}</Text>
+        <TextInput style={[s.input, errField === 'name' && s.inputErr]} value={name} onChangeText={(v) => { setName(v); clearErr('name'); }} autoCapitalize="words" textContentType="name" placeholderTextColor={colors.muted} />
+        {fieldError('name')}
 
-        <Text style={s.label}>{t(isApt ? 'checkIn' : 'date')}</Text>
+        <Text style={s.label} onLayout={markY('date')}>{t(isApt ? 'checkIn' : 'date')}</Text>
         {!isApt && (
           <View style={s.row}>
             {quickDates().map((iso, i) => (
@@ -138,16 +156,18 @@ export default function RequestScreen() {
                 key={iso}
                 label={i === 0 ? t('dateToday') : i === 1 ? t('dateTomorrow') : fmtDate(iso)}
                 active={parseDate(date) === iso}
-                onPress={() => { setDate(isoToInput(iso)); setError(''); }}
+                onPress={() => { setDate(isoToInput(iso)); clearErr('date'); }}
               />
             ))}
           </View>
         )}
-        <TextInput style={s.input} value={date} onChangeText={setDate} placeholder={isApt ? t('dateHint') : `${t('dateOther')} · ${t('dateHint')}`} keyboardType="numbers-and-punctuation" placeholderTextColor={colors.muted} />
+        <TextInput style={[s.input, errField === 'date' && s.inputErr]} value={date} onChangeText={(v) => { setDate(v); clearErr('date'); }} placeholder={isApt ? t('dateHint') : `${t('dateOther')} · ${t('dateHint')}`} keyboardType="numbers-and-punctuation" placeholderTextColor={colors.muted} />
+        {fieldError('date')}
         {isApt && (
           <>
-            <Text style={s.label}>{t('checkOut')}</Text>
-            <TextInput style={s.input} value={checkout} onChangeText={setCheckout} placeholder={t('dateHint')} keyboardType="numbers-and-punctuation" placeholderTextColor={colors.muted} />
+            <Text style={s.label} onLayout={markY('checkout')}>{t('checkOut')}</Text>
+            <TextInput style={[s.input, errField === 'checkout' && s.inputErr]} value={checkout} onChangeText={(v) => { setCheckout(v); clearErr('checkout'); }} placeholder={t('dateHint')} keyboardType="numbers-and-punctuation" placeholderTextColor={colors.muted} />
+            {fieldError('checkout')}
           </>
         )}
 
@@ -164,7 +184,7 @@ export default function RequestScreen() {
         <Text style={s.label}>{t('prCode')}</Text>
         <TextInput style={s.input} value={pr} onChangeText={setPr} autoCapitalize="characters" placeholderTextColor={colors.muted} />
 
-        {!!error && <Text style={s.error}>{error}</Text>}
+        {!!error && <Text style={s.error}>{errField ? t('errCheckField') : error}</Text>}
         <Button label={t('send')} onPress={send} style={{ marginTop: space.lg }} />
         {!!sentRef && <Text style={s.ref}>Ref {sentRef}</Text>}
       </ScrollView>
@@ -187,4 +207,6 @@ const s = StyleSheet.create({
   stepVal: { color: colors.text, fontSize: 24, fontWeight: '800', minWidth: 40, textAlign: 'center' },
   ref: { color: colors.muted, textAlign: 'center', marginTop: space.md, letterSpacing: 2, fontWeight: '700' },
   error: { color: colors.danger, marginTop: space.md, fontWeight: '600' },
+  fieldError: { color: colors.danger, marginTop: 6, fontWeight: '600' },
+  inputErr: { borderColor: colors.danger },
 });
