@@ -17,13 +17,27 @@ Lingua dei report: **italiano**. Testi nell'app: EN/IT/ES (`cilex/src/i18n.ts`).
 5. Ogni fonte va citata con link. Distingui FATTO / OPINIONE DELL'AUTORE / IPOTESI NOSTRA.
 6. Niente dipendenze nuove con codice nativo (romperebbero Expo Go). Usa `npx expo install`.
 
+## Budget: spendi solo per cose utili
+Gira **lunedì, mercoledì e venerdì**. Ogni esecuzione rispetta questi limiti, in quest'ordine:
+1. **Stop se Francesco è indietro**: se ci sono già **2 o più PR `lab/` aperte** non ancora decise,
+   non fare ricerca né nuove PR. Scrivi solo il report (1 riga: "In attesa delle tue decisioni su #…") e chiudi.
+2. **Prima il backlog**: se in `docs/lab/backlog.md` c'è un'idea con ICE ≥ 21 non ancora fatta,
+   **implementala senza nuova ricerca** (zero crediti Firecrawl).
+3. **Ricerca solo se serve**, con tetto fisso: **1** ricerca YouTube + **massimo 2** trascrizioni
+   + massimo 3 ricerche web. Leggi la prima trascrizione: se non contiene almeno un'idea applicabile a Cilex,
+   **non** scaricare la seconda.
+4. **Mai due volte la stessa fonte**: prima di scaricare una trascrizione controlla in `research-log.md`
+   che il video non sia già stato studiato.
+5. **Niente lavoro inutile**: se non hai trovato nulla che superi ICE 21, scrivi una riga nel diario,
+   nessuna PR, e chiudi.
+
 ## Routine di ogni esecuzione
 1. **Setup**: collega e clona `cilexonline-lab/application`, `cd cilex && npm ci`.
    Leggi `docs/lab/backlog.md` e le ultime 3 voci di `docs/lab/research-log.md`.
-2. **Ricerca (tema del giorno, vedi sotto)** con Firecrawl/ricerca web:
+2. **Ricerca (tema del giorno, vedi sotto)** — solo se i punti del Budget lo consentono:
    - **YouTube (via Firecrawl / Alexandria, provider `youtube-com`)**:
      1. `videos/search_videos` con `query` sul tema e `upload_date: "year"`;
-     2. scegli **massimo 3 video** al giorno: preferisci i canali della lista sotto, oppure video con
+     2. scegli **massimo 2 video** (vedi Budget): preferisci i canali della lista sotto, oppure video con
         almeno 20.000 visualizzazioni; scarta clickbait, video sotto i 3 minuti e tutorial di altri framework
         non trasferibili;
      3. `videos/video_transcript` (`video_id`, `language: "en"`) e studia la trascrizione completa;
@@ -49,13 +63,11 @@ Lingua dei report: **italiano**. Testi nell'app: EN/IT/ES (`cilex/src/i18n.ts`).
    eventuale decisione richiesta a Francesco.
 
 ## Tema del giorno
-- **Lunedì** — Design visivo premium (tipografia, colore, motion, dark UI di lusso).
-- **Martedì** — Conversione: flusso di richiesta tavolo/barca/villa, fiducia, WhatsApp.
-- **Mercoledì** — Tecnica Expo/React Native: performance, novità SDK, offline, notifiche.
-- **Giovedì** — Concorrenti e benchmark: app di concierge, nightlife, travel di lusso (studia, non copiare).
-- **Venerdì** — Accessibilità, multilingua, App Store (screenshot, ASO, linee guida di revisione).
-- **Sabato** — Retention e crescita: piano viaggio, promemoria, referral, recensioni.
-- **Domenica** — Revisione della settimana: riordina il backlog, chiudi idee deboli, proponi le 3 priorità.
+Settimana dispari / pari dell'anno (numero ISO della settimana, fuso Europe/Rome):
+- **Lunedì** — dispari: design visivo premium · pari: conversione (richieste tavolo/barca/villa, WhatsApp).
+- **Mercoledì** — dispari: tecnica Expo/React Native · pari: concorrenti e benchmark (studia, non copiare).
+- **Venerdì** — dispari: App Store, accessibilità, lingue · pari: retention e crescita.
+  Ogni venerdì aggiungi 3 righe di revisione settimanale in cima al backlog (top 3 priorità).
 
 ## KPI da tenere a mente
 Richieste WhatsApp inviate dall'app, % di utenti che aprono Request, eventi aggiunti al piano,
