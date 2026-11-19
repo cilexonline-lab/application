@@ -105,7 +105,7 @@ export default function RequestScreen() {
 
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.bg }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <ScrollView ref={scrollRef} contentContainerStyle={{ padding: space.md, paddingBottom: 64 }} keyboardShouldPersistTaps="handled">
+      <ScrollView ref={scrollRef} contentContainerStyle={{ padding: space.md, paddingBottom: 120 }} keyboardShouldPersistTaps="handled">
         <ScreenTitle style={s.h1}>{t('reqTitle')}</ScreenTitle>
         <Text style={s.sub}>{t('reqSubtitle')}</Text>
 
@@ -185,6 +185,7 @@ export default function RequestScreen() {
 
         {!!error && <Text style={s.error}>{errField ? t('errCheckField') : error}</Text>}
         <Button label={t('send')} onPress={send} style={{ marginTop: space.lg }} />
+        <Text style={s.promise}>{t('replyPromise')}</Text>
         {!!sentRef && <Text style={s.ref}>Ref {sentRef}</Text>}
       </ScrollView>
     </KeyboardAvoidingView>
@@ -207,6 +208,7 @@ const s = StyleSheet.create({
   ref: { color: colors.muted, textAlign: 'center', marginTop: space.md, letterSpacing: 2, fontWeight: '700' },
   error: { color: colors.danger, marginTop: space.md, fontWeight: '600' },
   req: { color: colors.brand },
+  promise: { color: colors.muted, textAlign: 'center', marginTop: space.sm, fontSize: 13 },
   fieldError: { color: colors.danger, marginTop: 6, fontWeight: '600' },
   inputErr: { borderColor: colors.danger },
 });

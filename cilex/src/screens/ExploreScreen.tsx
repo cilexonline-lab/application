@@ -45,7 +45,7 @@ export default function ExploreScreen() {
                 <Banner name={item.name} imageUrl={item.imageUrl} logo={clubLogo(item.id)} height={110} />
                 <View style={{ paddingTop: 10, paddingHorizontal: 4 }}>
                   <Text style={s.name} numberOfLines={1}>{item.name}</Text>
-                  <Text style={s.sub}>{n === 1 ? t('eventCount1') : `${n} ${t('eventsCount')}`}</Text>
+                  {n > 0 && <Text style={s.sub}>{n === 1 ? t('eventCount1') : `${n} ${t('eventsCount')}`}</Text>}
                 </View>
               </Pressable>
             );

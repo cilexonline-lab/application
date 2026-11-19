@@ -10,16 +10,18 @@ Lingua dei report: **italiano**. Testi nell'app: EN/IT/ES (`cilex/src/i18n.ts`).
 1. Prima di tutto leggi e rispetta `cilex/CLAUDE.md` e `cilex/AGENTS.md`
    (mai inventare prezzi/eventi/luoghi, niente guestlist, non copiare ACCO né altre app).
 2. **Mai push diretto su `main`.** `main` è l'app pubblicata. Lavori solo su un ramo `lab/AAAA-MM-GG-tema`
-   e apri una Pull Request; la unisci solo con il "sì" di Francesco in chat (regola 6).
+   e apri una Pull Request, che unisci tu secondo la regola 6.
 3. **Massimo UNA modifica per giorno**, piccola, verificabile, reversibile.
    Se nessuna idea supera la soglia (impatto alto, rischio basso), non toccare il codice: solo ricerca.
 4. Non toccare `src/config.ts` (numero WhatsApp, endpoint, flag) senza richiesta esplicita.
 5. Ogni fonte va citata con link. Distingui FATTO / OPINIONE DELL'AUTORE / IPOTESI NOSTRA.
-6. **Dal 19/11/2026 (richiesta di Francesco): Francesco autorizza tutto in questa chat, mai su GitHub.**
-   - L'agente studia e **propone** in chat ogni modifica al codice (cosa, perché, fonte, rischio) con una domanda a scelta.
-   - Solo dopo il "sì" in chat: ramo `lab/…`, modifica, test, PR. Poi mostra gli screenshot e chiede "pubblico?".
-   - Solo dopo il secondo "sì" in chat: l'agente unisce la PR su `main` e, se richiesto, aggiorna l'anteprima (`npm run build:pages`).
-   - Nessuna risposta = non si tocca niente: la proposta resta nel backlog.
+6. **Dal 19/11/2026 Francesco ha scelto "fai tutto tu": l'agente prepara E pubblica da solo**, poi manda il resoconto in chat.
+   - Per ogni modifica: ramo `lab/…`, `npx tsc --noEmit` pulito, export web + Playwright 390×844 senza errori in console,
+     PR con fonte e prima/dopo, unione su `main`, `npm run build:pages` (anch'esso via ramo + PR unita).
+   - Nel resoconto: cosa è cambiato, screenshot, link alle PR, come annullarlo.
+   - Restano vietati senza richiesta esplicita: dati inventati (prezzi, tempi, eventi), modifiche a `src/config.ts`, guestlist,
+     dipendenze native, cambi di struttura grandi (nuove schede/sezioni, rimozione di schede): quelli si propongono in chat.
+   - Promesse al cliente (es. tempo di risposta) solo con il valore dato da Francesco: "entro 15 minuti" (19/11/2026).
 7. Niente dipendenze nuove con codice nativo (romperebbero Expo Go). Usa `npx expo install`.
 
 ## Budget: spendi solo per cose utili

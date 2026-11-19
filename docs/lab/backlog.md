@@ -3,17 +3,26 @@
 Ordinato per punteggio ICE (Impact × Confidence × Ease, 1–10 ciascuno → somma su 30).
 Aggiornato dall'agente a ogni esecuzione.
 
+**Top 3 consigliate (19/11/2026)**
+1. Fotografie vere nella Home (ICE 20): **servono foto con permesso da Francesco**; impatto più alto sul "lusso percepito".
+2. Crediti della mappa leggibili (ICE 22): piccolo, a norma Apple.
+3. Home: meno filtri quando gli eventi sono pochi (ICE 20).
+
 | ICE | Idea | Tema | Note / fonte |
 |---|---|---|---|
-| 22 | Nome facoltativo nel modulo Richiedi (WhatsApp identifica già il cliente) — **serve decisione di Francesco** | Conversione | I8 C6 E8. Baymard #668 (meno campi) https://baymard.com/blog/input-fields ; video uxpeak 0:22. Rischio: il team non vede il nome nel messaggio |
-| 21 | Errore mostrato sotto il campo sbagliato (nome, data, check-out) invece che solo in fondo | Conversione | I6 C8 E7. NN/g https://www.nngroup.com/articles/errors-forms-design-guidelines/ |
-| 20 | Asterisco sui campi obbligatori (nome, data) | Conversione | I4 C7 E9. NN/g https://www.nngroup.com/articles/hostile-error-messages/ |
-| 19 | Codice PR dietro un link "Hai un codice PR?" (aperto da solo se il codice è già salvato o arriva da un link) — **serve decisione di Francesco** | Conversione | I5 C6 E8. Baymard #668. Rischio: meno attribuzioni ai PR |
-| 19 | Pulsante con riepilogo: "Invia su WhatsApp · Tavolo, ven 20 nov, 2 persone" | Conversione | I6 C5 E8. Video uxpeak 1:45 (goal gradient), ipotesi nostra |
-| 18 | Precompilare la data della richiesta dal periodo di viaggio salvato in Piano (arrivo) | Conversione | I6 C6 E6. Baymard #568 |
-| 16 | Date rapide anche per check-in/check-out di ville e appartamenti (intervallo) | Conversione | I5 C5 E6. NN/g https://www.nngroup.com/articles/date-input/ |
+| 22 | Crediti della mappa leggibili: 11 pt e contrasto più alto (attribuzione OSM) | Design | I3 C9 E10. Apple HIG Typography (minimo 11 pt) |
+| 20 | Fotografie reali (barche, ville, team) in Home e nelle schede — **servono foto con permesso** | Design | I9 C7 E4 |
+| 20 | Home: nascondere i filtri quando ci sono meno di 5 eventi | Design | I5 C7 E8 |
+| 20 | Barra con 5 schede: togliere o spostare "Chiedi" finché l'IA non è attiva — **decisione di Francesco** | Design | I6 C6 E8. HIG Tab bars (limite da verificare) |
+| 19 | Pulsante con riepilogo: "Invia su WhatsApp · Tavolo, ven 20 nov, 2 persone" | Conversione | I6 C5 E8 |
+| 19 | Codice PR dietro un link — **non scelto da Francesco il 19/11, fermo** | Conversione | Rischio attribuzioni PR |
+| 18 | Piano: date di arrivo/partenza più facili (scelta mese + giorno, niente GG/MM/AAAA) | Retention | I6 C6 E6. NN/g date input |
+| 18 | Precompilare la data della richiesta dal periodo di viaggio salvato in Piano | Conversione | I6 C6 E6. Baymard #568 |
+| 17 | Richiesta recensione App Store dopo il ritorno dalla prima richiesta WhatsApp (dopo l'uscita su App Store) | Retention | I5 C7 E5. Apple HIG Ratings |
+| 16 | Piano condiviso con link per il gruppo di amici | Crescita | I7 C5 E4. Benchmark Tickets Ibiza ("Shared Trips") |
+| 16 | Date rapide per check-in/check-out di ville e appartamenti | Conversione | I5 C5 E6 |
 
-Fatto: date rapide a un tocco nel modulo Richiedi (ICE 23, I8 C7 E8) — PR `lab/2026-11-19-conversione`.
+Fatto il 19/11/2026: niente "0 in arrivo" in Esplora e promessa "Ti rispondiamo su WhatsApp entro 15 minuti" (dato di Francesco); date rapide (PR #1), errori sotto il campo, asterisco, nome facoltativo (PR #2), anteprima web (PR #3).
 
 ## In attesa di dati da Francesco (non implementabili dall'agente)
 - Logo SWAG.
