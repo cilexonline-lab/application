@@ -65,7 +65,7 @@ export default function Map3DScreen() {
           {pins.map((p) => <Chip key={p.id} label={p.name} active={p.id === sel} onPress={() => setSel(p.id)} />)}
         </ScrollView>
         <Text style={s.credit}>
-          {t('mapDrag')} · © OpenStreetMap contributors · Copernicus DEM · Illustrazione Cilex
+          {t('mapDrag')} · © OpenStreetMap contributors · Copernicus DEM · {t('mapIllus')}
           {missing.length > 0 ? `\n${t('mapNoPos')} ${missing.join(', ')}` : ''}
         </Text>
       </View>
@@ -82,7 +82,7 @@ const s = StyleSheet.create({
   botFade: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 240 },
   bottom: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: space.md, paddingBottom: space.sm },
   hint: { color: 'rgba(255,255,255,0.75)', fontSize: 13, marginBottom: space.sm },
-  credit: { color: 'rgba(255,255,255,0.45)', fontSize: 10, lineHeight: 14, marginTop: space.sm },
+  credit: { color: 'rgba(255,255,255,0.7)', fontSize: 11, lineHeight: 15, marginTop: space.sm },
   sel: { backgroundColor: 'rgba(14,16,20,0.9)', borderRadius: radius.md, borderWidth: 1, borderColor: colors.brand, padding: 14, marginBottom: space.sm },
   selName: { color: colors.text, fontSize: 18, fontWeight: '800' },
   selKind: { color: colors.muted, fontSize: 12, marginTop: 2 },
