@@ -2,6 +2,12 @@
 
 Una voce per esecuzione, la più recente in cima.
 
+## 2026-11-20 (venerdì, settimana 47 dispari) — App Store, accessibilità, lingue
+
+Nessuna ricerca nuova (0 crediti): nel backlog c'era un'idea con ICE ≥ 21, che per regola si fa prima.
+- **Fatto**: crediti della mappa da 10 a 11 pt, il minimo Apple per iOS (https://developer.apple.com/design/human-interface-guidelines/typography); bianco al 70% invece del 45%.
+- **Trovato e corretto durante il lavoro (lingue)**: "Illustrazione Cilex" era scritto fisso in italiano anche per chi usa l'app in inglese o spagnolo. Ora è tradotto (chiave `mapIllus`). Una ricerca automatica di altri testi fissi nelle schermate non ha trovato altri casi evidenti; il controllo completo resta da fare (vedi backlog).
+
 ## 2026-11-19 (studio straordinario autorizzato da Francesco) — Concorrenti e benchmark
 
 Letto davvero: 1 ricerca web + 3 pagine (InList su App Store, pagina app di Tickets Ibiza, pagina app di The Ibiza Social Club). Studiare, non copiare.
