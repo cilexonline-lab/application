@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Banner, Chip, ScreenTitle } from '../components/ui';
 import { useContent } from '../content';
 import { useT } from '../i18n';
@@ -21,6 +21,9 @@ export default function ExploreScreen() {
   const nav = useNavigation<any>();
   const { clubs, upcoming, places } = useContent();
   const [seg, setSeg] = useState<Seg>('club');
+  // Apertura da altre sezioni (es. Chiedi) su una scheda precisa: navigate('Clubs', { seg: 'beach' }).
+  const wanted = (useRoute<any>().params ?? {}).seg as Seg | undefined;
+  useEffect(() => { if (wanted && SEGS.some((x) => x.k === wanted)) setSeg(wanted); }, [wanted]);
   const list: Place[] = places.filter((p) => kindsOf(seg).includes(p.kind));
   const [area, setArea] = useState('');
   const areas = ['', ...Array.from(new Set(clubs.map((c) => c.area).filter((a): a is string => !!a)))];

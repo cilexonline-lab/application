@@ -1,6 +1,8 @@
 name = "cilex-ai"
 main = "worker.js"
 compatibility_date = "2026-01-01"
+# Serve all'SDK Anthropic (usa moduli node:).
+compatibility_flags = ["nodejs_compat"]
 
 [vars]
 # URL pubblico del JSON contenuti (lo stesso di CONTENT_URL nell'app)

@@ -33,7 +33,7 @@ Prima di scrivere codice Expo/RN controlla la versione in `package.json` (Expo S
 - `src/stays.ts`, `src/places.ts` — modelli e sanitizzazione (JSON sbagliato non rompe l'app).
 - `src/components/IbizaMap.tsx` + `src/screens/Map3DScreen.tsx` — mappa illustrata (immagine `assets/ibiza-map.jpg` giorno / `ibiza-map-night.jpg` notte) con pin, zoom, pan. Le immagini si rigenerano con `python3 tools/make_map.py day` e `... night` (una alla volta, ~4 GB RAM; servono numpy, scipy, pillow). Contorno isola © OpenStreetMap contributors, rilievo Copernicus DEM; colori/alberi/casette/nuvole sono illustrazione. Le posizioni di paesi/saline nell'immagine sono approssimative: **da verificare**. Le coordinate dei club vengono da OpenStreetMap: **da verificare sul posto** (SWAG senza coordinate = nessun pin).
 - `src/screens/RequestScreen.tsx` — richieste che aprono WhatsApp con messaggio precompilato (`src/whatsapp.ts`).
-- `src/screens/AskScreen.tsx`, `src/ai.ts`, `backend/ai-worker/` — assistente IA via Cloudflare Worker (chiave Anthropic solo sul server; test in `backend/ai-worker/test.mjs`, `eval.mjs`, FAQ in `faq-template.json`).
+- `src/screens/AskScreen.tsx`, `src/ai.ts`, `src/intents.ts`, `backend/ai-worker/` — tab Chiedi. Con `AI_ENDPOINT`: assistente IA via Cloudflare Worker (SDK Anthropic, output strutturato `{reply, actions}`; chiave solo sul server; test in `backend/ai-worker/test.mjs`, `eval.mjs`; FAQ di base `faq-app.json`, FAQ del team in `content.json` → `faq`, modello `faq-template.json`). Senza `AI_ENDPOINT`: modalità locale (`src/intents.ts`) che riconosce la richiesta e propone i pulsanti verso la sezione giusta o il team. Le azioni (tavolo, barca, concierge, ville, appartamenti, club, evento, esplora, mappa, piano, WhatsApp) diventano pulsanti sotto la risposta.
 - `src/notify.ts`, `RemindersSync.tsx` — promemoria locali (solo iPhone/Android, non web).
 
 ## Stato (18/11/2026)
@@ -44,6 +44,6 @@ Fatto e verificato solo su anteprima web + export iOS: tutto quanto sopra. **Mai
 2. Contenuti reali nel JSON remoto (`CONTENT_URL`): eventi con link biglietti, club, luoghi (beach club/ristoranti/attività con zona, link, coordinate), **immobili `stays`** (nome, zona generica, camere, bagni, ospiti, punti di forza, foto con permesso; prezzo solo se pubblico), FAQ reali (30–50 domande dei clienti). Poi `SHOW_DEMO_DATA = false`.
 3. `PRIVACY_URL`, `SUPPORT_URL` (obbligatori per App Store).
 4. Account Apple Developer (99 $/anno), bundle `com.cilex.ibiza`, build con EAS, schede App Store, screenshot.
-5. IA: chiave Anthropic + limite di spesa, deploy del worker (`backend/ai-worker/README.md`), poi `AI_ENDPOINT`/`AI_APP_TOKEN`.
+5. IA: account Cloudflare (gratuito) + chiave Anthropic con limite di spesa, deploy del worker (`backend/ai-worker/README.md`), poi `AI_ENDPOINT`/`AI_APP_TOKEN`. FAQ sul servizio (pagamenti, cancellazioni, orari del team, lingue): le scrive il team in `content.json` → serve `CONTENT_URL` pubblico.
 6. Coordinate di SWAG; verifica sul posto delle coordinate dei club.
 7. Idee non fatte: FAQ locale (menu a tocco + ricerca) senza IA, deep link/QR per PR, richiesta recensione, biglietti offline, push remote (serve server).

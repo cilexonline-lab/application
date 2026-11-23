@@ -14,13 +14,13 @@ let device = '';
 for (let i = 0; i < questions.length; i++) {
   if (i % 30 === 0) device = 'eval-' + Math.random().toString(36).slice(2, 10); // resta sotto il limite per dispositivo
   const item = questions[i];
-  let reply = '', error = '';
+  let reply = '', actions = [], error = '';
   try {
     const headers = { 'content-type': 'application/json', 'x-device': device };
     if (token) headers['x-app-token'] = token;
     const r = await fetch(url, { method: 'POST', headers, body: JSON.stringify({ messages: [{ role: 'user', content: item.q }] }) });
     const j = await r.json().catch(() => ({}));
-    if (r.ok && j.reply) reply = j.reply; else error = `HTTP ${r.status} ${j.error ?? ''}`.trim();
+    if (r.ok && j.reply) { reply = j.reply; actions = Array.isArray(j.actions) ? j.actions : []; } else error = `HTTP ${r.status} ${j.error ?? ''}`.trim();
   } catch (e) { error = 'rete: ' + e.message; }
 
   const problems = [];
@@ -30,8 +30,10 @@ for (let i = 0; i < questions.length; i++) {
     if (any.length && !any.some((p) => new RegExp(p, 'i').test(reply))) problems.push(`nessuna di queste presente: ${any.join(' | ')}`);
     for (const p of item.mustNotMatch ?? []) if (new RegExp(p, 'i').test(reply)) problems.push(`contiene vietato: ${p}`);
     if (reply.split(/\s+/).length > 170) problems.push('troppo lunga (>170 parole)');
+    // mustAction: il pulsante che deve comparire sotto la risposta (es. "table", "boat", "whatsapp")
+    for (const a of item.mustAction ?? []) if (!actions.some((x) => x.type === a)) problems.push(`manca il pulsante: ${a}`);
   }
-  results.push({ ...item, reply, problems });
+  results.push({ ...item, reply, actions, problems });
   console.log(`${problems.length ? 'FAIL' : 'OK  '} [${item.cat ?? '-'}] ${item.q}${problems.length ? '\n       → ' + problems.join('; ') : ''}`);
   await new Promise((r) => setTimeout(r, 400));
 }
@@ -46,7 +48,7 @@ const md = [
   ...results.flatMap((r) => [
     `## ${r.problems.length ? '❌' : '✅'} [${r.cat ?? '-'}] ${r.q}`,
     r.problems.length ? `Problemi: ${r.problems.join('; ')}` : '',
-    '', r.reply || '(nessuna risposta)', '',
+    '', r.reply || '(nessuna risposta)', r.actions?.length ? `Pulsanti: ${r.actions.map((a) => a.type + (a.target ? ':' + a.target : '')).join(', ')}` : '', '',
   ]),
 ].join('\n');
 writeFileSync('eval-report.md', md);

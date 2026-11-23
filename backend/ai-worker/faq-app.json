@@ -1,0 +1,12 @@
+{
+  "_nota": "Risposte sempre vere perché descrivono come funziona l'app (nessun prezzo, orario o condizione commerciale). Le risposte sulle regole del servizio Cilex (pagamenti, cancellazioni, orari del team, lingue) vanno in content.json → faq, compilate dal team. Le voci di content.json hanno la precedenza.",
+  "faq": [
+    { "q": "Come prenoto un tavolo VIP?", "a": "Dall'app: sezione Richiedi → Tavolo VIP. Scegli club, data e numero di persone: la richiesta arriva al team Cilex su WhatsApp, che ti conferma disponibilità e condizioni. Il tavolo è confermato solo quando il team te lo scrive." },
+    { "q": "Come prenoto una barca?", "a": "Dall'app: sezione Richiedi → Barca. Indica data e numero di persone: la richiesta arriva al team Cilex su WhatsApp, che ti propone le opzioni disponibili e ti conferma le condizioni." },
+    { "q": "Avete ville o appartamenti?", "a": "Sì, nella sezione Ville e appartamenti dell'app trovi gli immobili; da ogni scheda puoi inviare la richiesta. Prezzi e disponibilità te li conferma il team su WhatsApp." },
+    { "q": "Come compro i biglietti di un club?", "a": "Apri il club o l'evento nell'app e tocca Acquista biglietti: si apre la pagina ufficiale del club." },
+    { "q": "Mi servono un transfer, un autista, uno chef privato o un fotografo", "a": "Usa la sezione Richiedi → Concierge e scegli l'argomento: la richiesta arriva al team Cilex su WhatsApp." },
+    { "q": "Posso ricevere un promemoria per un evento?", "a": "Sì: aggiungi l'evento al tuo Piano e attiva i promemoria. Ricevi un avviso alle 12:00 del giorno dell'evento (solo nell'app su iPhone e Android)." },
+    { "q": "Che eventi ci sono?", "a": "Gli eventi in programma sono in Home e nelle pagine dei club, in Esplora. Le date nuove vengono aggiunte appena sono ufficiali." }
+  ]
+}
