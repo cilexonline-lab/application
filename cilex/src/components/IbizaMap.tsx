@@ -11,6 +11,12 @@ const IMG_W = 2000, IMG_H = 3740, RATIO = IMG_H / IMG_W;
 const MAX_ZOOM = 5;
 const artDay = require('../../assets/ibiza-map.jpg');
 const artNight = require('../../assets/ibiza-map-night.jpg');
+// Ingombro dell'isola e spazio libero fra titolo/filtri e pannello in basso (Map3DScreen).
+const ISLAND = { lng0: 1.18, lng1: 1.65, lat0: 38.82, lat1: 39.13 };
+const ISLAND_W = 0.8; // l'isola occupa circa l'80% della larghezza
+const PIN_ZOOM = 1.8; // zoom sul pin rispetto alla vista iniziale
+const gapTop = (w: number) => (w < 360 ? 165 : 125);
+const GAP_BOTTOM = 215;
 
 type V = { s: number; fx: number; fy: number }; // s = scala (1 = immagine larga quanto lo schermo), fx/fy = punto al centro (0..1 dell'immagine)
 const fracX = (lng: number) => (lng - LNG0) / (LNG1 - LNG0);
@@ -53,9 +59,25 @@ export default function IbizaMap({ pins, selected, onSelect }: MapProps) {
   const host = useRef<any>(null);
   const anim = useRef<number | null>(null);
 
-  const cover = size.w ? Math.max(1, size.h / (size.w * RATIO)) : 1;
+  // cover = scala minima: l'immagine copre sempre tutto lo schermo (mai bordi vuoti)
+  const coverOf = (w: number, h: number) => (w ? Math.max(1, h / (w * RATIO)) : 1);
+  const cover = coverOf(size.w, size.h);
   const coverRef = useRef(cover);
   coverRef.current = cover;
+
+  // vista iniziale: isola intera, larga ~80%, centrata nello spazio fra filtri e pannello
+  const homeOf = useCallback((w: number, h: number): V => {
+    const fitW = ISLAND_W / (fracX(ISLAND.lng1) - fracX(ISLAND.lng0));
+    const avail = Math.max(80, h - gapTop(w) - GAP_BOTTOM);
+    const fitH = avail / (w * RATIO * (fracY(ISLAND.lat0) - fracY(ISLAND.lat1)));
+    const s = Math.max(coverOf(w, h), Math.min(fitW, fitH));
+    const CH = w * RATIO * s;
+    const gapMid = (gapTop(w) + (h - GAP_BOTTOM)) / 2; // centro dello spazio libero (in pt dall'alto)
+    const fx = (fracX(ISLAND.lng0) + fracX(ISLAND.lng1)) / 2;
+    const fy = (fracY(ISLAND.lat0) + fracY(ISLAND.lat1)) / 2 + (h / 2 - gapMid) / CH;
+    return { s, fx, fy };
+  }, []);
+  const home = homeOf(size.w || 1, size.h || 1);
 
   const clamp = useCallback((v: V): V => {
     const { w, h } = sizeRef.current;
@@ -81,8 +103,8 @@ export default function IbizaMap({ pins, selected, onSelect }: MapProps) {
   const onLayout = (e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout;
     sizeRef.current = { w: width, h: height }; setSize({ w: width, h: height });
-    coverRef.current = Math.max(1, height / (width * RATIO));
-    setV({ s: coverRef.current * 1.0, fx: 0.49, fy: fracY(38.97) });
+    coverRef.current = coverOf(width, height);
+    setV(homeOf(width, height));
   };
 
   // vola sul pin selezionato (lo mette sopra la scheda in basso)
@@ -90,7 +112,7 @@ export default function IbizaMap({ pins, selected, onSelect }: MapProps) {
     if (!selected || !size.w) return;
     const p = pins.find((x) => x.id === selected);
     if (!p) return;
-    const s = Math.max(vref.current.s, coverRef.current * 2.6);
+    const s = Math.max(vref.current.s, homeOf(size.w, size.h).s * PIN_ZOOM);
     const CH = size.w * RATIO * s;
     flyTo({ s, fx: fracX(p.lng), fy: fracY(p.lat) + (size.h * 0.12) / CH });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -132,9 +154,9 @@ export default function IbizaMap({ pins, selected, onSelect }: MapProps) {
   const { w, h } = size;
   const CW = w * view.s, CH = w * RATIO * view.s;
   const left = w / 2 - view.fx * CW, top = h / 2 - view.fy * CH;
-  const zoomed = view.s / cover > 2.2;
+  const zoomed = view.s / home.s > 1.6;
   const zoomBy = (k: number) => flyTo({ ...vref.current, s: vref.current.s * k }, 260);
-  const reset = () => { onSelect(null); flyTo({ s: cover * 1.0, fx: 0.49, fy: fracY(38.97) }, 520); };
+  const reset = () => { onSelect(null); flyTo(homeOf(w, h), 520); };
 
   return (
     <View ref={host} style={s.root} onLayout={onLayout} {...pan.panHandlers}>

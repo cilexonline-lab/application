@@ -1,33 +1,61 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useId, useRef } from 'react';
 import { Animated, Image, ImageSourcePropType, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { SvgXml } from 'react-native-svg';
+import Svg, { Defs, RadialGradient, Rect, Stop, SvgXml } from 'react-native-svg';
 import type { Club } from '../data/clubs';
-import type { EventItem } from '../data/events';
 import { clubLogo } from '../data/clubLogos';
-import { dayNum, initials, monthShort } from '../utils';
+import { initials } from '../utils';
 import { tap } from '../haptics';
-import { colors, radius, space } from '../theme';
-import { Icon } from './Icon';
+import { colors } from '../theme';
 
 const native = Platform.OS !== 'web';
-const FILL_CIRCLE = new Set(['amnesia']);
+export const clubAccent = (c?: Club) => c?.accent ?? colors.brand;
 
-// "#RRGGBB" + opacità → "#RRGGBBAA"
-const alpha = (hex: string, a: number) => hex + Math.round(a * 255).toString(16).padStart(2, '0');
+// Luce sfumata nel colore del club (cerchio radiale che sfuma nel nero, senza bordi).
+export function ClubGlow({ color, strength = 0.55, cx = '50%', cy = '50%', rx = '55%', ry = '60%' }: { color: string; strength?: number; cx?: string; cy?: string; rx?: string; ry?: string }) {
+  const id = 'g' + useId().replace(/[^a-zA-Z0-9]/g, '');
+  return (
+    <Svg style={StyleSheet.absoluteFill} width="100%" height="100%" pointerEvents="none">
+      <Defs>
+        <RadialGradient id={id} cx={cx} cy={cy} rx={rx} ry={ry} fx={cx} fy={cy} gradientUnits="objectBoundingBox">
+          <Stop offset="0" stopColor={color} stopOpacity={strength} />
+          <Stop offset="0.45" stopColor={color} stopOpacity={strength * 0.35} />
+          <Stop offset="1" stopColor={color} stopOpacity={0} />
+        </RadialGradient>
+      </Defs>
+      <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${id})`} />
+    </Svg>
+  );
+}
+
+// Logo bianco del club; senza logo, il nome in maiuscolo spaziato.
+export function ClubLogoMark({ club, width, height }: { club: Club; width: number; height: number }) {
+  const logo = clubLogo(club.id);
+  if (typeof logo === 'string') {
+    return (
+      <View style={{ width, height }} accessibilityLabel={club.name}>
+        <SvgXml xml={logo} width="100%" height="100%" />
+      </View>
+    );
+  }
+  if (logo) return <Image source={logo as ImageSourcePropType} accessibilityLabel={club.name} style={{ width, height }} resizeMode="contain" />;
+  return (
+    <Text style={[s.word, { fontSize: Math.min(height * 0.6, 44) }]} numberOfLines={1} adjustsFontSizeToFit>
+      {club.name.toUpperCase() || initials(club.name)}
+    </Text>
+  );
+}
 
 type Props = {
   club: Club;
-  next?: EventItem;
+  count: number;
   index: number;
-  labels: { next: string; soon: string; table: string };
+  labels: { events: string; soon: string };
   onOpen: () => void;
-  onTable: () => void;
 };
 
-export function ClubCard({ club, next, index, labels, onOpen, onTable }: Props) {
-  const accent = club.accent ?? colors.brand;
-  const logo = clubLogo(club.id);
+// Vetrina del club in Esplora: nero, luce del club dietro al logo bianco, zona e numero eventi in basso.
+export function ClubCard({ club, count, index, labels, onOpen }: Props) {
+  const accent = clubAccent(club);
   const scale = useRef(new Animated.Value(1)).current;
   const enter = useRef(new Animated.Value(0)).current;
 
@@ -42,114 +70,60 @@ export function ClubCard({ club, next, index, labels, onOpen, onTable }: Props) 
       style={{
         opacity: enter,
         transform: [{ translateY: enter.interpolate({ inputRange: [0, 1], outputRange: [18, 0] }) }, { scale }],
-        marginBottom: space.md,
+        marginBottom: 14,
       }}
     >
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel={club.name}
+        accessibilityLabel={`${club.name}${club.area ? ', ' + club.area : ''}`}
         onPressIn={() => press(0.97)}
         onPressOut={() => press(1)}
         onPress={() => { tap(); onOpen(); }}
-        style={[s.card, { borderColor: alpha(accent, 0.22) }]}
+        style={s.card}
       >
-        <LinearGradient
-          colors={[alpha(accent, 0.30), alpha(accent, 0.10), alpha(accent, 0.0)]}
-          locations={[0, 0.45, 1]}
-          start={{ x: 0, y: 0.5 }}
-          end={{ x: 1, y: 0.5 }}
-          style={StyleSheet.absoluteFill}
-        />
-
-        <View style={[s.logoCircle, { borderColor: accent, backgroundColor: alpha(accent, 0.12) }]}>
-          {typeof logo === 'string' ? (
-            <View style={s.logoInner}>
-              <SvgXml xml={logo} width="100%" height="100%" />
-            </View>
-          ) : logo ? (
-            // Loghi raster quadrati (es. Amnesia) riempiono il cerchio; gli altri restano interi.
-            <Image
-              source={logo as ImageSourcePropType}
-              style={FILL_CIRCLE.has(club.id) ? { width: '100%', height: '100%' } : s.logoInner}
-              resizeMode={FILL_CIRCLE.has(club.id) ? 'cover' : 'contain'}
-            />
-          ) : (
-            <Text style={[s.mono, { color: accent }]}>{initials(club.name)}</Text>
-          )}
+        <ClubGlow color={accent} cy="44%" />
+        <View style={s.logoWrap}>
+          <ClubLogoMark club={club} width={190} height={64} />
         </View>
-
-        <View style={s.info}>
-          {!!club.area && <Text style={s.area} numberOfLines={1}>{club.area.toUpperCase()}</Text>}
-          <Text style={s.name} numberOfLines={1}>{club.name}</Text>
-          {next ? (
-            <View style={s.nextRow}>
-              <View style={[s.date, { borderColor: alpha(accent, 0.6) }]}>
-                <Text style={s.dateDay}>{dayNum(next.date)}</Text>
-                <Text style={s.dateMon}>{monthShort(next.date)}</Text>
-              </View>
-              <Text style={s.nextTitle} numberOfLines={2}>{next.title}</Text>
+        <View style={s.bottom}>
+          <Text style={s.area} numberOfLines={1}>{(club.area ?? '').toUpperCase()}</Text>
+          {count > 0 ? (
+            <View style={[s.pill, { backgroundColor: accent }]}>
+              <Text style={s.pillTxt}>{labels.events.replace('{n}', String(count))}</Text>
             </View>
           ) : (
-            <Text style={s.soon}>{labels.soon}</Text>
+            <View style={[s.pill, s.pillSoon]}>
+              <Text style={[s.pillTxt, { color: colors.text }]}>{labels.soon}</Text>
+            </View>
           )}
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={`${labels.table} – ${club.name}`}
-            onPress={() => { tap(); onTable(); }}
-            hitSlop={8}
-            style={({ pressed }) => [s.tableBtn, pressed && { opacity: 0.8 }]}
-          >
-            <Icon name="table" size={14} color="#001418" />
-            <Text style={s.tableTxt}>{labels.table}</Text>
-          </Pressable>
         </View>
       </Pressable>
     </Animated.View>
   );
 }
 
+// Testata a tutto schermo per la pagina del club e dell'evento (sta sotto l'intestazione trasparente).
+export function ClubHero({ club, height = 360, topInset = 0, children }: { club: Club; height?: number; topInset?: number; children?: React.ReactNode }) {
+  return (
+    <View style={[s.hero, { height }]}>
+      <ClubGlow color={clubAccent(club)} cy="52%" rx="70%" ry="55%" strength={0.65} />
+      <View style={[s.heroLogo, { paddingTop: topInset }]}>
+        <ClubLogoMark club={club} width={240} height={96} />
+      </View>
+      {children}
+    </View>
+  );
+}
+
 const s = StyleSheet.create({
-  card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    minHeight: 168,
-    borderRadius: radius.lg,
-    borderWidth: 1,
-    backgroundColor: colors.card,
-    overflow: 'hidden',
-    padding: space.md,
-    gap: space.md,
-  },
-  logoCircle: {
-    width: 116,
-    height: 116,
-    borderRadius: 58,
-    borderWidth: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  logoInner: { width: '76%', height: '56%' },
-  mono: { fontSize: 34, fontWeight: '900', letterSpacing: 3 },
-  info: { flex: 1, gap: 6 },
-  area: { color: colors.muted, fontSize: 10, fontWeight: '800', letterSpacing: 1.4 },
-  name: { color: colors.text, fontSize: 22, fontWeight: '900', letterSpacing: 0.3 },
-  nextRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  date: { borderWidth: 1, borderRadius: 10, paddingHorizontal: 6, paddingVertical: 3, alignItems: 'center', minWidth: 38 },
-  dateDay: { color: colors.text, fontSize: 14, fontWeight: '900' },
-  dateMon: { color: colors.brand, fontSize: 9, fontWeight: '800', letterSpacing: 1 },
-  nextTitle: { flex: 1, color: colors.text, fontSize: 12, fontWeight: '600', lineHeight: 16 },
-  soon: { color: colors.muted, fontSize: 12, fontStyle: 'italic' },
-  tableBtn: {
-    marginTop: 4,
-    alignSelf: 'flex-start',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    backgroundColor: colors.brand,
-    borderRadius: 999,
-    paddingVertical: 7,
-    paddingHorizontal: 12,
-  },
-  tableTxt: { color: '#001418', fontSize: 12, fontWeight: '800' },
+  card: { height: 196, borderRadius: 26, backgroundColor: '#000000', overflow: 'hidden' },
+  logoWrap: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28, paddingBottom: 18 },
+  word: { color: '#FFFFFF', fontWeight: '900', letterSpacing: 6, textAlign: 'center' },
+  bottom: { position: 'absolute', left: 20, right: 16, bottom: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  area: { flex: 1, color: 'rgba(255,255,255,0.72)', fontSize: 11, fontWeight: '700', letterSpacing: 2.4 },
+  pill: { borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6 },
+  pillSoon: { backgroundColor: 'rgba(255,255,255,0.12)' },
+  pillTxt: { color: '#FFFFFF', fontSize: 12, fontWeight: '800', letterSpacing: 0.3 },
+  hero: { width: '100%', backgroundColor: colors.bg, overflow: 'hidden' },
+  heroLogo: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 40 },
 });
