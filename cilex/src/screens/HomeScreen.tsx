@@ -77,6 +77,18 @@ export default function HomeScreen() {
         </Card>
       )}
 
+      {/* Ingresso all'assistente: sembra una barra di ricerca, apre Chiedi. */}
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={t('homeAsk')}
+        onPress={() => { tap(); nav.navigate('Ask'); }}
+        style={({ pressed }) => [s.askBar, pressed && { opacity: 0.85 }]}
+      >
+        <Icon name="ask" size={18} color={colors.brand} />
+        <Text style={s.askBarTxt} numberOfLines={1}>{t('homeAsk')}</Text>
+        <View style={s.askBarGo}><Icon name="send" size={16} color="#001418" stroke={2.4} /></View>
+      </Pressable>
+
       <View style={s.quickRow}>
         {QUICK.map((q) => (
           <Pressable
@@ -171,6 +183,9 @@ const s = StyleSheet.create({
   muted: { color: colors.muted, fontSize: 14, marginBottom: space.sm },
   newsDate: { color: colors.brand, fontSize: 12, fontWeight: '700', letterSpacing: 1 },
   newsTitle: { color: colors.text, fontSize: 17, fontWeight: '700', marginTop: 4 },
+  askBar: { flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: colors.card, borderRadius: 999, paddingVertical: 8, paddingLeft: 16, paddingRight: 8, marginTop: space.md },
+  askBarTxt: { flex: 1, color: colors.muted, fontSize: 15 },
+  askBarGo: { width: 34, height: 34, borderRadius: 17, backgroundColor: colors.brand, alignItems: 'center', justifyContent: 'center' },
   mapCard: { flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: colors.card, borderRadius: radius.md, borderWidth: 1, borderColor: colors.brand, padding: 14, marginTop: space.md },
   mapTitle: { color: colors.text, fontSize: 16, fontWeight: '800' },
   mapSub: { color: colors.muted, fontSize: 12, marginTop: 2 },

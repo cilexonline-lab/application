@@ -31,7 +31,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build:pages": "expo export --platform web --output-dir ../site-build && node ../tools/publish-pages.mjs"
+    "content": "npx --yes esbuild@0.25.0 tools/export-content.ts --bundle --platform=node --format=cjs --log-level=error --outfile=node_modules/.cache/export-content.cjs && node node_modules/.cache/export-content.cjs",
+    "build:pages": "expo export --platform web --output-dir ../site-build && npm run content -- ../site-build/content.json && node ../tools/publish-pages.mjs"
   },
   "private": true
 }

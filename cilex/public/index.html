@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#050607" />
+    <title>Cilex</title>
+    <style id="expo-reset">
+      html, body { height: 100%; margin: 0; background: #050607; }
+      body { overflow: hidden; }
+      #root { display: flex; flex: 1; height: 100%; height: 100dvh; }
+      /* Da computer: l'app sta in una cornice da telefono centrata, non a tutto schermo. */
+      @media (min-width: 600px) {
+        body {
+          display: flex; align-items: center; justify-content: center;
+          background: radial-gradient(ellipse at 50% 35%, #0b1a20 0%, #050607 60%);
+        }
+        #root {
+          flex: 0 0 auto; width: 400px; height: 860px; max-height: calc(100dvh - 32px);
+          border-radius: 40px; overflow: hidden; position: relative;
+          box-sizing: border-box; padding: 14px 0 24px; background: #050607; /* spazio per angoli e barra Home */
+          box-shadow: 0 0 0 10px #111518, 0 0 0 11px #2a3238, 0 40px 120px rgba(0, 0, 0, 0.7);
+          transform: translateZ(0); /* gli elementi fixed restano dentro la cornice */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

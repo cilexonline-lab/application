@@ -45,6 +45,7 @@ function Tabs() {
         tabBarActiveTintColor: colors.brand,
         tabBarInactiveTintColor: colors.muted,
         tabBarStyle: { backgroundColor: colors.bg, borderTopColor: colors.border },
+        tabBarLabelPosition: 'below-icon',
         headerStyle: { backgroundColor: colors.bg },
         headerTitleStyle: { color: colors.text },
         headerShadowVisible: false,
@@ -60,6 +61,23 @@ function Tabs() {
     </Tab.Navigator>
   );
 }
+
+// Pagine con testata a tutto schermo: intestazione trasparente e tasto indietro come cerchio scuro.
+function HeroBack({ onPress }: { onPress: () => void }) {
+  const t = useT();
+  return (
+    <Pressable accessibilityRole="button" accessibilityLabel={t('back')} onPress={onPress} hitSlop={10} style={({ pressed }) => [heroBtn, pressed && { opacity: 0.7 }]}>
+      <Text style={{ color: '#FFFFFF', fontSize: 28, lineHeight: 30, marginTop: -3, marginLeft: -2 }}>‹</Text>
+    </Pressable>
+  );
+}
+const heroBtn = { width: 40, height: 40, borderRadius: 20, marginLeft: 8, backgroundColor: 'rgba(5,6,7,0.62)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.14)', alignItems: 'center' as const, justifyContent: 'center' as const };
+const heroHeader = ({ navigation }: any) => ({
+  title: '',
+  headerTransparent: true,
+  headerStyle: { backgroundColor: 'transparent' },
+  headerLeft: () => (navigation.canGoBack() ? <HeroBack onPress={() => navigation.goBack()} /> : null),
+});
 
 export default function App() {
   const navRef = useNavigationContainerRef();
@@ -88,13 +106,13 @@ export default function App() {
           })}
         >
           <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
-          <Stack.Screen name="ClubDetail" component={ClubDetailScreen} options={{ title: '' }} />
+          <Stack.Screen name="ClubDetail" component={ClubDetailScreen} options={heroHeader} />
           <Stack.Screen name="PlaceDetail" component={PlaceDetailScreen} options={{ title: '' }} />
           <Stack.Screen name="Stays" component={StaysScreen} options={{ title: '' }} />
           <Stack.Screen name="StayDetail" component={StayDetailScreen} options={{ title: '' }} />
           <Stack.Screen name="Request" component={RequestScreen} options={{ title: '' }} />
           <Stack.Screen name="Info" component={InfoScreen} options={{ title: '' }} />
-          <Stack.Screen name="EventDetail" component={EventDetailScreen} options={{ title: '' }} />
+          <Stack.Screen name="EventDetail" component={EventDetailScreen} options={heroHeader} />
           <Stack.Screen name="Artist" component={ArtistScreen} options={{ title: '' }} />
           <Stack.Screen name="NewsStory" component={NewsStoryScreen} options={{ title: '' }} />
         </Stack.Navigator>

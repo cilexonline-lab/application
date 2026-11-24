@@ -1,0 +1,97 @@
+{
+ "_come_si_usa": "Domande vere dei clienti. Compila SOLO la risposta \"a\" con ciò che è vero OGGI (max 400 caratteri). Le voci con \"a\" vuota non vanno all'IA. Niente prezzi, commissioni o disponibilità che cambiano. Dopo la modifica: npm run build:pages (pubblica content.json) e l'IA le usa subito.",
+ "faq": [
+  {
+   "q": "Come si prenota un tavolo e quando è confermato?",
+   "a": ""
+  },
+  {
+   "q": "Come si paga un tavolo (acconto, saldo, metodi)?",
+   "a": ""
+  },
+  {
+   "q": "Posso cancellare o spostare un tavolo?",
+   "a": ""
+  },
+  {
+   "q": "Come funziona la prenotazione di una barca?",
+   "a": ""
+  },
+  {
+   "q": "Che cosa è incluso nel noleggio barca (skipper, carburante, bibite)?",
+   "a": ""
+  },
+  {
+   "q": "Offrite transfer da/per aeroporto e hotel?",
+   "a": ""
+  },
+  {
+   "q": "Come compro i biglietti dei club?",
+   "a": ""
+  },
+  {
+   "q": "I biglietti sono rimborsabili?",
+   "a": ""
+  },
+  {
+   "q": "C'è un'età minima per entrare nei club?",
+   "a": ""
+  },
+  {
+   "q": "Quali documenti servono all'ingresso?",
+   "a": ""
+  },
+  {
+   "q": "Che dress code c'è nei club?",
+   "a": ""
+  },
+  {
+   "q": "Quanto tempo prima devo scrivervi per una richiesta?",
+   "a": ""
+  },
+  {
+   "q": "Rispondete anche di notte? Qual è l'orario del servizio?",
+   "a": ""
+  },
+  {
+   "q": "In che lingue parlate con i clienti?",
+   "a": ""
+  },
+  {
+   "q": "Come si ottiene una cena/chef privato o una villa?",
+   "a": ""
+  },
+  {
+   "q": "Dove vi trovo fisicamente / come ci incontriamo?",
+   "a": ""
+  },
+  {
+   "q": "Cosa succede se un evento viene cancellato o cambia line-up?",
+   "a": ""
+  },
+  {
+   "q": "Come funziona il codice PR?",
+   "a": ""
+  },
+  {
+   "q": "Come si paga e serve un acconto?",
+   "a": ""
+  },
+  {
+   "q": "Quali lingue parla il team?",
+   "a": ""
+  },
+  {
+   "q": "Organizzate feste private o eventi in villa?",
+   "a": ""
+  },
+  {
+   "q": "Potete consigliarmi un ristorante e prenotarlo?",
+   "a": ""
+  },
+  {
+   "q": "Fate servizio anche fuori stagione (inverno)?",
+   "a": ""
+  }
+ ]
+}
