@@ -5,6 +5,10 @@
 - Ramo `lab/2026-11-24-eccezioni`: Atzaró Beach e Brula tolti dalla Selezione Cilex (non partner); "Prenota con Cilex" attivo su tutti i ristoranti e beach club (flag `bookable` impostato in `cilex/src/data/places.ts`).
 - Sito rigenerato con `cd cilex && npm run build:pages`.
 
+## Aggiunto dopo (autonomia concessa da Alex)
+- "Le tue preferenze" (Piano): allergie, musica, occasione. Salvate solo sul telefono (AsyncStorage), aggiunte in coda ai messaggi WhatsApp della schermata Richiesta, solo se compilate. Funzione 2 di `proposte-concorrenza.md` (PR #20).
+- Promemoria: allergie = dato sensibile; campo facoltativo, mai inviato a server, solo nel messaggio che l'utente stesso invia.
+
 ## In attesa (NON unire senza ok di Alex)
 - #19 BOZZA 30 FAQ: Alex deve sceglierne 20–25.
 - #17 BOZZA kit App Store.

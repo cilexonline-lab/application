@@ -34,7 +34,7 @@ export default function RequestScreen() {
   const t = useT();
   const params = (useRoute<any>().params ?? {}) as { kind?: Kind; clubId?: string; date?: string; note?: string };
   const { clubs, getClub } = useContent();
-  const { name: savedName, setName: saveName, prCode: savedPr, setPrCode } = useStore();
+  const { name: savedName, setName: saveName, prCode: savedPr, setPrCode, prefs } = useStore();
   const [kind, setKind] = useState<Kind>(params.kind ?? 'table');
   const [clubId, setClubId] = useState<string>(params.clubId ?? '');
   const [name, setName] = useState(savedName);
@@ -87,6 +87,8 @@ export default function RequestScreen() {
     saveName(name.trim());
     setPrCode(pr.trim());
     const ref = requestRef();
+    const pf = prefs || { diet: '', music: '', occasion: '' };
+    const prefLines = [pf.diet.trim() && `${t('prefsDiet')}: ${pf.diet.trim()}`, pf.music.trim() && `${t('prefsMusic')}: ${pf.music.trim()}`, pf.occasion.trim() && `${t('prefsOccasion')}: ${pf.occasion.trim()}`].filter(Boolean) as string[];
     setSentRef(ref);
     success();
     const lines = [
@@ -100,6 +102,7 @@ export default function RequestScreen() {
       kind === 'concierge' && topic ? `${t('topics')} ${t(topic)}` : '',
       notes.trim() ? `${t('notes')}: ${notes.trim()}` : '',
       pr.trim() ? `PR: ${pr.trim()}` : '',
+      ...prefLines,
     ].filter(Boolean);
     lastMsg.current = lines.join('\n');
     setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 250);
