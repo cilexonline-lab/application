@@ -151,6 +151,14 @@ export default function IbizaMap({ pins, selected, onSelect }: MapProps) {
     return () => el.removeEventListener('wheel', fn);
   }, [setV, size.w]);
 
+  // Etichette: niente sovrapposizioni (il pin selezionato ha la precedenza, gli altri compaiono se c'è spazio).
+  const labelBoxes: { x: number; y: number; w: number }[] = [];
+  const freeLabel = (x: number, y: number, name: string) => {
+    const bw = Math.min(180, name.length * 7 + 16);
+    if (labelBoxes.some((b) => Math.abs(b.x - x) < (b.w + bw) / 2 && Math.abs(b.y - y) < 22)) return false;
+    labelBoxes.push({ x, y, w: bw });
+    return true;
+  };
   const { w, h } = size;
   const CW = w * view.s, CH = w * RATIO * view.s;
   const left = w / 2 - view.fx * CW, top = h / 2 - view.fy * CH;
@@ -163,7 +171,7 @@ export default function IbizaMap({ pins, selected, onSelect }: MapProps) {
       {w > 0 && (
         <>
           <Image source={night ? artNight : artDay} style={{ position: 'absolute', left, top, width: CW, height: CH }} resizeMode="stretch" />
-          {pins.map((p) => {
+          {[...pins].sort((a, b) => Number(b.id === selected) - Number(a.id === selected)).map((p) => {
             const x = left + fracX(p.lng) * CW, y = top + fracY(p.lat) * CH;
             if (x < -60 || x > w + 60 || y < -80 || y > h + 60) return null;
             const sel = p.id === selected; const col = PIN_COLOR[p.kind] ?? colors.brand; const sz = sel ? 34 : 24;
@@ -173,7 +181,7 @@ export default function IbizaMap({ pins, selected, onSelect }: MapProps) {
                 <Pressable onPress={() => onSelect(sel ? null : p.id)} hitSlop={10} style={{ position: 'absolute', left: x - sz / 2, top: y - sz * 1.29, zIndex: sel ? 20 : 1 }}>
                   <PinIcon color={col} size={sz} selected={sel} kind={p.kind === 'kBeachclub' ? 'kBeach' : p.kind} />
                 </Pressable>
-                {(sel || zoomed) && (
+                {(sel || (zoomed && freeLabel(x, y, p.name))) && (
                   <View pointerEvents="none" style={{ position: 'absolute', left: x - 90, width: 180, top: sel ? y - sz * 1.29 - 30 : y + 2, alignItems: 'center', zIndex: sel ? 21 : 2 }}>
                     <Text numberOfLines={1} style={sel ? s.pillSel : s.pill}>{p.name}</Text>
                   </View>

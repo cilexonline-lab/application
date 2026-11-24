@@ -46,6 +46,7 @@ export default function RequestScreen() {
   // Campo con l'errore: il messaggio appare sotto quel campo (NN/g) e la pagina ci scorre sopra.
   const [errField, setErrField] = useState<Field | null>(null);
   const scrollRef = useRef<ScrollViewInstance>(null);
+  const lastMsg = useRef('');
   const fieldY = useRef<Partial<Record<Field, number>>>({});
   const [pr, setPr] = useState(savedPr);
   const [topic, setTopic] = useState('');
@@ -100,7 +101,9 @@ export default function RequestScreen() {
       notes.trim() ? `${t('notes')}: ${notes.trim()}` : '',
       pr.trim() ? `PR: ${pr.trim()}` : '',
     ].filter(Boolean);
-    openWhatsApp(lines.join('\n'), t('waMissing'));
+    lastMsg.current = lines.join('\n');
+    setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 250);
+    openWhatsApp(lastMsg.current, t('waMissing'));
   };
 
   return (
@@ -108,6 +111,14 @@ export default function RequestScreen() {
       <ScrollView ref={scrollRef} contentContainerStyle={{ padding: space.md, paddingBottom: 120 }} keyboardShouldPersistTaps="handled">
         <ScreenTitle style={s.h1}>{t('reqTitle')}</ScreenTitle>
         <Text style={s.sub}>{t('reqSubtitle')}</Text>
+        <View style={s.steps}>
+          {['reqStep1', 'reqStep2', 'reqStep3'].map((k, i) => (
+            <View key={k} style={s.step}>
+              <View style={s.stepNum}><Text style={s.stepNumTxt}>{i + 1}</Text></View>
+              <Text style={s.stepTxt}>{t(k)}</Text>
+            </View>
+          ))}
+        </View>
 
         <View style={s.kinds}>
           {KINDS.map(({ k, icon }) => {
@@ -186,7 +197,17 @@ export default function RequestScreen() {
         {!!error && <Text style={s.error}>{errField ? t('errCheckField') : error}</Text>}
         <Button label={t('send')} onPress={send} style={{ marginTop: space.lg }} />
         <Text style={s.promise}>{t('replyPromise')}</Text>
-        {!!sentRef && <Text style={s.ref}>Ref {sentRef}</Text>}
+        {!!sentRef && (
+          <View style={s.sent}>
+            <View style={s.sentHead}>
+              <Icon name="check" size={18} color={colors.brand} stroke={2.6} />
+              <Text style={s.sentTitle}>{t('reqSentTitle')}</Text>
+            </View>
+            <Text style={s.sentBody}>{t('reqSentBody')}</Text>
+            <Text style={s.ref}>Ref {sentRef}</Text>
+            <Button variant="ghost" label={t('reqReopen')} onPress={() => openWhatsApp(lastMsg.current, t('waMissing'))} style={{ marginTop: space.sm }} />
+          </View>
+        )}
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -195,6 +216,15 @@ export default function RequestScreen() {
 const s = StyleSheet.create({
   h1: { color: colors.text, fontSize: 26, fontWeight: '800' },
   sub: { color: colors.muted, marginTop: 4, marginBottom: space.md },
+  steps: { gap: 10, marginBottom: space.md, paddingVertical: 12, paddingHorizontal: 14, borderRadius: radius.lg, backgroundColor: colors.card },
+  step: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  stepNum: { width: 22, height: 22, borderRadius: 11, backgroundColor: 'rgba(0,219,255,0.14)', alignItems: 'center', justifyContent: 'center' },
+  stepNumTxt: { color: colors.brand, fontSize: 12, fontWeight: '800' },
+  stepTxt: { flex: 1, color: colors.text, fontSize: 13, lineHeight: 18 },
+  sent: { marginTop: space.md, padding: 14, borderRadius: radius.lg, borderWidth: 1, borderColor: 'rgba(0,219,255,0.45)', backgroundColor: 'rgba(0,219,255,0.06)' },
+  sentHead: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  sentTitle: { color: colors.text, fontSize: 16, fontWeight: '800', flex: 1 },
+  sentBody: { color: colors.muted, fontSize: 13, lineHeight: 19, marginTop: 6 },
   kinds: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
   kind: { flexBasis: '30%', flexGrow: 1, alignItems: 'center', gap: 6, paddingVertical: 12, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.card },
   kindOn: { backgroundColor: colors.brand, borderColor: colors.brand },

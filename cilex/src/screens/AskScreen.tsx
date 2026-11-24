@@ -198,7 +198,7 @@ const s = StyleSheet.create({
   user: { backgroundColor: colors.brand, borderBottomRightRadius: 6 },
   bot: { backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border, borderBottomLeftRadius: 6 },
   msg: { color: colors.text, fontSize: 15, lineHeight: 22 },
-  head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: space.md, paddingTop: space.sm, minHeight: 40 },
+  head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: space.md, paddingTop: space.sm, paddingBottom: 6, minHeight: 48, backgroundColor: colors.bg, zIndex: 2, overflow: 'hidden' },
   teamPill: { flexDirection: 'row', alignItems: 'center', gap: 6, borderRadius: 999, borderWidth: 1, borderColor: 'rgba(0,219,255,0.45)', paddingVertical: 7, paddingHorizontal: 12 },
   teamTxt: { color: colors.brand, fontSize: 13, fontWeight: '700' },
   actions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 8, maxWidth: '92%' },

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Banner, Chip, ScreenTitle } from '../components/ui';
+import { Banner, Button, Chip, ScreenTitle } from '../components/ui';
+import { openWhatsApp } from '../whatsapp';
 import { useContent } from '../content';
 import { useT } from '../i18n';
 import type { Place, PlaceKind } from '../places';
@@ -39,9 +40,10 @@ export default function ExploreScreen() {
       <View style={{ paddingHorizontal: space.md, paddingTop: space.sm }}>
         <ScreenTitle style={s.h1}>{t('exploreTitle')}</ScreenTitle>
       </View>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: space.md, columnGap: 0, rowGap: space.sm, paddingBottom: space.sm }}>
+      {/* Una sola riga anche su iPhone SE: scorre in orizzontale invece di andare a capo. */}
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flexGrow: 0, flexShrink: 0 }} contentContainerStyle={{ paddingHorizontal: space.md, paddingBottom: space.sm }}>
         {SEGS.map((x) => <Chip key={x.k} label={t(x.label)} active={seg === x.k} onPress={() => setSeg(x.k)} />)}
-      </View>
+      </ScrollView>
 
       {seg === 'club' && (
         <FlatList
@@ -72,7 +74,14 @@ export default function ExploreScreen() {
           contentContainerStyle={{ padding: space.md }}
           data={list}
           keyExtractor={(p) => p.id}
-          ListEmptyComponent={<Text style={{ color: colors.muted }}>{t('placesSoon')}</Text>}
+          ListEmptyComponent={
+            // Niente vicoli ciechi: finché non ci sono luoghi, si chiede un consiglio al team.
+            <View style={s.empty}>
+              <Text style={s.emptyTitle}>{t('placesSoon')}</Text>
+              <Text style={s.emptyBody}>{t('placesAskBody')}</Text>
+              <Button icon="ask" label={t('placesAskBtn')} onPress={() => { tap(); openWhatsApp(`${t('placesAskMsg')} ${t(SEGS.find((x) => x.k === seg)?.label ?? '')}`, t('waMissing')); }} style={{ marginTop: space.md }} />
+            </View>
+          }
           renderItem={({ item }) => (
             <Pressable accessibilityRole="button" onPress={() => nav.navigate('PlaceDetail', { placeId: item.id })} style={{ marginBottom: space.md }}>
               <Banner name={item.name} imageUrl={item.imageUrl} height={120} />
@@ -92,5 +101,8 @@ const s = StyleSheet.create({
   h1: { color: colors.text, fontSize: 26, fontWeight: '800', marginBottom: space.sm },
   name2: { color: colors.text, fontSize: 18, fontWeight: '800', marginTop: 2 },
   sub: { color: colors.muted, fontSize: 12, marginTop: 2, lineHeight: 17 },
+  empty: { padding: space.lg, borderRadius: 26, backgroundColor: colors.card, marginTop: space.sm },
+  emptyTitle: { color: colors.text, fontSize: 18, fontWeight: '800', lineHeight: 24 },
+  emptyBody: { color: colors.muted, fontSize: 14, lineHeight: 21, marginTop: 6 },
   kindTxt: { color: colors.brand, fontSize: 11, fontWeight: '800', letterSpacing: 1.2, marginTop: 10 },
 });
