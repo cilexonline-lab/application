@@ -99,5 +99,16 @@
       "guests": 4
     }
   ],
-  "_nota_stays": "kind: apartment | villa. bedrooms/bathrooms/guests/minNights sono numeri; amenities è una lista di testi; priceNote è testo libero: se lo togli l'app mostra 'Prezzo su richiesta'. Inserisci SOLO dati confermati (nessun prezzo o disponibilità inventati). Niente indirizzi esatti. imageUrl/link: solo http/https, foto solo con permesso."
+  "_nota_stays": "kind: apartment | villa. bedrooms/bathrooms/guests/minNights sono numeri; amenities è una lista di testi; priceNote è testo libero: se lo togli l'app mostra 'Prezzo su richiesta'. Inserisci SOLO dati confermati (nessun prezzo o disponibilità inventati). Niente indirizzi esatti. imageUrl/link: solo http/https, foto solo con permesso.",
+  "reviews": [
+    {
+      "id": "google-2026-08-14-anna",
+      "name": "Nome I.",
+      "text": "Testo ORIGINALE della recensione, copiato senza modifiche. Solo recensioni vere e con il consenso dell'autore.",
+      "date": "2026-08-14",
+      "rating": 5,
+      "source": "google",
+      "consent": true
+    }
+  ]
 }

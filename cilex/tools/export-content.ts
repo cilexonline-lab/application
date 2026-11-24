@@ -11,6 +11,7 @@ import { bundledNews } from '../src/data/news';
 import { bundledTips } from '../src/data/tips';
 import { bundledPlaces } from '../src/places';
 import { bundledStays } from '../src/stays';
+import { bundledReviews } from '../src/data/reviews';
 import faqTeam from '../content/faq-team.json';
 
 const out = process.argv[2] || 'content.json';
@@ -26,6 +27,7 @@ const data = {
   tips: noDemo(bundledTips),
   places: noDemo(bundledPlaces),
   stays: noDemo(bundledStays),
+  reviews: bundledReviews.filter((r) => r.consent === true),
   faq,
 };
 writeFileSync(out, JSON.stringify(data, null, 1));
