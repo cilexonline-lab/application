@@ -1,7 +1,9 @@
 import React from 'react';
 import { Linking, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Banner, Button, Chip, SectionTitle } from '../components/ui';
+import { ClubHero } from '../components/ClubCard';
 import { useContent } from '../content';
 import { useStore } from '../store';
 import { useT } from '../i18n';
@@ -15,6 +17,7 @@ export default function EventDetailScreen() {
   const { eventId } = useRoute<any>().params;
   const { isPlanned, toggle } = useStore();
   const { getEvent, getClub } = useContent();
+  const insets = useSafeAreaInsets();
   const ev = getEvent(eventId);
   if (!ev) return null;
   const club = getClub(ev.clubId);
@@ -28,8 +31,10 @@ export default function EventDetailScreen() {
   };
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: space.md, paddingBottom: 48 }}>
-      <Banner name={club?.name ?? ev.title} imageUrl={ev.imageUrl || club?.imageUrl} height={150} />
+    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ paddingBottom: 120 }}>
+      {club ? <ClubHero club={club} topInset={insets.top + 44} /> : <View style={{ height: insets.top + 56 }} />}
+      <View style={{ paddingHorizontal: space.md }}>
+      {!club && <Banner name={ev.title} imageUrl={ev.imageUrl} height={150} />}
       <Text style={s.date}>{fmtDate(ev.date)}{ev.demo ? ` · ${t('demoTag')}` : ''}</Text>
       <Text style={s.title}>{ev.title}</Text>
       {club && <Text style={s.club} onPress={() => nav.navigate('ClubDetail', { clubId: club.id })}>{club.name} ›</Text>}
@@ -52,6 +57,7 @@ export default function EventDetailScreen() {
           <Button style={{ flex: 1, paddingHorizontal: 8 }} icon="table" label={t('table')} variant="ghost" onPress={() => nav.navigate('Request', { kind: 'table', clubId: ev.clubId, date: ev.date })} />
         </View>
         <Button icon="share" label={t('share')} variant="ghost" onPress={share} />
+      </View>
       </View>
     </ScrollView>
   );

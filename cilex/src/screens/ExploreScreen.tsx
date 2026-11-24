@@ -59,10 +59,9 @@ export default function ExploreScreen() {
             <ClubCard
               club={item}
               index={index}
-              next={upcoming.filter((e) => e.clubId === item.id).sort((a, b) => a.date.localeCompare(b.date))[0]}
-              labels={{ next: t('nextLabel'), soon: t('datesSoon'), table: t('table') }}
+              count={upcoming.filter((e) => e.clubId === item.id).length}
+              labels={{ events: t('eventsN'), soon: t('datesComing') }}
               onOpen={() => nav.navigate('ClubDetail', { clubId: item.id })}
-              onTable={() => nav.navigate('Request', { kind: 'table', clubId: item.id })}
             />
           )}
         />
