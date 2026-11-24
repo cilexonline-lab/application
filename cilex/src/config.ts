@@ -9,6 +9,10 @@ export const WHATSAPP_NUMBER = '393923689968';
 // Se compilato, l'app si aggiorna da sola SENZA nuova versione su App Store.
 export const CONTENT_URL = '';
 
+// Link dove il cliente lascia una recensione (es. il link "Chiedi recensioni" del profilo Google di Cilex).
+// Vuoto = il pulsante "Lascia una recensione" apre WhatsApp col team.
+export const REVIEW_URL = '';
+
 // Obbligatori per la pubblicazione su App Store.
 export const PRIVACY_URL = '';
 export const SUPPORT_URL = '';

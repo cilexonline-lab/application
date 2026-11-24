@@ -43,6 +43,8 @@ Fatto e verificato solo su anteprima web + export iOS: tutto quanto sopra.
 - Anteprima web: `public/index.html` = modello con `viewport-fit=cover`, `100dvh` e, sopra i 600 px, cornice da telefono 400×860.
 - IA (24/11): codice pronto, **non ancora accesa** (servono le chiavi del titolare: guida `backend/ai-worker/ACCENDI-IA.md`). Workflow `.github/workflows/deploy-ai.yml` pubblica il server con 3 secret; `ci.yml` controlla ogni PR. Base di conoscenza = `content.json` generato da `npm run build:pages` (`tools/export-content.ts`, FAQ del team in `content/faq-team.json`). Chiedi: pulsante Team sempre visibile, passaggio a WhatsApp con le domande del cliente, domande suggerite.
 - Richiedi: "Come funziona" in 3 passi e conferma con "Riapri WhatsApp" (molti clienti non premono Invia). Esplora: filtri su una riga, stati vuoti con "Chiedi un consiglio". Mappa: etichette senza sovrapposizioni.
+- Recensioni: sezione "Dicono di noi" in Home (`src/data/reviews.ts` o `content.json` → `reviews`) visibile SOLO con recensioni vere e `consent: true`; mai inventarle (direttiva UE Omnibus, Apple 5.6.3). Piano: dopo la data di partenza scheda "Com'è andata?" con "Lascia una recensione" (`REVIEW_URL` in config, vuoto = WhatsApp).
+- Francesco da questo PC si fa chiamare **Alex**. Coordinarsi sempre con gli altri agenti (sessione di coordinamento "CILEX OFFICIAL APP", Agente DESIGNER contenuti/mappa: `places` e pin sono suoi) prima di toccare file condivisi.
 - Da verificare con Francesco: la promessa "Ti rispondiamo su WhatsApp entro 15 minuti" (`replyPromise`) vale anche di notte?
 
 **Mai provato su un iPhone vero**: priorità 1 = provarlo con Expo Go (posizione del widget WhatsApp sopra la tab bar, safe area in alto, mappa a due dita, notifiche).
