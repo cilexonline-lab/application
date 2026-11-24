@@ -1,3 +1,5 @@
+> 24/11/2026: Atzaró Beach e Brula tolti dalla Selezione Cilex (non sono partner), su decisione di Alex.
+
 # Verifica dei 40 luoghi – Selezione Cilex
 
 Ricontrollo del 24/11/2026 sui dati in `src/data/places.ts`.
@@ -39,13 +41,11 @@ Ogni elemento OSM si apre su `https://www.openstreetmap.org/<tipo>/<id>` (es. `h
 | Experimental Beach | Cap des Falcó | ok | way/333029705 ("Experimental Beach - Cap des Falcó") | white-ibiza.com (ultimo giorno 18/10/2026) |
 | Beso Beach Ibiza | Ses Salines | ok | node/9004679517 | besobeach.com (Sailing Fest 05/2026) |
 | Cotton Beach Club | Cala Tarida | ok | way/172420711 (su OSM "Cotton Club") | Instagram ufficiale @cottonbeachclub |
-| Atzaró Beach | Cala Nova | **da verificare sul posto** | non presente su OSM: nessun pin | atzarobeach.com; Facebook ufficiale (fine stagione 2026) |
 
 ## Ristoranti
 
 | Luogo | Zona | Stato | Elemento OSM | Fonte stagione 2026 |
 |---|---|---|---|---|
-| Brula (ex La Gaia) | Ibiza Gran Hotel | ok · pin sull'hotel | relation/19288242 (hotel) | lagaiaibiza.com ("now Brula"); brulaibiza.com |
 | Casa Jondal | Cala Jondal | ok | node/9211779317 | forbes.es (Best Chiringuito 2026) |
 | Es Torrent | Porroig | ok · senza sito ufficiale | node/6635835086 (ricerca inversa: ok) | oneofakindtravel.com/en/blog/es-torrent |
 | Es Xarcu | Porroig | ok | node/6582679585 | Instagram ufficiale @esxarcu |
@@ -73,7 +73,5 @@ Ogni elemento OSM si apre su `https://www.openstreetmap.org/<tipo>/<id>` (es. `h
 
 ## Da verificare sul posto
 
-1. **Atzaró Beach:** servono le coordinate (OSM non ha l'elemento; per guide e sito il locale è sulla spiaggia di Cala Nova). Finché mancano, niente pin.
-2. **Brula:** il pin è sull'Ibiza Gran Hotel, che ospita il ristorante. Va bene così, a meno che l'ingresso del ristorante non sia altrove.
 3. **Pin vicini:** Café del Mar e Café Mambo (circa 40 m), i tre locali di Cala Jondal, Cala Bassa e il suo beach club. Le posizioni sono corrette ma si sovrappongono finché non si ingrandisce la mappa.
 4. **Tutti i locali:** una conferma veloce sul posto della posizione del pin (OSM può sbagliare di qualche decina di metri).
