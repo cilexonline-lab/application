@@ -34,7 +34,7 @@ export default function RequestScreen() {
   const t = useT();
   const params = (useRoute<any>().params ?? {}) as { kind?: Kind; clubId?: string; date?: string; note?: string };
   const { clubs, getClub } = useContent();
-  const { name: savedName, setName: saveName, prCode: savedPr, setPrCode, prefs } = useStore();
+  const { name: savedName, setName: saveName, prCode: savedPr, setPrCode, prefs, requests, addRequest, clearRequests } = useStore();
   const [kind, setKind] = useState<Kind>(params.kind ?? 'table');
   const [clubId, setClubId] = useState<string>(params.clubId ?? '');
   const [name, setName] = useState(savedName);
@@ -105,6 +105,7 @@ export default function RequestScreen() {
       ...prefLines,
     ].filter(Boolean);
     lastMsg.current = lines.join('\n');
+    addRequest({ ref, at: new Date().toISOString(), kind, msg: lastMsg.current });
     setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 250);
     openWhatsApp(lastMsg.current, t('waMissing'));
   };
@@ -209,6 +210,20 @@ export default function RequestScreen() {
             <Text style={s.sentBody}>{t('reqSentBody')}</Text>
             <Text style={s.ref}>Ref {sentRef}</Text>
             <Button variant="ghost" label={t('reqReopen')} onPress={() => openWhatsApp(lastMsg.current, t('waMissing'))} style={{ marginTop: space.sm }} />
+          </View>
+        )}
+        {(requests || []).length > 0 && (
+          <View style={{ marginTop: space.lg }}>
+            <Text style={s.label}>{t('reqListTitle')}</Text>
+            <Text style={s.promise}>{t('reqListNote')}</Text>
+            {(requests || []).map((r) => (
+              <View key={r.ref} style={s.sent}>
+                <Text style={s.sentTitle}>{t(r.kind)} · Ref {r.ref}</Text>
+                <Text style={s.sentBody}>{fmtDate(r.at.slice(0, 10))}</Text>
+                <Button variant="ghost" label={t('reqReopen')} onPress={() => openWhatsApp(r.msg, t('waMissing'))} style={{ marginTop: space.sm }} />
+              </View>
+            ))}
+            <Text style={[s.promise, { paddingVertical: 14 }]} onPress={clearRequests} accessibilityRole="button">{t('reqListClear')}</Text>
           </View>
         )}
       </ScrollView>

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-type PlanState = { planned: string[]; outfits: Record<string, string>; name: string; following: string[]; arrival: string; departure: string; prCode: string; aiConsent: boolean; deviceId: string; notifOn: boolean; prefs: { diet: string; music: string; occasion: string } };
+type PlanState = { planned: string[]; outfits: Record<string, string>; name: string; following: string[]; arrival: string; departure: string; prCode: string; aiConsent: boolean; deviceId: string; notifOn: boolean; prefs: { diet: string; music: string; occasion: string }; requests: { ref: string; at: string; kind: string; msg: string }[] };
 type Ctx = PlanState & {
   toggle: (eventId: string) => void;
   setOutfit: (eventId: string, text: string) => void;
@@ -12,12 +12,14 @@ type Ctx = PlanState & {
   setPrCode: (code: string) => void;
   setAiConsent: (v: boolean) => void;
   setNotifOn: (v: boolean) => void;
+  addRequest: (r: { ref: string; at: string; kind: string; msg: string }) => void;
+  clearRequests: () => void;
   setPrefs: (p: { diet: string; music: string; occasion: string }) => void;
   isPlanned: (eventId: string) => boolean;
 };
 
 const KEY = 'cilex.plan.v1';
-const EMPTY: PlanState = { planned: [], outfits: {}, name: '', following: [], arrival: '', departure: '', prCode: '', aiConsent: false, deviceId: '', notifOn: false, prefs: { diet: '', music: '', occasion: '' } };
+const EMPTY: PlanState = { planned: [], outfits: {}, name: '', following: [], arrival: '', departure: '', prCode: '', aiConsent: false, deviceId: '', notifOn: false, prefs: { diet: '', music: '', occasion: '' }, requests: [] };
 const StoreCtx = createContext<Ctx | null>(null);
 
 export function StoreProvider({ children }: { children: React.ReactNode }) {
@@ -58,6 +60,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       setPrCode: (prCode) => setState((s) => ({ ...s, prCode })),
       setAiConsent: (aiConsent) => setState((s) => ({ ...s, aiConsent })),
       setNotifOn: (notifOn) => setState((s) => ({ ...s, notifOn })),
+      addRequest: (r) => setState((s) => ({ ...s, requests: [r, ...(s.requests || []).filter((x) => x.ref !== r.ref)].slice(0, 10) })),
+      clearRequests: () => setState((s) => ({ ...s, requests: [] })),
       setPrefs: (prefs) => setState((s) => ({ ...s, prefs })),
       isPlanned: (id) => state.planned.includes(id),
     }),

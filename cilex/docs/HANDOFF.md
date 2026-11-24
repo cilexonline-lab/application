@@ -12,6 +12,8 @@
 ## Pubblicato: sostituti (PR #24, ok di Alex)
 - Sa Trinxa (beach club, Ses Salines) al posto di Atzaró Beach; Sa Caleta (ristorante, Es Bol Nou) al posto di Brula. Entrambi con "Prenota con Cilex". Coordinate da verificare sul posto.
 
+- "Le tue richieste" (schermata Richiesta): ultime 10 richieste inviate (ID CX-…, data, servizio), salvate solo sul telefono, con "Riapri WhatsApp" e "Svuota elenco". Nessuno stato "confermata": serve un server. Funzione 4 di `proposte-concorrenza.md`.
+
 ## In attesa (NON unire senza ok di Alex)
 - #19 BOZZA 30 FAQ: Alex deve sceglierne 20–25.
 - #17 BOZZA kit App Store.
