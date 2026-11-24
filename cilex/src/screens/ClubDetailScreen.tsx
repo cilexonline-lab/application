@@ -28,10 +28,9 @@ export default function ClubDetailScreen() {
       {!!club.description && <Text style={s.desc}>{club.description}</Text>}
 
       <View style={{ gap: space.sm, marginVertical: space.md }}>
-        <Button label={club.ticketUrl ? t('tickets') : t('ticketsSoon')} disabled={!club.ticketUrl} onPress={() => Linking.openURL(club.ticketUrl)} />
-        <View style={{ flexDirection: 'row', gap: space.sm }}>
-          <Button style={{ flex: 1, paddingHorizontal: 8 }} icon="table" label={t('table')} variant="ghost" onPress={() => nav.navigate('Request', { kind: 'table', clubId: club.id })} />
-        </View>
+        {/* Azione principale: richiesta a Cilex (modulo con data, persone e ID richiesta → WhatsApp). */}
+        <Button icon="table" label={t('bookTableCilex')} onPress={() => nav.navigate('Request', { kind: 'table', clubId: club.id })} />
+        <Button label={club.ticketUrl ? t('tickets') : t('ticketsSoon')} variant="ghost" disabled={!club.ticketUrl} onPress={() => Linking.openURL(club.ticketUrl)} />
         <Button icon="map" label={t('openMaps')} variant="ghost" onPress={() => Linking.openURL(`http://maps.apple.com/?q=${q}`)} />
       </View>
 

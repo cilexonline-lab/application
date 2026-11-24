@@ -22,6 +22,7 @@ export type Club = {
 
 // Coordinate: OpenStreetMap (nightclub), controllate il 17/11/2026 – DA VERIFICARE sul posto. SWAG: non trovato, nessun punto sulla mappa.
 // ticketUrl, descrizioni e indirizzi: dai siti ufficiali dei club, verificati il 18/11/2026. Testi scritti da noi (da approvare).
+// SWAG: coordinate dal nodo OSM 11799957101 (amenity=nightclub "SWAG Ibiza", Carrer de la Murtra 5 = indirizzo del sito ufficiale), 24/11/2026.
 export const bundledClubs: Club[] = [
   { id: 'unvrs', area: "Sant Rafel", accent: '#7B5CFF', lat: 38.9579007, lng: 1.4083039, name: 'UNVRS', ticketUrl: 'https://www.unvrs.com/', description: "The world's first \"hyperclub\", in Sant Rafel on the former Privilege site. Opened in 2025, voted DJ Mag #1 Club in the World 2026.", mapQuery: "UNVRS Ibiza, Sant Rafel de sa Creu" },
   { id: 'hi-ibiza', area: "Platja d'en Bossa", accent: '#1966FF', lat: 38.8859868, lng: 1.4038551, name: 'Hï Ibiza', ticketUrl: 'https://www.hiibiza.com/', description: "Superclub in Playa d'en Bossa, voted DJ Mag #1 Club in the World four times (2022\u20132025). House, techno and electronic music.", mapQuery: "H\u00ef Ibiza, Platja d'en Bossa" },
@@ -29,5 +30,5 @@ export const bundledClubs: Club[] = [
   { id: 'amnesia', area: "Sant Rafel", accent: '#FE0850', lat: 38.9476598, lng: 1.408229, name: 'Amnesia', ticketUrl: 'https://www.amnesia.es/', description: "Historic temple of electronic music in Sant Rafel, on the Ibiza\u2013Sant Antoni road. Two huge rooms.", mapQuery: "Amnesia Ibiza, Sant Rafel de sa Creu" },
   { id: 'pacha', area: "Ibiza Town", accent: '#C21E3D', lat: 38.9184411, lng: 1.4433152, name: 'Pacha', ticketUrl: 'https://pacha.com/events', description: "Ibiza's most iconic nightclub, in Ibiza Town near the marina. Open beyond the summer season too.", mapQuery: "Pacha Ibiza, Avinguda 8 d'Agost, Eivissa" },
   { id: 'chinois', area: "Marina Ibiza", accent: '#E2484B', lat: 38.9164923, lng: 1.4414606, name: 'Chinois', ticketUrl: 'https://chinois.com/', description: "Club in Marina Ibiza: a dancefloor-first alternative to the superclubs, with world-class residents. Defected's Ibiza home since 2026.", mapQuery: "Chinois Ibiza, Marina Ibiza" },
-  { id: 'swag', area: "Platja d'en Bossa", accent: '#F53DD3', name: 'SWAG', ticketUrl: 'https://swagibizaoficial.com/', description: "Urban music club in Playa d'en Bossa since 2014: reggaeton, hip-hop, dembow, R&B and more, a different party every night.", mapQuery: "Carrer de la Murtra 5, Sant Josep de sa Talaia, Ibiza" },
+  { id: 'swag', area: "Platja d'en Bossa", accent: '#F53DD3', lat: 38.891337, lng: 1.4082527, name: 'SWAG', ticketUrl: 'https://swagibizaoficial.com/', description: "Urban music club in Playa d'en Bossa since 2014: reggaeton, hip-hop, dembow, R&B and more, a different party every night.", mapQuery: "Carrer de la Murtra 5, Sant Josep de sa Talaia, Ibiza" },
 ];

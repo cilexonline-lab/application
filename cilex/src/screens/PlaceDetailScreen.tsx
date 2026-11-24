@@ -24,8 +24,11 @@ export default function PlaceDetailScreen() {
       <Text style={s.name}>{p.name}</Text>
       {!!p.description && <Text style={s.desc}>{p.description}</Text>}
       <View style={{ gap: space.sm, marginTop: space.md }}>
-        {p.bookable && (
-          <Button icon="concierge" label={t('bookViaCilex')} onPress={() => nav.navigate('Request', { kind: 'concierge', note: p.name })} />
+        {/* Sempre un'azione verso Cilex: "Prenota" solo dove il servizio esiste (bookable), altrimenti "Chiedi". */}
+        {p.bookable ? (
+          <Button icon="concierge" label={t('bookWithCilex')} onPress={() => nav.navigate('Request', { kind: 'concierge', note: `${t('noteBook')}: ${p.name}${p.area ? ` (${p.area})` : ''}` })} />
+        ) : (
+          <Button icon="ask" label={t('askCilex')} onPress={() => nav.navigate('Request', { kind: 'concierge', note: `${t('noteInfo')}: ${p.name}${p.area ? ` (${p.area})` : ''}` })} />
         )}
         {!!p.link && <Button label={t('openLink')} variant="ghost" onPress={() => Linking.openURL(p.link!)} />}
         <Button icon="map" label={t('openMaps2')} variant="ghost" onPress={() => Linking.openURL(`http://maps.apple.com/?${q}`)} />

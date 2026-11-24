@@ -18,7 +18,9 @@ const toInput = (iso: string) => (iso ? `${iso.slice(8, 10)}/${iso.slice(5, 7)}/
 export default function PlanScreen() {
   const t = useT();
   const nav = useNavigation<any>();
-  const { planned, outfits, setOutfit, toggle, arrival, departure, setTrip } = useStore();
+  const { planned, outfits, setOutfit, toggle, arrival, departure, setTrip, prefs, setPrefs } = useStore();
+  const [pf, setPf] = useState(prefs);
+  const [pfSaved, setPfSaved] = useState(false);
   const { events, getClub } = useContent();
   const [a, setA] = useState(toInput(arrival));
   const [d, setD] = useState(toInput(departure));
@@ -82,15 +84,27 @@ export default function PlanScreen() {
         <View style={{ flexDirection: 'row', gap: space.sm }}>
           <View style={{ flex: 1 }}>
             <Text style={s.small}>{t('arrival')}</Text>
-            <TextInput style={s.input} value={a} onChangeText={setA} placeholder={t('dateHint')} placeholderTextColor={colors.muted} keyboardType="numbers-and-punctuation" />
+            <TextInput style={[s.input, s.dateInput]} value={a} onChangeText={setA} placeholder={t('dateHint')} placeholderTextColor={colors.muted} keyboardType="numbers-and-punctuation" />
           </View>
           <View style={{ flex: 1 }}>
             <Text style={s.small}>{t('departure')}</Text>
-            <TextInput style={s.input} value={d} onChangeText={setD} placeholder={t('dateHint')} placeholderTextColor={colors.muted} keyboardType="numbers-and-punctuation" />
+            <TextInput style={[s.input, s.dateInput]} value={d} onChangeText={setD} placeholder={t('dateHint')} placeholderTextColor={colors.muted} keyboardType="numbers-and-punctuation" />
           </View>
         </View>
         {!!err && <Text style={{ color: colors.danger, marginTop: 8 }}>{err}</Text>}
         <Button label={t('saveTrip')} variant="ghost" onPress={saveTrip} style={{ marginTop: space.sm }} />
+      </Card>
+
+      <Card style={{ marginBottom: space.md }}>
+        <Text style={s.label}>{t('prefsTitle')}</Text>
+        <Text style={s.small}>{t('prefsNote')}</Text>
+        {(['diet', 'music', 'occasion'] as const).map((k) => (
+          <View key={k} style={{ marginTop: space.sm }}>
+            <Text style={s.small}>{t(k === 'diet' ? 'prefsDiet' : k === 'music' ? 'prefsMusic' : 'prefsOccasion')}</Text>
+            <TextInput style={s.input} value={pf[k]} maxLength={120} onChangeText={(v) => { setPf({ ...pf, [k]: v }); setPfSaved(false); }} placeholderTextColor={colors.muted} accessibilityLabel={t(k === 'diet' ? 'prefsDiet' : k === 'music' ? 'prefsMusic' : 'prefsOccasion')} />
+          </View>
+        ))}
+        <Button label={pfSaved ? t('prefsSaved') : t('prefsSave')} variant="ghost" onPress={() => { setPrefs(pf); setPfSaved(true); }} style={{ marginTop: space.sm }} />
       </Card>
 
       {list.length === 0 && (
@@ -136,6 +150,8 @@ const s = StyleSheet.create({
   h1: { color: colors.text, fontSize: 26, fontWeight: '800', marginBottom: space.md },
   label: { color: colors.text, fontWeight: '700', fontSize: 16, marginBottom: space.sm },
   small: { color: colors.muted, fontSize: 12, marginBottom: 4 },
+  // Date affiancate: su iPhone SE "GG/MM/AAAA" deve entrare intero.
+  dateInput: { paddingHorizontal: 10, fontSize: 14 },
   input: { backgroundColor: colors.cardAlt, color: colors.text, borderRadius: radius.md, padding: 12, fontSize: 15, borderWidth: 1, borderColor: colors.border },
   day: { color: colors.brand, fontSize: 13, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase', marginBottom: 8 },
   clash: { color: colors.danger, fontSize: 13, fontWeight: '600', marginBottom: 8 },

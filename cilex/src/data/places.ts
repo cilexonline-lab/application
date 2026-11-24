@@ -4,9 +4,10 @@
 // Accanto a ogni voce: elemento OSM e fonte che conferma l'attività nella stagione 2026.
 // Senza coordinate affidabili = nessun pin (mapQuery serve solo per "Apri in Mappe").
 // Tutti i locali sono stagionali: a novembre sono chiusi per l'inverno.
+// Ricontrollo completo: cilex/docs/verifica-luoghi.md (24/11/2026).
 import type { Place } from '../places';
 
-export const selectionPlaces: Place[] = [
+const base: Place[] = [
   // ── Spiagge (luoghi naturali) ──
   { id: 'cala-comte', kind: 'beach', name: 'Cala Comte', area: 'Sant Josep', description: '', lat: 38.962885, lng: 1.2212672 }, // osm way/170709931
   { id: 'cala-salada', kind: 'beach', name: 'Cala Salada', area: 'Sant Antoni', description: '', lat: 39.0095323, lng: 1.2990915 }, // osm way/143217546
@@ -34,9 +35,9 @@ export const selectionPlaces: Place[] = [
   // ── Ristoranti ──
   { id: 'sa-caleta', kind: 'restaurant', name: 'Sa Caleta', area: 'Es Bol Nou', description: '', link: 'https://sacaleta.es/en/', lat: 38.8686239, lng: 1.3318977 }, // APPROVATO da Alex 24/11 · osm way/316970713 · 2026: sito ufficiale, Facebook (ultima cena estate 23/10/2026) · sostituisce Brula (non partner)
   { id: 'casa-jondal', kind: 'restaurant', name: 'Casa Jondal', area: 'Cala Jondal', description: '', link: 'https://www.casajondal.es/', lat: 38.868411, lng: 1.3160642 }, // osm node/9211779317 · 2026: forbes.es (Best Chiringuito 2026)
-  { id: 'es-torrent', kind: 'restaurant', name: 'Es Torrent', area: 'Porroig', description: '', lat: 38.8751327, lng: 1.2990077 }, // osm node/6635835086 · nessun sito ufficiale trovato · 2026: oneofakindtravel.com/en/blog/es-torrent
+  { id: 'es-torrent', kind: 'restaurant', name: 'Es Torrent', area: 'Porroig', description: '', link: 'https://www.instagram.com/estorrentrestaurant/', lat: 38.8751327, lng: 1.2990077 }, // osm node/6635835086 · link: Instagram ufficiale (sito estorrent.net non raggiungibile il 24/11/2026) · 2026: oneofakindtravel.com/en/blog/es-torrent
   { id: 'es-xarcu', kind: 'restaurant', name: 'Es Xarcu', area: 'Porroig', description: '', link: 'https://www.esxarcurestaurante.com/', lat: 38.8685001, lng: 1.3115214 }, // osm node/6582679585 · 2026: Instagram ufficiale
-  { id: 'la-paloma', kind: 'restaurant', name: 'La Paloma', area: 'Sant Llorenç', description: '', link: 'https://palomaibiza.com/', lat: 39.0305565, lng: 1.47573 }, // osm node/4177089791 · 2026: prova debole (da verificare)
+  { id: 'la-paloma', kind: 'restaurant', name: 'La Paloma', area: 'Sant Llorenç', description: '', link: 'https://palomaibiza.com/', lat: 39.0305565, lng: 1.47573 }, // osm node/4177089791 · 2026: white-ibiza.com (riapertura 12/03/2026)
   { id: 'sa-capella', kind: 'restaurant', name: 'Sa Capella', area: 'Sant Antoni', description: '', link: 'https://www.sacapellaibiza.com/en/', lat: 38.9905085, lng: 1.3087633 }, // osm way/321335339 · 2026: ultima cena 17/10/2026 (sito ufficiale)
   { id: 'es-boldado', kind: 'restaurant', name: 'Es Boldado', area: "Cala d'Hort", description: '', link: 'https://esboldadoibiza.com/', lat: 38.8904535, lng: 1.2212321 }, // osm node/2201362030 · 2026: Instagram ufficiale 09/2026
   { id: 'amante', kind: 'restaurant', name: 'Amante Ibiza', area: "Sol d'en Serra", description: '', link: 'https://www.amanteibiza.com/', lat: 38.9472743, lng: 1.5104185 }, // osm node/1844684323 · 2026: white-ibiza.com (riapertura 17/04/2026)
@@ -49,9 +50,13 @@ export const selectionPlaces: Place[] = [
   { id: 'benirras', kind: 'sunset', name: 'Cala Benirràs', area: 'Sant Joan', description: '', lat: 39.0894438, lng: 1.4539229 }, // osm way/92434594 (natural=beach)
   { id: 'torre-des-savinar', kind: 'sunset', name: 'Torre des Savinar', area: "Cala d'Hort", description: '', lat: 38.8741725, lng: 1.2283659 }, // osm way/507790845 (man_made=tower)
   { id: 'sunset-cala-conta', kind: 'sunset', name: 'Sunset Cala Conta', area: 'Cala Comte', description: '', link: 'https://sunsetcalaconta.com/en/', lat: 38.9627176, lng: 1.220812 }, // ex Sunset Ashram · osm way/311929115 (ancora col vecchio nome) · 2026: apertura 02/04/2026
-  { id: 'hostal-la-torre', kind: 'sunset', name: 'Hostal La Torre', area: 'Cap Negret', description: '', link: 'https://www.latorreibiza.com/en/', lat: 38.9981693, lng: 1.2856854 }, // osm node/3213664727 · 2026: prova indiretta (da verificare)
-  { id: 'kumharas', kind: 'sunset', name: 'Kumharas', area: 'Sant Antoni', description: '', link: 'https://kumharas.org/en/', lat: 38.9721715, lng: 1.2825561 }, // osm node/5075923724 · 2026: ibiza-spotlight.com (sunset sessions)
+  { id: 'hostal-la-torre', kind: 'sunset', name: 'Hostal La Torre', area: 'Cap Negret', description: '', link: 'https://www.latorreibiza.com/en/', lat: 38.9981693, lng: 1.2856854 }, // osm node/3213664727 · 2026: ibiza-spotlight.com (Halloween 31/10/2026)
+  { id: 'kumharas', kind: 'sunset', name: 'Kumharas', area: 'Cala de Bou', description: '', link: 'https://kumharas.org/en/', lat: 38.9721715, lng: 1.2825561 }, // osm node/5075923724 (Cala de Bou, comune di Sant Josep) · 2026: ibiza-spotlight.com (sunset sessions)
   { id: 'sa-talaia', kind: 'sunset', name: 'Sa Talaia', area: 'Sant Josep', description: '', lat: 38.9132054, lng: 1.2758074 }, // osm node/1249786706 (natural=peak)
   { id: 'punta-sa-galera', kind: 'sunset', name: 'Punta de sa Galera', area: 'Sant Antoni', description: '', lat: 39.0044417, lng: 1.2892809 }, // osm node/12031435912 (natural=cape)
   { id: 'cala-gracio', kind: 'sunset', name: 'Cala Gració', area: 'Sant Antoni', description: '', lat: 38.9919613, lng: 1.290434 }, // osm way/31443465 ("Cala Grassio")
 ];
+
+// "Prenota con Cilex" su tutti i ristoranti e i beach club della Selezione (Cilex collabora con tutti). Decisione di Alex, 24/11/2026.
+export const selectionPlaces: Place[] = base.map((p) =>
+  p.kind === 'restaurant' || p.kind === 'beachclub' ? { ...p, bookable: true } : p);

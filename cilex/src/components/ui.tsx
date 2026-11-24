@@ -28,9 +28,10 @@ export function Button({
   );
 }
 
+// Pillola alta 36 pt + hitSlop 4 pt sopra e sotto = 44 pt (minimo Apple). Righe distanti 8 pt: le aree non si sovrappongono.
 export function Chip({ label, active, onPress }: { label: string; active?: boolean; onPress: () => void }) {
   return (
-    <Pressable accessibilityRole="button" onPress={onPress} style={[s.chip, active && s.chipActive]}>
+    <Pressable accessibilityRole="button" accessibilityState={{ selected: !!active }} onPress={onPress} hitSlop={{ top: 4, bottom: 4 }} style={[s.chip, active && s.chipActive]}>
       <Text style={[s.chipText, active && { color: '#111' }]}>{label}</Text>
     </Pressable>
   );
@@ -113,7 +114,7 @@ const s = StyleSheet.create({
   btnGold: { backgroundColor: colors.brand },
   btnGhost: { borderWidth: 1, borderColor: colors.brandDark, backgroundColor: 'transparent' },
   btnText: { fontSize: 15, fontWeight: '700', letterSpacing: 0.4 },
-  chip: { paddingVertical: 8, paddingHorizontal: 14, borderRadius: 999, borderWidth: 1, borderColor: colors.border, marginRight: space.sm, marginBottom: space.sm },
+  chip: { paddingVertical: 8, minHeight: 36, justifyContent: 'center', paddingHorizontal: 14, borderRadius: 999, borderWidth: 1, borderColor: colors.border, marginRight: space.sm, marginBottom: space.sm },
   chipActive: { backgroundColor: colors.brand, borderColor: colors.brand },
   chipText: { color: colors.text, fontSize: 14, fontWeight: '600' },
   card: { backgroundColor: colors.card, borderRadius: radius.lg, padding: space.md, borderWidth: 1, borderColor: colors.border },

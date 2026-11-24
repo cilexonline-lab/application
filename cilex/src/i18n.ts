@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 type Dict = Record<string, string>;
 
 const en: Dict = {
+  prefsTitle: 'Your preferences', prefsNote: 'Saved only on this phone. We add them to your requests so the team can tailor the answer. Optional.', prefsDiet: 'Allergies / food needs', prefsMusic: 'Music you like', prefsOccasion: 'Occasion (birthday, honeymoon…)', prefsSave: 'Save preferences', prefsSaved: 'Saved', prefsMsg: 'Preferences',
   tabAsk: 'Ask', askTitle: 'Ask about Ibiza', askSub: 'Beaches, getting around, nightlife, what to wear… ask anything.',
   askPlaceholder: 'Ask anything about Ibiza', askThinking: 'Thinking…', askError: 'Could not get an answer. Please try again.',
   askLimit: 'You reached today’s question limit. Our team can help on WhatsApp.',
@@ -16,6 +17,7 @@ const en: Dict = {
   placesAskBody: 'In the meantime, ask the Cilex team for a tip: they reply on WhatsApp.', placesAskBtn: 'Ask for a tip', placesAskMsg: 'Hi Cilex! I would like a tip for:',
   homeAsk: 'Ask Cilex anything…',
   reviewsTitle: 'What our guests say', reviewsLeave: 'Leave a review', reviewWaMsg: 'Hi Cilex! I would like to leave a review:', src_google: 'Google', src_trustpilot: 'Trustpilot', src_tripadvisor: 'Tripadvisor', src_whatsapp: 'WhatsApp', src_email: 'Email', src_app: 'Cilex app', tripDoneTitle: 'How was Ibiza?', tripDoneBody: 'Thank you for choosing Cilex. Your opinion helps other guests and helps us improve.', tripDoneTeam: 'Your next trip',
+  bookTableCilex: 'Book a table with Cilex', bookWithCilex: 'Book with Cilex', askCilex: 'Ask Cilex', noteBook: 'Booking', noteInfo: 'Information about',
   sugg1: 'Best beaches for sunset?', sugg2: 'How do I get around Ibiza at night?', sugg3: 'What should I wear to a club?', sugg4: 'What can I do during the day?',
   allClubs: 'All clubs', hello: 'Hola', tonight: 'Tonight', weekend: 'Weekend', week: 'This week', tonightTitle: 'Happening tonight',
   yourArtists: 'Your artists', follow: 'Follow', following: 'Following ✓', followHint: 'Follow artists to see their shows on your Home.',
@@ -54,6 +56,7 @@ const en: Dict = {
   remTitleArtist: '{artist} plays today', remBodyArtist: '{title} · {club}', remTitlePlan: 'Today in your plan', remBodyPlan: '{title} · {club}',
 };
 const it: Dict = {
+  prefsTitle: 'Le tue preferenze', prefsNote: 'Salvate solo su questo telefono. Le aggiungiamo alle tue richieste così il team risponde su misura. Facoltative.', prefsDiet: 'Allergie / esigenze alimentari', prefsMusic: 'Musica che ti piace', prefsOccasion: 'Occasione (compleanno, viaggio di nozze…)', prefsSave: 'Salva preferenze', prefsSaved: 'Salvate', prefsMsg: 'Preferenze',
   tabAsk: 'Chiedi', askTitle: 'Chiedi su Ibiza', askSub: 'Spiagge, spostamenti, vita notturna, cosa mettere… chiedi pure.',
   askPlaceholder: 'Chiedi qualsiasi cosa su Ibiza', askThinking: 'Sto pensando…', askError: 'Non sono riuscito a rispondere. Riprova.',
   askLimit: 'Hai raggiunto il limite di domande di oggi. Il nostro team può aiutarti su WhatsApp.',
@@ -66,6 +69,7 @@ const it: Dict = {
   placesAskBody: 'Intanto chiedi un consiglio al team Cilex: ti risponde su WhatsApp.', placesAskBtn: 'Chiedi un consiglio', placesAskMsg: 'Ciao Cilex! Vorrei un consiglio per:',
   homeAsk: 'Chiedi a Cilex…',
   reviewsTitle: 'Dicono di noi', reviewsLeave: 'Lascia una recensione', reviewWaMsg: 'Ciao Cilex! Vorrei lasciare una recensione:', src_google: 'Google', src_trustpilot: 'Trustpilot', src_tripadvisor: 'Tripadvisor', src_whatsapp: 'WhatsApp', src_email: 'Email', src_app: 'App Cilex', tripDoneTitle: 'Com’è andata a Ibiza?', tripDoneBody: 'Grazie per aver scelto Cilex. La tua opinione aiuta altri ospiti e ci aiuta a migliorare.', tripDoneTeam: 'Il prossimo viaggio',
+  bookTableCilex: 'Prenota un tavolo con Cilex', bookWithCilex: 'Prenota con Cilex', askCilex: 'Chiedi a Cilex', noteBook: 'Prenotazione', noteInfo: 'Informazioni su',
   sugg1: 'Le migliori spiagge per il tramonto?', sugg2: 'Come mi sposto a Ibiza di notte?', sugg3: 'Come mi vesto per un club?', sugg4: 'Cosa posso fare di giorno?',
   allClubs: 'Tutti i club', hello: 'Hola', tonight: 'Stasera', weekend: 'Weekend', week: 'Questa settimana', tonightTitle: 'Stasera a Ibiza',
   yourArtists: 'I tuoi artisti', follow: 'Segui', following: 'Segui già ✓', followHint: 'Segui gli artisti per vedere i loro show nella Home.',
@@ -104,6 +108,7 @@ const it: Dict = {
   remTitleArtist: '{artist} suona oggi', remBodyArtist: '{title} · {club}', remTitlePlan: 'Oggi nel tuo piano', remBodyPlan: '{title} · {club}',
 };
 const es: Dict = {
+  prefsTitle: 'Tus preferencias', prefsNote: 'Se guardan solo en este teléfono. Las añadimos a tus solicitudes para que el equipo responda a medida. Opcional.', prefsDiet: 'Alergias / necesidades alimentarias', prefsMusic: 'Música que te gusta', prefsOccasion: 'Ocasión (cumpleaños, luna de miel…)', prefsSave: 'Guardar preferencias', prefsSaved: 'Guardadas', prefsMsg: 'Preferencias',
   tabAsk: 'Pregunta', askTitle: 'Pregunta sobre Ibiza', askSub: 'Playas, transporte, vida nocturna, qué ponerse… pregunta lo que quieras.',
   askPlaceholder: 'Pregunta lo que quieras sobre Ibiza', askThinking: 'Pensando…', askError: 'No pude responder. Inténtalo de nuevo.',
   askLimit: 'Has alcanzado el límite de preguntas de hoy. Nuestro equipo te ayuda por WhatsApp.',
@@ -116,6 +121,7 @@ const es: Dict = {
   placesAskBody: 'Mientras tanto, pide un consejo al equipo Cilex: te responde por WhatsApp.', placesAskBtn: 'Pedir un consejo', placesAskMsg: '¡Hola Cilex! Quería un consejo para:',
   homeAsk: 'Pregunta a Cilex…',
   reviewsTitle: 'Lo que dicen de nosotros', reviewsLeave: 'Dejar una reseña', reviewWaMsg: '¡Hola Cilex! Quería dejar una reseña:', src_google: 'Google', src_trustpilot: 'Trustpilot', src_tripadvisor: 'Tripadvisor', src_whatsapp: 'WhatsApp', src_email: 'Email', src_app: 'App Cilex', tripDoneTitle: '¿Qué tal Ibiza?', tripDoneBody: 'Gracias por elegir Cilex. Tu opinión ayuda a otros huéspedes y nos ayuda a mejorar.', tripDoneTeam: 'Tu próximo viaje',
+  bookTableCilex: 'Reserva mesa con Cilex', bookWithCilex: 'Reserva con Cilex', askCilex: 'Pregunta a Cilex', noteBook: 'Reserva', noteInfo: 'Información sobre',
   sugg1: '¿Mejores playas para el atardecer?', sugg2: '¿Cómo me muevo por Ibiza de noche?', sugg3: '¿Qué me pongo para un club?', sugg4: '¿Qué puedo hacer de día?',
   allClubs: 'Todos los clubs', hello: 'Hola', tonight: 'Esta noche', weekend: 'Fin de semana', week: 'Esta semana', tonightTitle: 'Esta noche en Ibiza',
   yourArtists: 'Tus artistas', follow: 'Seguir', following: 'Siguiendo ✓', followHint: 'Sigue a artistas para ver sus shows en tu Inicio.',
