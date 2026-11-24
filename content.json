@@ -1,6 +1,6 @@
 {
  "_info": "Generato da cilex/tools/export-content.ts – non modificare a mano: cambia i dati in cilex/src/data o cilex/content/faq-team.json.",
- "generated": "2026-11-24T09:27:17.633Z",
+ "generated": "2026-11-24T09:43:06.754Z",
  "clubs": [
   {
    "id": "unvrs",
@@ -294,6 +294,28 @@
    "link": "https://www.cottonlifestyle.com/cotton-beach-club-ibiza/",
    "lat": 38.9403501,
    "lng": 1.2362461,
+   "bookable": true
+  },
+  {
+   "id": "sa-trinxa",
+   "kind": "beachclub",
+   "name": "Sa Trinxa",
+   "area": "Ses Salines",
+   "description": "",
+   "link": "https://satrinxa.com/en/",
+   "lat": 38.8401014,
+   "lng": 1.394107,
+   "bookable": true
+  },
+  {
+   "id": "sa-caleta",
+   "kind": "restaurant",
+   "name": "Sa Caleta",
+   "area": "Es Bol Nou",
+   "description": "",
+   "link": "https://sacaleta.es/en/",
+   "lat": 38.8686239,
+   "lng": 1.3318977,
    "bookable": true
   },
   {
