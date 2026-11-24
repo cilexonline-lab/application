@@ -182,5 +182,5 @@
    "verificato": "2026-11-24"
   }
  ],
- "_nota_limite": "Il server IA usa al massimo 60 FAQ in tutto (MAX_FAQ in backend/ai-worker/worker.js): FAQ del team (content.json) + 12 FAQ dell'app. Se si copiano tutte queste 30 insieme alle ~20 del team, alcune FAQ dell'app verrebbero tagliate: scegliere quali tenere o alzare il limite."
+ "_nota_limite": "Il server IA usa al massimo 60 FAQ in tutto (MAX_FAQ in backend/ai-worker/worker.js): FAQ del team (content.json, oggi 23 domande da compilare) + 7 FAQ dell'app. 30 + 23 + 7 = 60: nessuna viene tagliata ma non c'è margine. Consigliato sceglierne 20-25."
 }
