@@ -7,7 +7,7 @@
 // Ricontrollo completo: cilex/docs/verifica-luoghi.md (24/11/2026).
 import type { Place } from '../places';
 
-export const selectionPlaces: Place[] = [
+const base: Place[] = [
   // ── Spiagge (luoghi naturali) ──
   { id: 'cala-comte', kind: 'beach', name: 'Cala Comte', area: 'Sant Josep', description: '', lat: 38.962885, lng: 1.2212672 }, // osm way/170709931
   { id: 'cala-salada', kind: 'beach', name: 'Cala Salada', area: 'Sant Antoni', description: '', lat: 39.0095323, lng: 1.2990915 }, // osm way/143217546
@@ -30,10 +30,8 @@ export const selectionPlaces: Place[] = [
   { id: 'experimental-beach', kind: 'beachclub', name: 'Experimental Beach', area: 'Cap des Falcó', description: '', link: 'https://www.experimentalbeachibiza.com/', lat: 38.8516828, lng: 1.3676351 }, // osm way/333029705 (solo "building") · 2026: white-ibiza.com
   { id: 'beso-beach', kind: 'beachclub', name: 'Beso Beach Ibiza', area: 'Ses Salines', description: '', link: 'https://besobeach.com/ibiza/', lat: 38.8424611, lng: 1.3876123 }, // osm node/9004679517 · 2026: besobeach.com (Sailing Fest 05/2026)
   { id: 'cotton-beach-club', kind: 'beachclub', name: 'Cotton Beach Club', area: 'Cala Tarida', description: '', link: 'https://www.cottonlifestyle.com/cotton-beach-club-ibiza/', lat: 38.9403501, lng: 1.2362461 }, // osm way/172420711 ("Cotton Club") · 2026: Instagram ufficiale
-  { id: 'atzaro-beach', kind: 'beachclub', name: 'Atzaró Beach', area: 'Cala Nova', description: '', link: 'https://www.atzarobeach.com/', mapQuery: 'Atzaró Beach, Cala Nova, Ibiza' }, // NON su OSM: nessun pin (da verificare) · 2026: Facebook ufficiale
 
   // ── Ristoranti ──
-  { id: 'brula', kind: 'restaurant', name: 'Brula', area: 'Ibiza Gran Hotel', description: '', link: 'https://brulaibiza.com/en/', lat: 38.9171448, lng: 1.4412336 }, // ex La Gaia (lagaiaibiza.com: "now Brula") · coordinate dell'hotel, osm relation/19288242
   { id: 'casa-jondal', kind: 'restaurant', name: 'Casa Jondal', area: 'Cala Jondal', description: '', link: 'https://www.casajondal.es/', lat: 38.868411, lng: 1.3160642 }, // osm node/9211779317 · 2026: forbes.es (Best Chiringuito 2026)
   { id: 'es-torrent', kind: 'restaurant', name: 'Es Torrent', area: 'Porroig', description: '', link: 'https://www.instagram.com/estorrentrestaurant/', lat: 38.8751327, lng: 1.2990077 }, // osm node/6635835086 · link: Instagram ufficiale (sito estorrent.net non raggiungibile il 24/11/2026) · 2026: oneofakindtravel.com/en/blog/es-torrent
   { id: 'es-xarcu', kind: 'restaurant', name: 'Es Xarcu', area: 'Porroig', description: '', link: 'https://www.esxarcurestaurante.com/', lat: 38.8685001, lng: 1.3115214 }, // osm node/6582679585 · 2026: Instagram ufficiale
@@ -56,3 +54,7 @@ export const selectionPlaces: Place[] = [
   { id: 'punta-sa-galera', kind: 'sunset', name: 'Punta de sa Galera', area: 'Sant Antoni', description: '', lat: 39.0044417, lng: 1.2892809 }, // osm node/12031435912 (natural=cape)
   { id: 'cala-gracio', kind: 'sunset', name: 'Cala Gració', area: 'Sant Antoni', description: '', lat: 38.9919613, lng: 1.290434 }, // osm way/31443465 ("Cala Grassio")
 ];
+
+// "Prenota con Cilex" su tutti i ristoranti e i beach club della Selezione (Cilex collabora con tutti). Decisione di Alex, 24/11/2026.
+export const selectionPlaces: Place[] = base.map((p) =>
+  p.kind === 'restaurant' || p.kind === 'beachclub' ? { ...p, bookable: true } : p);
