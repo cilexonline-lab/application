@@ -11,6 +11,7 @@ const DAILY_PER_DEVICE = 40;
 const DAILY_PER_IP = 150;
 const MAX_FAQ = 60;
 const MAX_ACTIONS = 3;
+const MAX_SUGGESTIONS = 3;
 
 // Sezioni dell'app che l'assistente può aprire con un pulsante sotto la risposta.
 export const ACTIONS = ['table', 'boat', 'concierge', 'villa', 'apartment', 'club', 'event', 'explore', 'map', 'plan', 'whatsapp'];
@@ -19,6 +20,7 @@ const EXPLORE_TARGETS = ['', 'club', 'beach', 'restaurant', 'day'];
 const Reply = z.object({
   reply: z.string(),
   actions: z.array(z.object({ type: z.enum(ACTIONS), target: z.string() })),
+  suggestions: z.array(z.string()),
 });
 
 export const SYSTEM_RULES = `You are "Cilex Ibiza Assistant", the in-app assistant of Cilex Ibiza Luxury Concierge.
@@ -48,10 +50,18 @@ APP SECTIONS (you can open them with "actions"; each becomes a button under your
 - plan: the user's personal plan and reminders. target "".
 - whatsapp: write to the Cilex team. target "".
 
+WHEN TO HAND OVER TO THE TEAM (add "whatsapp" as the FIRST action, keep the reply short and kind, never argue)
+- The user asks for a person, an operator, a call, or says you are not helping.
+- Complaints, an unhappy or angry user, a problem with an existing booking or request, payments, deposits, refunds, cancellations, lost items.
+- Anything about prices, availability, discounts or special access that is not in OFFICIAL DATA.
+- The user repeats the same question: do not repeat your answer, offer the team.
+- Emergencies: tell them to call 112 first.
+
 HOW TO REPLY
 - When the user wants something the app already does (a VIP table, a boat, a villa, an apartment, transfers or other concierge services, tickets, events, the map, reminders), answer in one or two sentences and add the matching action, so they get there in one tap. Do not ask them to type dates or group size here: the request form collects them.
 - Add 0 to 3 actions, most useful first, and only when they help. For prices, availability or anything you cannot confirm, add "whatsapp".
-- Write the reply as plain text: no markdown, no links, no ids.`;
+- Write the reply as plain text: no markdown, no links, no ids.
+- "suggestions": 0 to 3 short follow-up questions the user might ask next (max 8 words each, in the user's language, written as the user would type them). Only questions you can answer or route. Empty when handing over to the team.`;
 
 let CORS = {}; // impostato per richiesta: solo se env.ALLOW_ORIGIN è definito (serve solo per test dal browser)
 const json = (obj, status = 200) =>
@@ -78,7 +88,8 @@ export function buildContext(data, now = new Date(), builtinFaq = appFaq.faq) {
   const clubs = data && Array.isArray(data.clubs) ? data.clubs : [];
   const byId = new Map(clubs.map((c) => [c.id, c.name]));
   if (clubs.length) {
-    lines.push('Clubs (id: name): ' + clubs.map((c) => `${c.id}: ${c.name}`).join(', ') + '.');
+    lines.push('Clubs (id · name · area · description):');
+    clubs.forEach((c) => lines.push(`- ${c.id} · ${c.name}${c.area ? ' · ' + c.area : ''}${c.description ? ' · ' + String(c.description).slice(0, 220) : ''}`));
     clubs.filter((c) => c.rules).forEach((c) => lines.push(`Rules/dress code at ${c.name}: ${String(c.rules).slice(0, 300)}`));
   }
   if (data) {
@@ -101,6 +112,15 @@ export function buildContext(data, now = new Date(), builtinFaq = appFaq.faq) {
     faq.forEach((f) => lines.push(`Approved answer – Q: ${f.q.trim().slice(0, 200)} | A: ${f.a.trim().slice(0, 400)}`));
   }
   return lines.join('\n');
+}
+
+// Domande successive suggerite: stringhe brevi, senza link né caratteri strani.
+export function cleanSuggestions(list) {
+  return (Array.isArray(list) ? list : [])
+    .filter((x) => typeof x === 'string')
+    .map((x) => x.replace(/\s+/g, ' ').trim())
+    .filter((x) => x.length >= 3 && x.length <= 80 && !/https?:|www\.|[<>{}]/i.test(x))
+    .slice(0, MAX_SUGGESTIONS);
 }
 
 // Tiene solo azioni note, con target sicuro; club/eventi devono esistere se abbiamo i dati ufficiali.
@@ -177,7 +197,7 @@ export async function handle(request, env, fetchImpl = fetch, now = new Date()) 
   const parsed = out.parsed_output;
   const reply = parsed?.reply?.trim();
   if (!reply) return json({ error: 'empty' }, 502);
-  return json({ reply, actions: cleanActions(parsed.actions, data) });
+  return json({ reply, actions: cleanActions(parsed.actions, data), suggestions: cleanSuggestions(parsed.suggestions) });
 }
 
 export default { fetch: (req, env) => handle(req, env) };

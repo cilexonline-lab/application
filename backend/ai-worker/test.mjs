@@ -1,4 +1,4 @@
-import { handle, validate, buildContext, cleanActions, SYSTEM_RULES } from './worker.js';
+import { handle, validate, buildContext, cleanActions, cleanSuggestions, SYSTEM_RULES } from './worker.js';
 let bad = 0;
 const chk = (n, ok) => { if (!ok) bad++; console.log(ok ? 'OK  ' : 'FAIL', n); };
 const NOW = new Date('2027-06-05T21:00:00Z');
@@ -7,7 +7,7 @@ const req = (body, headers = {}, method = 'POST') =>
 
 // upstream finto
 let lastCall;
-const out = (reply, actions = []) => [{ type: 'text', text: JSON.stringify({ reply, actions }) }];
+const out = (reply, actions = [], suggestions = []) => [{ type: 'text', text: JSON.stringify({ reply, actions, suggestions }) }];
 const mkFetch = (status = 200, content = out('Ciao!'), stop_reason = 'end_turn') => async (url, opts) => {
   if (String(url).includes('content.json')) return new Response(JSON.stringify({
     clubs: [{ id: 'pacha', name: 'Pacha', rules: 'Dress code smart' }],
@@ -78,6 +78,10 @@ chk('target azzerato dove non serve', JSON.stringify(cleanActions([{ type: 'boat
 chk('duplicati rimossi', cleanActions([{ type: 'map', target: '' }, { type: 'map', target: '' }], D).length === 1);
 chk('explore con target non valido scartato', cleanActions([{ type: 'explore', target: 'casino' }], D).length === 0);
 chk('regole: sezioni dell\'app nel prompt', SYSTEM_RULES.includes('APP SECTIONS') && SYSTEM_RULES.includes('Never mention guest lists'));
+chk('suggerimenti: puliti e max 3', JSON.stringify(cleanSuggestions(['Dove ballo?', 'vai su https://x.it', '<b>', 'a', 'Spiagge?', 'Barca?', 'Ville?'])) === JSON.stringify(['Dove ballo?', 'Spiagge?', 'Barca?']));
+chk('suggerimenti nella risposta', await (async () => { const j = await (await handle(req({ messages: [{ role: 'user', content: 'hi' }] }), env, mkFetch(200, out('Ciao', [], ['Dove ballo stasera?'])), NOW)).json(); return j.suggestions?.[0] === 'Dove ballo stasera?'; })());
+chk('regole: passaggio al team su reclami e pagamenti', SYSTEM_RULES.includes('WHEN TO HAND OVER') && SYSTEM_RULES.includes('refunds'));
+chk('contesto: zona e descrizione dei club', buildContext({ clubs: [{ id: 'pacha', name: 'Pacha', area: 'Ibiza Town', description: 'Iconico' }] }, NOW).includes('pacha · Pacha · Ibiza Town · Iconico'));
 chk('faq di base sempre presenti', buildContext(null, NOW).includes('Come prenoto un tavolo VIP?'));
 chk('faq del team prima di quelle di base', (() => { const c = buildContext({ faq: [{ q: 'Team?', a: 'Sì' }] }, NOW); return c.indexOf('Team?') < c.indexOf('Come prenoto'); })());
 chk('senza CONTENT_URL funziona e lo dichiara', await (async () => { await handle(req({ messages: [{ role: 'user', content: 'hi' }] }), { ANTHROPIC_API_KEY: 'k' }, mkFetch(), NOW); return lastCall.body.system.includes('No official event data'); })());

@@ -4,7 +4,7 @@ declare const process: any;
 
 export type ChatMsg = { role: 'user' | 'assistant'; content: string };
 // actions = azioni grezze dal server (validate poi da resolveActions in src/intents.ts).
-export type AiReply = { reply: string; actions: unknown };
+export type AiReply = { reply: string; actions: unknown; suggestions: string[] };
 export type AiErrorKind = 'not_configured' | 'rate_limited' | 'network' | 'server';
 export class AiError extends Error {
   kind: AiErrorKind;
@@ -19,7 +19,7 @@ export async function askAI(messages: ChatMsg[], deviceId: string): Promise<AiRe
   if (MOCK) {
     await new Promise((r) => setTimeout(r, 900));
     // Nessuna azione dal "server" finto: la schermata usa il riconoscimento locale, così l'anteprima mostra i pulsanti.
-    return { reply: '[Risposta simulata – solo anteprima] Qui l’assistente risponderà alle domande su Ibiza usando i dati ufficiali Cilex. Per prezzi, orari e disponibilità ti indirizzerà al team su WhatsApp.', actions: [] };
+    return { reply: '[Risposta simulata – solo anteprima] Qui l’assistente risponderà alle domande su Ibiza usando i dati ufficiali Cilex. Per prezzi, orari e disponibilità ti indirizzerà al team su WhatsApp.', actions: [], suggestions: ['Dove vedo il tramonto?', 'Come mi muovo di notte?'] };
   }
   if (!AI_ENDPOINT) throw new AiError('not_configured');
   const ctrl = new AbortController();
@@ -37,7 +37,8 @@ export async function askAI(messages: ChatMsg[], deviceId: string): Promise<AiRe
     if (!res.ok) throw new AiError('server');
     const data = await res.json();
     if (!data?.reply || typeof data.reply !== 'string') throw new AiError('server');
-    return { reply: data.reply, actions: data.actions };
+    const suggestions = Array.isArray(data.suggestions) ? data.suggestions.filter((x: unknown) => typeof x === 'string').slice(0, 3) : [];
+    return { reply: data.reply, actions: data.actions, suggestions };
   } catch (e) {
     if (e instanceof AiError) throw e;
     throw new AiError('network');

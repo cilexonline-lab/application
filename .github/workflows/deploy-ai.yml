@@ -1,0 +1,47 @@
+# Pubblica il server IA (backend/ai-worker) su Cloudflare Workers.
+# Parte da solo a ogni modifica del server su main, oppure a mano: Actions → "Pubblica IA" → Run workflow.
+# Servono 3 secret del repository (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, ANTHROPIC_API_KEY
+# Senza secret il workflow non pubblica nulla e lo dice.
+name: Pubblica IA
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['backend/ai-worker/**', '.github/workflows/deploy-ai.yml']
+permissions:
+  contents: read
+concurrency: deploy-ai
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend/ai-worker
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Test (API simulata, nessun costo)
+        run: node test.mjs
+      - name: Controllo secret
+        id: chk
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ] || [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::warning::Mancano i secret CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID / ANTHROPIC_API_KEY: niente pubblicazione."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Pubblica su Cloudflare
+        if: steps.chk.outputs.ok == 'true'
+        run: npx --yes wrangler@4 deploy
+      - name: Chiave Anthropic sul server (mai nel codice)
+        if: steps.chk.outputs.ok == 'true'
+        run: printf '%s' "$ANTHROPIC_API_KEY" | npx --yes wrangler@4 secret put ANTHROPIC_API_KEY

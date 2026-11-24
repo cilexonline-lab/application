@@ -17,8 +17,10 @@ export default function WhatsAppFab({ route }: { route?: string }) {
   const onTabs = name in TAB_ROUTES;
   let bottom = onTabs ? TAB_BAR + insets.bottom + 14 : insets.bottom + 18;
   const pos: any = { right: 14, bottom };
-  if (name === 'Ask') pos.bottom = bottom + 96;                 // sopra la barra di scrittura
   if (name === 'Map3D') { delete pos.bottom; pos.right = undefined; pos.left = 12; pos.top = '34%'; } // libera la scheda in basso
+
+  // In Chiedi il contatto col team è già in alto e sotto le risposte: il pulsante coprirebbe la chat.
+  if (name === 'Ask') return null;
 
   const press = () => {
     tap();

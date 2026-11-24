@@ -44,6 +44,8 @@ export function sanitize(raw: any): Remote | null {
         rules: isStr(c.rules) ? c.rules : undefined,
         imageUrl: isStr(c.imageUrl) ? c.imageUrl : undefined,
         mapQuery: isStr(c.mapQuery) ? c.mapQuery : undefined,
+        area: isStr(c.area) ? c.area : undefined,
+        accent: typeof c.accent === 'string' && /^#[0-9a-fA-F]{6}$/.test(c.accent) ? c.accent : undefined,
         lat: validCoord(c.lat, c.lng) ? c.lat : undefined,
         lng: validCoord(c.lat, c.lng) ? c.lng : undefined,
       }));

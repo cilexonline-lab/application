@@ -13,7 +13,7 @@ import { openWhatsApp } from '../whatsapp';
 import { tap } from '../haptics';
 import { colors, radius, space } from '../theme';
 
-type Row = { id: number; role: 'user' | 'assistant'; text: string; failed?: boolean; actions?: AskAction[]; q?: string };
+type Row = { id: number; role: 'user' | 'assistant'; text: string; failed?: boolean; actions?: AskAction[]; q?: string; sugg?: string[] };
 // Suggerimenti: prima i servizi (portano richieste), poi una domanda su Ibiza.
 const SUGG_AI = ['suggTable', 'suggBoat', 'suggVilla', 'sugg1'];
 const SUGG_LOCAL = ['suggTable', 'suggBoat', 'suggVilla', 'suggEvents'];
@@ -52,9 +52,9 @@ export default function AskScreen() {
         setRows((r) => [...r, { id: next.current++, role: 'assistant', text: t(local.length ? 'askLocalFound' : 'askLocalNone'), actions, q }]);
         return;
       }
-      const { reply, actions } = await askAI(history, deviceId);
+      const { reply, actions, suggestions } = await askAI(history, deviceId);
       const server = resolveActions(actions, clubs, upcoming);
-      setRows((r) => [...r, { id: next.current++, role: 'assistant', text: reply, actions: server.length ? server : local, q }]);
+      setRows((r) => [...r, { id: next.current++, role: 'assistant', text: reply, actions: server.length ? server : local, q, sugg: suggestions }]);
     } catch (e) {
       const limited = e instanceof AiError && e.kind === 'rate_limited';
       setRows((r) => [...r, { id: next.current++, role: 'assistant', text: limited ? t('askLimit') : t('askError'), failed: true }]);
@@ -73,7 +73,7 @@ export default function AskScreen() {
     }
   };
   const SEG: Record<string, string> = { club: 'club', beach: 'beach', restaurant: 'restaurant', day: 'day' };
-  const run = (a: AskAction, q = '') => {
+  const run = (a: AskAction) => {
     tap();
     switch (a.type) {
       case 'table': return nav.navigate('Request', { kind: 'table', clubId: a.target || '' });
@@ -84,8 +84,14 @@ export default function AskScreen() {
       case 'explore': return nav.navigate('Clubs', { seg: SEG[a.target] ?? 'club' });
       case 'map': return nav.navigate('Map3D');
       case 'plan': return nav.navigate('Plan');
-      default: return openWhatsApp(q ? `Hi Cilex! ${q}` : 'Hi Cilex!', t('waMissing'));
+      default: return handoff();
     }
+  };
+  // Passaggio al team senza far ripetere nulla: il messaggio WhatsApp contiene le ultime domande del cliente.
+  const handoff = () => {
+    tap();
+    const asked = rows.filter((r) => r.role === 'user').slice(-3).map((r) => `• ${r.text}`);
+    openWhatsApp(asked.length ? `${t('askHandoff')}\n${asked.join('\n')}` : t('waFabMsg'), t('waMissing'));
   };
 
   const report = (row: Row) => {
@@ -108,7 +114,13 @@ export default function AskScreen() {
 
   return (
     <KeyboardAvoidingView style={s.root} behavior={Platform.OS === 'ios' ? 'padding' : undefined} keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}>
-      {rows.length > 0 && <View style={{ paddingHorizontal: space.md, paddingTop: space.sm }}><LogoWordmark width={84} /></View>}
+      <View style={s.head}>
+        {rows.length > 0 ? <LogoWordmark width={84} /> : <View />}
+        <Pressable accessibilityRole="button" accessibilityLabel={t('askTeam')} onPress={handoff} hitSlop={8} style={({ pressed }) => [s.teamPill, pressed && { opacity: 0.75 }]}>
+          <Icon name="ask" size={15} color={colors.brand} stroke={2} />
+          <Text style={s.teamTxt}>{t('askTeamShort')}</Text>
+        </Pressable>
+      </View>
       <ScrollView ref={scroll} contentContainerStyle={{ padding: space.md, paddingBottom: space.lg }} keyboardShouldPersistTaps="handled">
         {rows.length === 0 && (
           <>
@@ -129,7 +141,7 @@ export default function AskScreen() {
             {r.role === 'assistant' && !!r.actions?.length && (
               <View style={s.actions}>
                 {r.actions.map((a, i) => (
-                  <Pressable key={a.type + a.target} accessibilityRole="button" onPress={() => run(a, r.q)} style={({ pressed }) => [s.act, i === 0 && s.actMain, pressed && { opacity: 0.75 }]}>
+                  <Pressable key={a.type + a.target} accessibilityRole="button" onPress={() => run(a)} style={({ pressed }) => [s.act, i === 0 && s.actMain, pressed && { opacity: 0.75 }]}>
                     <Icon name={ICON[a.type] ?? 'chevron'} size={16} color={i === 0 ? '#001418' : colors.brand} stroke={2} />
                     <Text style={[s.actTxt, i === 0 && { color: '#001418' }]} numberOfLines={1}>{label(a)}</Text>
                   </Pressable>
@@ -138,6 +150,11 @@ export default function AskScreen() {
             )}
             {AI_AVAILABLE && r.role === 'assistant' && !r.failed && (
               <Text style={s.report} onPress={() => report(r)}>{t('askReport')}</Text>
+            )}
+            {r.role === 'assistant' && !!r.sugg?.length && r.id === rows[rows.length - 1]?.id && !busy && (
+              <View style={[s.actions, { marginTop: 10 }]}>
+                {r.sugg.map((q) => <Chip key={q} label={q} onPress={() => send(q)} />)}
+              </View>
             )}
             {r.role === 'assistant' && r.failed && (
               <Text style={s.report} onPress={() => openWhatsApp('Hi Cilex!', t('waMissing'))}>{t('askTeam')}</Text>
@@ -181,6 +198,9 @@ const s = StyleSheet.create({
   user: { backgroundColor: colors.brand, borderBottomRightRadius: 6 },
   bot: { backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border, borderBottomLeftRadius: 6 },
   msg: { color: colors.text, fontSize: 15, lineHeight: 22 },
+  head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: space.md, paddingTop: space.sm, minHeight: 40 },
+  teamPill: { flexDirection: 'row', alignItems: 'center', gap: 6, borderRadius: 999, borderWidth: 1, borderColor: 'rgba(0,219,255,0.45)', paddingVertical: 7, paddingHorizontal: 12 },
+  teamTxt: { color: colors.brand, fontSize: 13, fontWeight: '700' },
   actions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 8, maxWidth: '92%' },
   act: { flexDirection: 'row', alignItems: 'center', gap: 6, borderRadius: 999, borderWidth: 1, borderColor: 'rgba(0,219,255,0.55)', paddingVertical: 9, paddingHorizontal: 14, maxWidth: '100%' },
   actMain: { backgroundColor: colors.brand, borderColor: colors.brand },

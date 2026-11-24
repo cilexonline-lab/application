@@ -5,8 +5,8 @@ compatibility_date = "2026-01-01"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
-# URL pubblico del JSON contenuti (lo stesso di CONTENT_URL nell'app)
-CONTENT_URL = ""
+# Contenuti ufficiali (club, eventi, consigli, FAQ del team), generati da `npm run build:pages` in cilex/.
+CONTENT_URL = "https://cilexonline-lab.github.io/application/content.json"
 # Modello: più economico = claude-haiku-5-5 ; più capace = claude-sonnet-5-5
 MODEL = "claude-haiku-5-5"
 
