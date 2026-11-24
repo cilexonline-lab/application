@@ -9,11 +9,13 @@
 - "Le tue preferenze" (Piano): allergie, musica, occasione. Salvate solo sul telefono (AsyncStorage), aggiunte in coda ai messaggi WhatsApp della schermata Richiesta, solo se compilate. Funzione 2 di `proposte-concorrenza.md` (PR #20).
 - Promemoria: allergie = dato sensibile; campo facoltativo, mai inviato a server, solo nel messaggio che l'utente stesso invia.
 
+## Pubblicato: sostituti (PR #24, ok di Alex)
+- Sa Trinxa (beach club, Ses Salines) al posto di Atzaró Beach; Sa Caleta (ristorante, Es Bol Nou) al posto di Brula. Entrambi con "Prenota con Cilex". Coordinate da verificare sul posto.
+
 ## In attesa (NON unire senza ok di Alex)
 - #19 BOZZA 30 FAQ: Alex deve sceglierne 20–25.
 - #17 BOZZA kit App Store.
 - #20 documento concorrenza (solo testo).
-- 2 sostituti veri e verificati per Atzaró/Brula: richiesti all'Agente CONTENUTI, da non pubblicare senza ok di Alex.
 
 ## Decisioni di Alex (24/11)
 1. Ordine di pubblicazione #18, #21, #22, #23, poi sito.
