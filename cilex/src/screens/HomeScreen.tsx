@@ -45,7 +45,7 @@ export default function HomeScreen() {
       <View style={{ alignItems: 'center', marginTop: space.md, marginBottom: space.lg }}>
         <View style={s.langRow}>
           {LANGS.map((l) => (
-            <Pressable key={l} accessibilityRole="button" accessibilityState={{ selected: l === lang }} onPress={() => setLang(l)} hitSlop={6}>
+            <Pressable key={l} accessibilityRole="button" accessibilityState={{ selected: l === lang }} onPress={() => setLang(l)} hitSlop={{ top: 14, bottom: 14, left: 6, right: 6 }}>
               <Text style={[s.lang, l === lang && s.langOn]}>{l.toUpperCase()}</Text>
             </Pressable>
           ))}

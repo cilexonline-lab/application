@@ -71,7 +71,7 @@ function HeroBack({ onPress }: { onPress: () => void }) {
     </Pressable>
   );
 }
-const heroBtn = { width: 40, height: 40, borderRadius: 20, marginLeft: 8, backgroundColor: 'rgba(5,6,7,0.62)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.14)', alignItems: 'center' as const, justifyContent: 'center' as const };
+const heroBtn = { width: 44, height: 44, borderRadius: 22, marginLeft: 8, backgroundColor: 'rgba(5,6,7,0.62)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.14)', alignItems: 'center' as const, justifyContent: 'center' as const };
 const heroHeader = ({ navigation }: any) => ({
   title: '',
   headerTransparent: true,
@@ -80,6 +80,7 @@ const heroHeader = ({ navigation }: any) => ({
 });
 
 export default function App() {
+  const t = useT();
   const navRef = useNavigationContainerRef();
   const [route, setRoute] = useState<string | undefined>('Home');
   const sync = () => setRoute((navRef as any).getCurrentRoute()?.name);
@@ -99,7 +100,7 @@ export default function App() {
             headerBackVisible: false,
             headerLeft: () =>
               navigation.canGoBack() ? (
-                <Pressable accessibilityLabel="Back" onPress={() => navigation.goBack()} hitSlop={12} style={{ paddingLeft: 8 }}>
+                <Pressable accessibilityRole="button" accessibilityLabel={t('back')} onPress={() => navigation.goBack()} hitSlop={12} style={{ paddingLeft: 8 }}>
                   <Text style={{ color: colors.brand, fontSize: 32, lineHeight: 34, paddingRight: 12 }}>‹</Text>
                 </Pressable>
               ) : null,

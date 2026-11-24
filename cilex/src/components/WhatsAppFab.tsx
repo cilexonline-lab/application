@@ -32,7 +32,7 @@ export default function WhatsAppFab({ route }: { route?: string }) {
   };
   return (
     <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
-      <Pressable accessibilityRole="button" accessibilityLabel={t('waFabLabel')} onPress={press} style={({ pressed }) => [s.fab, pos, pressed && { opacity: 0.85, transform: [{ scale: 0.96 }] }]}>
+      <Pressable accessibilityRole="button" accessibilityLabel={t('waFabLabel')} onPress={press} hitSlop={small ? 4 : 0} style={({ pressed }) => [s.fab, pos, pressed && { opacity: 0.85, transform: [{ scale: 0.96 }] }]}>
         <Svg width={small ? 22 : 30} height={small ? 22 : 30} viewBox="0 0 24 24">
           <Path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.2 21.8l5-1.3A9.8 9.8 0 1 0 12 2.2z" stroke="#fff" strokeWidth={1.7} strokeLinejoin="round" fill="none" />
           <Path d="M8.6 7.8c-.3.3-.7 1-.4 1.9.5 1.4 1.5 2.6 2.8 3.6 1.1.9 2.3 1.4 3.2 1.5.7 0 1.2-.4 1.4-.9l.1-.5-1.6-.9-.7.6c-.3.2-.6.2-1-.1a6.6 6.6 0 0 1-2.5-2.5c-.2-.4-.1-.7.1-.9l.5-.6-.8-1.7-.5-.1c-.4 0-.5 0-.6.1z" fill="#fff" />
