@@ -68,7 +68,7 @@
       "link": "https://esempio.com/menu"
     }
   ],
-  "_nota_places": "kind: beachclub | beach | restaurant | day. lat/lng opzionali (devono cadere su Ibiza/Formentera, altrimenti scartati; togli le chiavi se non le hai). bookable:true mostra 'Richiedi via Cilex' SOLO dove avete davvero il servizio. link: solo http/https.",
+  "_nota_places": "kind: beachclub | beach | restaurant | day | sunset. Se presente, questa lista SOSTITUISCE la Selezione Cilex inclusa nell'app (src/data/places.ts). lat/lng opzionali (devono cadere su Ibiza/Formentera, altrimenti scartati; togli le chiavi se non le hai). bookable:true mostra 'Richiedi via Cilex' SOLO dove avete davvero il servizio. link: solo http/https.",
   "stays": [
     {
       "id": "esempio-villa",

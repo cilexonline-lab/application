@@ -9,19 +9,30 @@ import { colors, space } from '../theme';
 import { ClubCard } from '../components/ClubCard';
 import { tap } from '../haptics';
 
-type Seg = 'club' | 'beach' | 'restaurant' | 'day';
+type Seg = 'club' | 'beach' | 'restaurant' | 'sunset' | 'day';
 const SEGS: { k: Seg; label: string }[] = [
-  { k: 'club', label: 'segClubs' }, { k: 'beach', label: 'segBeach' }, { k: 'restaurant', label: 'segEat' }, { k: 'day', label: 'segDay' },
+  { k: 'club', label: 'segClubs' }, { k: 'beach', label: 'segBeach' }, { k: 'restaurant', label: 'segEat' }, { k: 'sunset', label: 'segSunset' }, { k: 'day', label: 'segDay' },
 ];
-export const kindKey = (k: PlaceKind) => ({ beachclub: 'kBeachclub', beach: 'kBeach', restaurant: 'kRestaurant', day: 'kDay' }[k]);
-const kindsOf = (seg: Seg): PlaceKind[] => (seg === 'beach' ? ['beachclub', 'beach'] : seg === 'restaurant' ? ['restaurant'] : seg === 'day' ? ['day'] : []);
+export const kindKey = (k: PlaceKind) => ({ beachclub: 'kBeachclub', beach: 'kBeach', restaurant: 'kRestaurant', day: 'kDay', sunset: 'kSunset' }[k]);
+const kindsOf = (seg: Seg): PlaceKind[] => (seg === 'beach' ? ['beach', 'beachclub'] : seg === 'restaurant' ? ['restaurant'] : seg === 'sunset' ? ['sunset'] : seg === 'day' ? ['day'] : []);
+// Sotto-filtro della sezione Mare.
+type Sea = '' | 'beach' | 'beachclub';
+const SEA: { k: Sea; label: string }[] = [{ k: '', label: 'seaAll' }, { k: 'beach', label: 'seaBeaches' }, { k: 'beachclub', label: 'seaClubs' }];
 
 export default function ExploreScreen() {
   const t = useT();
   const nav = useNavigation<any>();
   const { clubs, upcoming, places } = useContent();
   const [seg, setSeg] = useState<Seg>('club');
-  const list: Place[] = places.filter((p) => kindsOf(seg).includes(p.kind));
+  const [sea, setSea] = useState<Sea>('');
+  const kinds = kindsOf(seg);
+  // Spiagge prima dei beach club, poi l'ordine del file.
+  const list: Place[] = places
+    .filter((p) => kinds.includes(p.kind) && (seg !== 'beach' || !sea || p.kind === sea))
+    .map((p, i) => ({ p, i }))
+    .sort((a, b) => kinds.indexOf(a.p.kind) - kinds.indexOf(b.p.kind) || a.i - b.i)
+    .map((x) => x.p);
+  const curated = list.some((p) => !p.demo);
   const [area, setArea] = useState('');
   const areas = ['', ...Array.from(new Set(clubs.map((c) => c.area).filter((a): a is string => !!a)))];
   // Prima i club con eventi in arrivo, poi gli altri nell'ordine originale.
@@ -65,10 +76,21 @@ export default function ExploreScreen() {
         />
       )}
 
-      {(seg === 'beach' || seg === 'restaurant' || seg === 'day') && (
+      {seg !== 'club' && (
         <FlatList
-          contentContainerStyle={{ padding: space.md }}
+          contentContainerStyle={{ paddingHorizontal: space.md, paddingTop: space.xs, paddingBottom: 120 }}
           data={list}
+          ListHeaderComponent={
+            <View style={{ marginBottom: space.md }}>
+              {curated && <Text style={s.curTitle}>{t('curatedTitle').toUpperCase()}</Text>}
+              {curated && <Text style={s.curSub}>{t('curatedSub')}</Text>}
+              {seg === 'beach' && (
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingTop: space.sm }}>
+                  {SEA.map((x) => <Chip key={x.k || 'all'} label={t(x.label)} active={sea === x.k} onPress={() => { tap(); setSea(x.k); }} />)}
+                </ScrollView>
+              )}
+            </View>
+          }
           keyExtractor={(p) => p.id}
           ListEmptyComponent={<Text style={{ color: colors.muted }}>{t('placesSoon')}</Text>}
           renderItem={({ item }) => (
@@ -90,5 +112,7 @@ const s = StyleSheet.create({
   h1: { color: colors.text, fontSize: 26, fontWeight: '800', marginBottom: space.sm },
   name2: { color: colors.text, fontSize: 18, fontWeight: '800', marginTop: 2 },
   sub: { color: colors.muted, fontSize: 12, marginTop: 2, lineHeight: 17 },
+  curTitle: { color: colors.brand, fontSize: 12, fontWeight: '800', letterSpacing: 1.6 },
+  curSub: { color: colors.muted, fontSize: 12, marginTop: 3, lineHeight: 17 },
   kindTxt: { color: colors.brand, fontSize: 11, fontWeight: '800', letterSpacing: 1.2, marginTop: 10 },
 });

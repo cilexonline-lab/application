@@ -11,14 +11,14 @@ import { useT } from '../i18n';
 import { kindKey } from './ExploreScreen';
 import { colors, radius, space } from '../theme';
 
-type F = 'club' | 'beach' | 'restaurant' | 'day';
-const FILTERS: { k: F; label: string }[] = [{ k: 'club', label: 'segClubs' }, { k: 'beach', label: 'segBeach' }, { k: 'restaurant', label: 'segEat' }, { k: 'day', label: 'segDay' }];
+type F = 'club' | 'beach' | 'restaurant' | 'sunset' | 'day';
+const FILTERS: { k: F; label: string }[] = [{ k: 'club', label: 'segClubs' }, { k: 'beach', label: 'segBeach' }, { k: 'restaurant', label: 'segEat' }, { k: 'sunset', label: 'segSunset' }, { k: 'day', label: 'segDay' }];
 
 export default function Map3DScreen() {
   const t = useT();
   const nav = useNavigation<any>();
   const { clubs, places } = useContent();
-  const [filter, setFilter] = useState<F[]>(['club', 'beach', 'restaurant', 'day']);
+  const [filter, setFilter] = useState<F[]>(['club', 'beach', 'restaurant', 'sunset', 'day']);
   const [sel, setSel] = useState<string | null>(null);
 
   const all = useMemo<Pin[]>(() => {
@@ -28,7 +28,7 @@ export default function Map3DScreen() {
     return out;
   }, [clubs, places, nav]);
 
-  const segOf = (kind: string): F => (kind === 'kClub' ? 'club' : kind === 'kRestaurant' ? 'restaurant' : kind === 'kDay' ? 'day' : 'beach');
+  const segOf = (kind: string): F => (kind === 'kClub' ? 'club' : kind === 'kRestaurant' ? 'restaurant' : kind === 'kDay' ? 'day' : kind === 'kSunset' ? 'sunset' : 'beach');
   const pins = useMemo(() => all.filter((p) => filter.includes(segOf(p.kind))), [all, filter]);
   const selected = pins.find((p) => p.id === sel) ?? null;
   const missing = [...clubs.filter((c) => c.lat == null).map((c) => c.name), ...places.filter((p) => p.lat == null).map((p) => p.name)];

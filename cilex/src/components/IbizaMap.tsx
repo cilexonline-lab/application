@@ -22,6 +22,10 @@ function Glyph({ kind }: { kind: string }) {
   if (kind === 'kClub') return (<><Path d="M13.4 16V7.4l6.4-1.6v8.2" {...st} /><Circle cx="11" cy="16.4" r="2.5" fill={INK} /><Circle cx="17.4" cy="14" r="2.5" fill={INK} /></>);
   if (kind === 'kRestaurant') return (<><Path d="M10.3 7v4.6M13 7v4.6M10.3 11.6h2.7M11.65 11.6V20.5M18.2 7c-2.2 1.6-2.2 5-.2 6.6V20.5" {...st} /></>);
   if (kind === 'kDay') return (<><Circle cx="14" cy="14" r="3.2" fill={INK} /><Path d="M14 6.6v2M14 19.4v2M6.6 14h2M19.4 14h2M8.8 8.8l1.4 1.4M17.8 17.8l1.4 1.4M19.2 8.8l-1.4 1.4M10.2 17.8l-1.4 1.4" {...st} /></>);
+  // Tramonto: mezzo sole sull'orizzonte.
+  if (kind === 'kSunset') return (<><Path d="M9 16.2a5 5 0 0 1 10 0z" fill={INK} /><Path d="M6.6 18.6h14.8M14 7.4v2.2M8.4 10.2l1.5 1.5M19.6 10.2l-1.5 1.5" {...st} /></>);
+  // Beach club: ombrellone sulla sabbia.
+  if (kind === 'kBeachclub') return (<><Path d="M7.6 13.4a6.4 6.4 0 0 1 12.8 0z" fill={INK} /><Path d="M14 13.4v6.4M9.4 20.4h9.2" {...st} /></>);
   return (<><Path d="M7.2 11.4q3.4-3.6 6.8 0t6.8 0" {...st} /><Path d="M7.2 16.6q3.4-3.6 6.8 0t6.8 0" {...st} /></>);
 }
 
@@ -149,7 +153,7 @@ export default function IbizaMap({ pins, selected, onSelect }: MapProps) {
               <React.Fragment key={p.id}>
                 {sel && <View pointerEvents="none" style={{ position: 'absolute', left: x - 28, top: y - 28, width: 56, height: 56 }}><Pulse color={col} /></View>}
                 <Pressable onPress={() => onSelect(sel ? null : p.id)} hitSlop={10} style={{ position: 'absolute', left: x - sz / 2, top: y - sz * 1.29, zIndex: sel ? 20 : 1 }}>
-                  <PinIcon color={col} size={sz} selected={sel} kind={p.kind === 'kBeachclub' ? 'kBeach' : p.kind} />
+                  <PinIcon color={col} size={sz} selected={sel} kind={p.kind} />
                 </Pressable>
                 {(sel || zoomed) && (
                   <View pointerEvents="none" style={{ position: 'absolute', left: x - 90, width: 180, top: sel ? y - sz * 1.29 - 30 : y + 2, alignItems: 'center', zIndex: sel ? 21 : 2 }}>
