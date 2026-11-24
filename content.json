@@ -1,6 +1,6 @@
 {
  "_info": "Generato da cilex/tools/export-content.ts – non modificare a mano: cambia i dati in cilex/src/data o cilex/content/faq-team.json.",
- "generated": "2026-11-24T00:49:00.508Z",
+ "generated": "2026-11-24T09:20:47.085Z",
  "clubs": [
   {
    "id": "unvrs",
@@ -72,6 +72,8 @@
    "id": "swag",
    "area": "Platja d'en Bossa",
    "accent": "#F53DD3",
+   "lat": 38.891337,
+   "lng": 1.4082527,
    "name": "SWAG",
    "ticketUrl": "https://swagibizaoficial.com/",
    "description": "Urban music club in Playa d'en Bossa since 2014: reggaeton, hip-hop, dembow, R&B and more, a different party every night.",
@@ -203,7 +205,8 @@
    "description": "",
    "link": "https://nikkibeach.com/ibiza/",
    "lat": 38.9923017,
-   "lng": 1.5692682
+   "lng": 1.5692682,
+   "bookable": true
   },
   {
    "id": "blue-marlin",
@@ -213,7 +216,8 @@
    "description": "",
    "link": "https://www.bluemarlinibiza.com/",
    "lat": 38.8679417,
-   "lng": 1.3176714
+   "lng": 1.3176714,
+   "bookable": true
   },
   {
    "id": "tropicana",
@@ -223,7 +227,8 @@
    "description": "",
    "link": "https://www.tropicanaibiza.com/en/",
    "lat": 38.869034,
-   "lng": 1.3141041
+   "lng": 1.3141041,
+   "bookable": true
   },
   {
    "id": "beachouse",
@@ -233,7 +238,8 @@
    "description": "",
    "link": "https://www.beachouseibiza.com/",
    "lat": 38.8799649,
-   "lng": 1.4037498
+   "lng": 1.4037498,
+   "bookable": true
   },
   {
    "id": "nassau",
@@ -243,7 +249,8 @@
    "description": "",
    "link": "https://www.nassaubeachclub.com/",
    "lat": 38.8790944,
-   "lng": 1.4035407
+   "lng": 1.4035407,
+   "bookable": true
   },
   {
    "id": "cbbc",
@@ -253,7 +260,8 @@
    "description": "",
    "link": "https://cbbcgroup.com/cbbc-cala-bassa-beach-club/en/",
    "lat": 38.9679405,
-   "lng": 1.239189
+   "lng": 1.239189,
+   "bookable": true
   },
   {
    "id": "experimental-beach",
@@ -263,7 +271,8 @@
    "description": "",
    "link": "https://www.experimentalbeachibiza.com/",
    "lat": 38.8516828,
-   "lng": 1.3676351
+   "lng": 1.3676351,
+   "bookable": true
   },
   {
    "id": "beso-beach",
@@ -273,7 +282,8 @@
    "description": "",
    "link": "https://besobeach.com/ibiza/",
    "lat": 38.8424611,
-   "lng": 1.3876123
+   "lng": 1.3876123,
+   "bookable": true
   },
   {
    "id": "cotton-beach-club",
@@ -283,26 +293,8 @@
    "description": "",
    "link": "https://www.cottonlifestyle.com/cotton-beach-club-ibiza/",
    "lat": 38.9403501,
-   "lng": 1.2362461
-  },
-  {
-   "id": "atzaro-beach",
-   "kind": "beachclub",
-   "name": "Atzaró Beach",
-   "area": "Cala Nova",
-   "description": "",
-   "link": "https://www.atzarobeach.com/",
-   "mapQuery": "Atzaró Beach, Cala Nova, Ibiza"
-  },
-  {
-   "id": "brula",
-   "kind": "restaurant",
-   "name": "Brula",
-   "area": "Ibiza Gran Hotel",
-   "description": "",
-   "link": "https://brulaibiza.com/en/",
-   "lat": 38.9171448,
-   "lng": 1.4412336
+   "lng": 1.2362461,
+   "bookable": true
   },
   {
    "id": "casa-jondal",
@@ -312,7 +304,8 @@
    "description": "",
    "link": "https://www.casajondal.es/",
    "lat": 38.868411,
-   "lng": 1.3160642
+   "lng": 1.3160642,
+   "bookable": true
   },
   {
    "id": "es-torrent",
@@ -320,8 +313,10 @@
    "name": "Es Torrent",
    "area": "Porroig",
    "description": "",
+   "link": "https://www.instagram.com/estorrentrestaurant/",
    "lat": 38.8751327,
-   "lng": 1.2990077
+   "lng": 1.2990077,
+   "bookable": true
   },
   {
    "id": "es-xarcu",
@@ -331,7 +326,8 @@
    "description": "",
    "link": "https://www.esxarcurestaurante.com/",
    "lat": 38.8685001,
-   "lng": 1.3115214
+   "lng": 1.3115214,
+   "bookable": true
   },
   {
    "id": "la-paloma",
@@ -341,7 +337,8 @@
    "description": "",
    "link": "https://palomaibiza.com/",
    "lat": 39.0305565,
-   "lng": 1.47573
+   "lng": 1.47573,
+   "bookable": true
   },
   {
    "id": "sa-capella",
@@ -351,7 +348,8 @@
    "description": "",
    "link": "https://www.sacapellaibiza.com/en/",
    "lat": 38.9905085,
-   "lng": 1.3087633
+   "lng": 1.3087633,
+   "bookable": true
   },
   {
    "id": "es-boldado",
@@ -361,7 +359,8 @@
    "description": "",
    "link": "https://esboldadoibiza.com/",
    "lat": 38.8904535,
-   "lng": 1.2212321
+   "lng": 1.2212321,
+   "bookable": true
   },
   {
    "id": "amante",
@@ -371,7 +370,8 @@
    "description": "",
    "link": "https://www.amanteibiza.com/",
    "lat": 38.9472743,
-   "lng": 1.5104185
+   "lng": 1.5104185,
+   "bookable": true
   },
   {
    "id": "sa-punta",
@@ -381,7 +381,8 @@
    "description": "",
    "link": "https://www.sapuntaibiza.com/en",
    "lat": 38.9149485,
-   "lng": 1.4634364
+   "lng": 1.4634364,
+   "bookable": true
   },
   {
    "id": "el-chiringuito",
@@ -391,7 +392,8 @@
    "description": "",
    "link": "https://elchiringuitoibiza.com/es/",
    "lat": 38.8479222,
-   "lng": 1.4016531
+   "lng": 1.4016531,
+   "bookable": true
   },
   {
    "id": "cafe-del-mar",
@@ -455,7 +457,7 @@
    "id": "kumharas",
    "kind": "sunset",
    "name": "Kumharas",
-   "area": "Sant Antoni",
+   "area": "Cala de Bou",
    "description": "",
    "link": "https://kumharas.org/en/",
    "lat": 38.9721715,
