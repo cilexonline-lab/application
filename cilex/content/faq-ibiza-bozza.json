@@ -1,0 +1,186 @@
+{
+ "_bozza": "BOZZA da approvare da Alex. Domande e risposte su Ibiza con fonte, verificate il 24/11/2026. Non vengono lette dall'app né dall'IA finché non vengono copiate in faq-team.json. Niente prezzi né orari.",
+ "faq": [
+  {
+   "q": "Qual è l'aeroporto di Ibiza e qual è il suo codice?",
+   "a": "L'isola è servita dall'Aeroporto di Ibiza, gestito da Aena, con codice IBZ. Informazioni ufficiali su voli, servizi e collegamenti sono sul sito di Aena.",
+   "fonte": "https://www.aena.es/en/ibiza/airlines-and-destinations/airport-destinations.html",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Ci sono autobus dall'aeroporto verso le principali località?",
+   "a": "Sì. Aena indica le linee AERO1-AERO5, che collegano l'aeroporto con Ibiza città (anche la stazione degli autobus), Sant Josep e Sant Antoni, Santa Eulària, Es Canar e Cala Nova, Platja d'en Bossa e Ses Figueretes. Alcune linee sono stagionali: orari e tariffe sul sito di Alsa Ibiza.",
+   "fonte": "https://www.aena.es/en/ibiza/getting-there/bus.html",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Come prendere un taxi all'aeroporto di Ibiza?",
+   "a": "Aena raccomanda di prendere il taxi solo alla fermata taxi segnalata del terminal e di evitare autisti che offrono il servizio in altri punti. Valigie e animali sono trasportati senza supplemento; in caso di reclamo bisogna chiedere la ricevuta.",
+   "fonte": "https://www.aena.es/en/ibiza/getting-there/taxi.html",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "I taxi a Ibiza devono usare il tassametro?",
+   "a": "Sì. Secondo la Legge balear 4/2014 sul trasporto e la mobilità sostenibile, tutti i taxi devono avere un tassametro con le tariffe e i supplementi autorizzati, che si attiva all'inizio del servizio. Le tariffe sono approvate ufficialmente e pubblicate nel BOIB.",
+   "fonte": "https://www.aena.es/en/ibiza/getting-there/taxi.html",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Chi gestisce gli autobus pubblici a Ibiza?",
+   "a": "Il servizio di autobus urbano di Ibiza città e la rete di linee dell'isola sono operati da Alsa (Alsa Ibiza). Linee, mappa, orari e tariffe aggiornati sono sul sito ufficiale alsaibiza.es.",
+   "fonte": "https://www.alsaibiza.es/en/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Dove trovo gli orari aggiornati degli autobus?",
+   "a": "Sul sito ufficiale di Alsa Ibiza, nella sezione orari. Dal 1° aprile 2026 è in servizio una nuova rete di linee: il sito pubblica una tabella di equivalenza tra le vecchie e le nuove linee. Gli orari cambiano con la stagione, quindi vanno sempre verificati prima di partire.",
+   "fonte": "https://www.alsaibiza.es/en/schedules",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Da dove parte il traghetto per Formentera e dove arriva?",
+   "a": "I traghetti partono dal porto di Ibiza (Eivissa città) e arrivano al porto di La Savina, nel nord di Formentera, che è l'unico punto di accesso via mare dell'isola.",
+   "fonte": "https://www.balearia.com/en/routes-timetables/ferry-ibiza-formentera",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Quanto dura la traversata Ibiza-Formentera?",
+   "a": "Baleària indica una traversata di circa 30 minuti con i suoi traghetti veloci. Partenze e orari variano con la stagione: vanno verificati sul sito dell'operatore.",
+   "fonte": "https://www.balearia.com/en/routes-timetables/ferry-ibiza-formentera",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Quali compagnie collegano Ibiza e Formentera?",
+   "a": "Tra gli operatori della tratta ci sono Trasmapi (trasmapi.com) e Baleària (balearia.com, anche tramite il suo sito Formentera Express). Orari e biglietti vanno verificati sui siti ufficiali degli operatori.",
+   "fonte": "https://www.trasmapi.com/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Si può raggiungere Ibiza in traghetto dalla penisola o da Maiorca?",
+   "a": "Sì. Baleària collega Ibiza con Palma di Maiorca, Barcellona, Valencia e Dénia. Orari, durata e porti di partenza vanno verificati sul sito dell'operatore.",
+   "fonte": "https://www.balearia.com/en/routes-timetables/ferry-ibiza-denia",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Quali sono i comuni di Ibiza?",
+   "a": "L'isola ha cinque comuni: Eivissa (Ibiza città, il capoluogo), Santa Eulària des Riu, Sant Antoni de Portmany, Sant Josep de sa Talaia e Sant Joan de Labritja.",
+   "fonte": "https://www.santjosep.net/wp-content/uploads/pdf/ibiza-info-en.pdf",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Ibiza è Patrimonio dell'Umanità UNESCO?",
+   "a": "Sì. Dal 1999 il sito \"Ibiza, Biodiversità e Cultura\" è iscritto nella Lista del Patrimonio Mondiale UNESCO come bene misto, naturale e culturale. Copre circa 9.020 ettari, per lo più di mare.",
+   "fonte": "https://whc.unesco.org/en/list/417/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Cosa comprende il sito UNESCO di Ibiza?",
+   "a": "Comprende quattro elementi: la città alta fortificata (Dalt Vila), l'insediamento fenicio di Sa Caleta, la necropoli di Puig des Molins e le praterie marine di Posidonia oceanica, considerate da UNESCO le meglio conservate del Mediterraneo.",
+   "fonte": "https://whc.unesco.org/en/list/417/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Cos'è Dalt Vila?",
+   "a": "Dalt Vila è la città alta fortificata di Ibiza. Secondo UNESCO è un esempio eccezionale di architettura militare rinascimentale: le mura furono costruite nel XVI secolo e influenzarono le fortificazioni spagnole in America.",
+   "fonte": "https://whc.unesco.org/en/list/417/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Ses Feixes e le saline fanno parte del sito UNESCO?",
+   "a": "No, non sono nel bene iscritto. UNESCO cita Ses Feixes e le antiche saline come elementi della zona cuscinetto, per i quali è in valutazione una futura inclusione.",
+   "fonte": "https://whc.unesco.org/en/list/417/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Cos'è il Parco Naturale di Ses Salines?",
+   "a": "Il Parco Naturale di Ses Salines d'Eivissa i Formentera si estende dal sud di Ibiza al nord di Formentera, compreso il braccio di mare tra le due isole, nei comuni di Sant Josep de sa Talaia e Formentera. È stato dichiarato Parco Naturale con la Legge 17/2001 ed è gestito dal Govern balear.",
+   "fonte": "https://www.caib.es/sites/espaisnaturalsprotegits/es/parque_natural_de_ses_salines_de_ibiza_y_formentera/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Cosa è vietato nel Parco Naturale di Ses Salines?",
+   "a": "Sono vietati, tra l'altro: moto d'acqua, pesca subacquea, sbarco sugli isolotti (tranne s'Espalmador, con regole proprie), bagni di fango nella laguna di s'Espalmador, campeggio e pernottamento in caravan, raccolta di flora e fauna, e camminare sulle dune fuori dai sentieri segnalati.",
+   "fonte": "https://www.caib.es/sites/espaisnaturalsprotegits/es/parque_natural_de_ses_salines_de_ibiza_y_formentera/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Si possono portare i cani a Ses Salines?",
+   "a": "Nel Parco Naturale i cani non sono ammessi fuori dalle zone urbane, e anche lì devono sempre stare al guinzaglio. Le saline, le dune e Cap des Falcó nel periodo di nidificazione (1° marzo - 31 luglio) sono zone ad accesso limitato.",
+   "fonte": "https://www.caib.es/sites/espaisnaturalsprotegits/es/parque_natural_de_ses_salines_de_ibiza_y_formentera/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Dove si può ancorare la barca nel Parco di Ses Salines?",
+   "a": "Solo sui fondali di sabbia ammessi dalla normativa: è vietato ancorare sulla posidonia e nelle zone di ancoraggio vietato. Nei campi boe regolamentati (spiaggia di Ses Salines, baia di s'Alga a s'Espalmador, Caló de s'Oli) bisogna ormeggiarsi alle boe predisposte.",
+   "fonte": "https://www.caib.es/sites/cuidamposidonia/es/normativa_de_aplicacian_en_los_campos_de_boyas_regulados/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Si può ancorare sulla posidonia alle Baleari?",
+   "a": "No. Il Decreto balear 25/2018 sulla conservazione della Posidonia oceanica vieta in generale l'ancoraggio sulla posidonia e qualsiasi ancoraggio incontrollato. L'uso di boe a basso impatto debitamente autorizzate è consentito. La mappa ufficiale delle praterie è su ideib.caib.es/posidonia.",
+   "fonte": "https://www.caib.es/sites/cuidamposidonia/es/normativa_de_aplicacian_en_los_campos_de_boyas_regulados/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Es Vedrà è un'area protetta? Si può sbarcare?",
+   "a": "Sì. Es Vedrà, Es Vedranell e gli Illots de Ponent formano una riserva naturale nel comune di Sant Josep. Lo sbarco non è consentito ed è vietato prelevare piante, animali o reperti. Va evitato di avvicinarsi agli isolotti, soprattutto durante la nidificazione degli uccelli (aprile-giugno).",
+   "fonte": "https://www.santjosep.net/en/what-to-see/nature/natural-reserve-of-es-vedra-es-vedranells-and-the-illots-de-ponent/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Esiste una tassa turistica a Ibiza?",
+   "a": "Sì. Dal 1° luglio 2016 in tutte le Baleari si applica l'Impuesto de Turismo Sostenible (imposta sul turismo sostenibile) sui soggiorni in strutture turistiche. Le informazioni ufficiali sono sul portale illessostenibles.travel.",
+   "fonte": "https://www.caib.es/sites/oie/es/impuesto_turismo_sostenible/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Chi deve pagare la tassa turistica?",
+   "a": "La paga il turista (persona fisica) che soggiorna nella struttura turistica; la struttura la riscuote come sostituto d'imposta. Sono previste esenzioni, tra cui i minori di 16 anni, i casi di forza maggiore, i motivi di salute e i programmi sociali. Per gli importi chiedere alla struttura.",
+   "fonte": "https://www.atib.es/DescargaDocs/Manual%20informativo%20general_s.pdf",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Cosa dice la legge balear sull'età per entrare in discoteca?",
+   "a": "La Legge balear 7/2013 vieta l'ingresso ai minori di 16 anni in discoteche, sale da ballo e locali musicali, salvo eccezioni limitate per i ragazzi di 14-16 anni accompagnati. Ai minori di 18 anni è vietato vendere alcol e tabacco. Molti club applicano comunque il limite dei 18 anni.",
+   "fonte": "https://www.caib.es/sites/policiestutorsillesbalears/es/normativa_locales_y_establecimientos_publicos-79063/",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Serve un documento per entrare nei club?",
+   "a": "Sì. Club come Hï Ibiza applicano il limite dei 18 anni e possono chiedere un documento a chi sembra più giovane. Valgono carta d'identità o passaporto originali: fotocopie e foto non sono accettate. Le condizioni vanno verificate sul sito di ciascun club.",
+   "fonte": "https://www.hiibiza.com/contact-faq",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Qual è il numero di emergenza a Ibiza?",
+   "a": "Il 112 è il numero gratuito per le emergenze che richiedono vigili del fuoco, forze di sicurezza o servizi sanitari. Si può chiamare da qualsiasi punto delle Baleari, sia da fisso sia da cellulare.",
+   "fonte": "https://www.caib.es/webgoib/es/emerg%C3%A8ncies",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Qual è l'ospedale pubblico di Ibiza?",
+   "a": "È l'Hospital Can Misses, in Calle Corona s/n a Eivissa. Fa parte del servizio sanitario pubblico delle Baleari (IB-Salut, Area di Salute di Ibiza e Formentera) e ha un pronto soccorso (Urgencias).",
+   "fonte": "https://www.ibsalut.es/es/servicio-de-salud/organizacion/gerencias-ibsalut/gerencia-del-area-de-salud-de-ibiza-y-formentera/hospital-can-misses",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Come trovo una farmacia di turno?",
+   "a": "Il Collegio Ufficiale dei Farmacisti delle Baleari (COFIB) pubblica sul suo sito l'elenco delle farmacie aperte e di turno (farmacias de guardia). È meglio consultarlo il giorno stesso, perché i turni cambiano.",
+   "fonte": "https://www.cofib.es/es/FarmaciesObertes.aspx",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "La tessera sanitaria europea (TEAM) vale a Ibiza?",
+   "a": "Sì, ma solo nella sanità pubblica spagnola. Bisogna verificare che il medico o il centro sia pubblico e mostrare la tessera all'accettazione. Se viene chiesto di pagare in anticipo, non si tratta del servizio pubblico e la tessera non è accettata. Le cure private non sono rimborsate.",
+   "fonte": "https://employment-social-affairs.ec.europa.eu/policies-and-activities/moving-working-europe/eu-social-security-coordination/european-health-insurance-card/how-use-card/spain-european-health-insurance-card_en",
+   "verificato": "2026-11-24"
+  },
+  {
+   "q": "Quali lingue si parlano ufficialmente a Ibiza?",
+   "a": "Secondo l'articolo 4 dello Statuto di Autonomia delle Baleari, il catalano, lingua propria delle isole, è lingua ufficiale insieme al castigliano (spagnolo). Per questo nomi e cartelli compaiono spesso in entrambe le forme (es. Eivissa/Ibiza).",
+   "fonte": "https://www.caib.es/sites/institutestudisautonomics/f/417814",
+   "verificato": "2026-11-24"
+  }
+ ],
+ "_nota_limite": "Il server IA usa al massimo 60 FAQ in tutto (MAX_FAQ in backend/ai-worker/worker.js): FAQ del team (content.json) + 12 FAQ dell'app. Se si copiano tutte queste 30 insieme alle ~20 del team, alcune FAQ dell'app verrebbero tagliate: scegliere quali tenere o alzare il limite."
+}
