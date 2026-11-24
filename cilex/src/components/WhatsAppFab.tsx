@@ -9,6 +9,7 @@ import { openWhatsApp } from '../whatsapp';
 // Widget WhatsApp fisso su ogni sezione: apre la chat con il team Cilex (numero in src/config.ts).
 const TAB_ROUTES: Record<string, string> = { Home: 'tabHome', Clubs: 'tabClubs', Map3D: 'tabMap', Ask: 'tabAsk', Plan: 'tabPlan', Request: 'tabRequest' };
 const TAB_BAR = 49;
+const HIDE_ON = new Set(['Ask', 'Request', 'ClubDetail', 'EventDetail', 'PlaceDetail', 'StayDetail']);
 
 export default function WhatsAppFab({ route }: { route?: string }) {
   const t = useT();
@@ -21,8 +22,8 @@ export default function WhatsAppFab({ route }: { route?: string }) {
   const small = name === 'Map3D';
   if (small) { delete pos.bottom; pos.top = insets.top + 4; pos.right = 14; pos.width = 40; pos.height = 40; pos.borderRadius = 20; } // finisce a safe+44, i filtri iniziano a safe+48
 
-  // In Chiedi il contatto col team è già in alto e sotto le risposte: il pulsante coprirebbe la chat.
-  if (name === 'Ask') return null;
+  // Schermate con una propria azione verso Cilex/WhatsApp: il pulsante coprirebbe la chat o il pulsante principale.
+  if (HIDE_ON.has(name)) return null;
 
   const press = () => {
     tap();

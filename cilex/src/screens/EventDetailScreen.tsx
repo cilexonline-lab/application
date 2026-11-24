@@ -51,11 +51,10 @@ export default function EventDetailScreen() {
       )}
 
       <View style={{ gap: space.sm, marginTop: space.lg }}>
-        <Button label={ticket ? t('tickets') : t('ticketsSoon')} disabled={!ticket} onPress={() => Linking.openURL(ticket)} />
+        {/* Azione principale: tavolo con Cilex per questa serata (club e data già compilati). */}
+        <Button icon="table" label={t('bookTableCilex')} onPress={() => nav.navigate('Request', { kind: 'table', clubId: ev.clubId, date: ev.date, note: ev.title })} />
+        <Button label={ticket ? t('tickets') : t('ticketsSoon')} variant="ghost" disabled={!ticket} onPress={() => Linking.openURL(ticket)} />
         <Button icon={planned ? 'check' : 'plus'} label={planned ? t('inPlan') : t('addPlan')} variant="ghost" onPress={() => { success(); toggle(ev.id); }} />
-        <View style={{ flexDirection: 'row', gap: space.sm }}>
-          <Button style={{ flex: 1, paddingHorizontal: 8 }} icon="table" label={t('table')} variant="ghost" onPress={() => nav.navigate('Request', { kind: 'table', clubId: ev.clubId, date: ev.date })} />
-        </View>
         <Button icon="share" label={t('share')} variant="ghost" onPress={share} />
       </View>
       </View>
