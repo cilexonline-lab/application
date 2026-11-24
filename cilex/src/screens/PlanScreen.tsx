@@ -82,11 +82,11 @@ export default function PlanScreen() {
         <View style={{ flexDirection: 'row', gap: space.sm }}>
           <View style={{ flex: 1 }}>
             <Text style={s.small}>{t('arrival')}</Text>
-            <TextInput style={s.input} value={a} onChangeText={setA} placeholder={t('dateHint')} placeholderTextColor={colors.muted} keyboardType="numbers-and-punctuation" />
+            <TextInput style={[s.input, s.dateInput]} value={a} onChangeText={setA} placeholder={t('dateHint')} placeholderTextColor={colors.muted} keyboardType="numbers-and-punctuation" />
           </View>
           <View style={{ flex: 1 }}>
             <Text style={s.small}>{t('departure')}</Text>
-            <TextInput style={s.input} value={d} onChangeText={setD} placeholder={t('dateHint')} placeholderTextColor={colors.muted} keyboardType="numbers-and-punctuation" />
+            <TextInput style={[s.input, s.dateInput]} value={d} onChangeText={setD} placeholder={t('dateHint')} placeholderTextColor={colors.muted} keyboardType="numbers-and-punctuation" />
           </View>
         </View>
         {!!err && <Text style={{ color: colors.danger, marginTop: 8 }}>{err}</Text>}
@@ -136,6 +136,8 @@ const s = StyleSheet.create({
   h1: { color: colors.text, fontSize: 26, fontWeight: '800', marginBottom: space.md },
   label: { color: colors.text, fontWeight: '700', fontSize: 16, marginBottom: space.sm },
   small: { color: colors.muted, fontSize: 12, marginBottom: 4 },
+  // Date affiancate: su iPhone SE "GG/MM/AAAA" deve entrare intero.
+  dateInput: { paddingHorizontal: 10, fontSize: 14 },
   input: { backgroundColor: colors.cardAlt, color: colors.text, borderRadius: radius.md, padding: 12, fontSize: 15, borderWidth: 1, borderColor: colors.border },
   day: { color: colors.brand, fontSize: 13, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase', marginBottom: 8 },
   clash: { color: colors.danger, fontSize: 13, fontWeight: '600', marginBottom: 8 },

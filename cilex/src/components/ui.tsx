@@ -28,9 +28,10 @@ export function Button({
   );
 }
 
+// Pillola alta 35 pt: hitSlop verticale porta l'area di tocco a 45 pt (minimo Apple 44) senza cambiare l'aspetto.
 export function Chip({ label, active, onPress }: { label: string; active?: boolean; onPress: () => void }) {
   return (
-    <Pressable accessibilityRole="button" onPress={onPress} style={[s.chip, active && s.chipActive]}>
+    <Pressable accessibilityRole="button" accessibilityState={{ selected: !!active }} onPress={onPress} hitSlop={{ top: 5, bottom: 5 }} style={[s.chip, active && s.chipActive]}>
       <Text style={[s.chipText, active && { color: '#111' }]}>{label}</Text>
     </Pressable>
   );
