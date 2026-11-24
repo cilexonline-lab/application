@@ -9,7 +9,8 @@ import { useStore } from '../store';
 import { BRAND_TAGLINE, CONTENT_URL } from '../config';
 import { LANGS, setLang, useLang, useT } from '../i18n';
 import { tap } from '../haptics';
-import { matchesTime, TimeFilter, todayStr } from '../utils';
+import { matchesTime, monthShort, TimeFilter, todayStr } from '../utils';
+import { leaveReview } from '../reviewLink';
 import { colors, radius, space } from '../theme';
 
 const QUICK: { kind: string; icon: IconName }[] = [
@@ -26,7 +27,7 @@ export default function HomeScreen() {
   const t = useT();
   const lang = useLang();
   const nav = useNavigation<any>();
-  const { clubs, upcoming, news, getClub, refresh, refreshing } = useContent();
+  const { clubs, upcoming, news, reviews, getClub, refresh, refreshing } = useContent();
   const { name, following } = useStore();
   const [club, setClub] = useState<string>('');
   const [time, setTime] = useState<TimeFilter>('all');
@@ -127,6 +128,27 @@ export default function HomeScreen() {
         </>
       )}
 
+      {/* Recensioni: solo vere, con consenso (src/data/reviews.ts). Senza recensioni la sezione non compare. */}
+      {reviews.length > 0 && (
+        <>
+          <SectionTitle>{t('reviewsTitle')}</SectionTitle>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: space.sm, paddingRight: space.md }}>
+            {reviews.slice(0, 12).map((r) => (
+              <View key={r.id} style={s.review}>
+                {!!r.rating && (
+                  <Text style={s.stars} accessibilityLabel={`${r.rating}/5`}>
+                    {'★'.repeat(r.rating)}<Text style={s.starsOff}>{'★'.repeat(5 - r.rating)}</Text>
+                  </Text>
+                )}
+                <Text style={s.reviewTxt} numberOfLines={7}>“{r.text}”</Text>
+                <Text style={s.reviewBy} numberOfLines={1}>{r.name} · {t('src_' + r.source)} · {monthShort(r.date)} {r.date.slice(0, 4)}</Text>
+              </View>
+            ))}
+          </ScrollView>
+          <Text style={s.reviewLeave} onPress={() => { tap(); leaveReview(t('reviewWaMsg'), t('waMissing')); }}>{t('reviewsLeave')}</Text>
+        </>
+      )}
+
       <SectionTitle>{t('upcoming')}</SectionTitle>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {TIMES.map((f) => (
@@ -183,6 +205,12 @@ const s = StyleSheet.create({
   muted: { color: colors.muted, fontSize: 14, marginBottom: space.sm },
   newsDate: { color: colors.brand, fontSize: 12, fontWeight: '700', letterSpacing: 1 },
   newsTitle: { color: colors.text, fontSize: 17, fontWeight: '700', marginTop: 4 },
+  review: { width: 280, backgroundColor: colors.card, borderRadius: 22, padding: 18, justifyContent: 'space-between', gap: 12 },
+  stars: { color: colors.brand, fontSize: 14, letterSpacing: 2 },
+  starsOff: { color: 'rgba(255,255,255,0.18)' },
+  reviewTxt: { color: colors.text, fontSize: 15, lineHeight: 22 },
+  reviewBy: { color: colors.muted, fontSize: 12, letterSpacing: 0.3 },
+  reviewLeave: { color: colors.brand, fontSize: 14, fontWeight: '700', marginTop: 12, alignSelf: 'flex-start' },
   askBar: { flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: colors.card, borderRadius: 999, paddingVertical: 8, paddingLeft: 16, paddingRight: 8, marginTop: space.md },
   askBarTxt: { flex: 1, color: colors.muted, fontSize: 15 },
   askBarGo: { width: 34, height: 34, borderRadius: 17, backgroundColor: colors.brand, alignItems: 'center', justifyContent: 'center' },
