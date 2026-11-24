@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 type Dict = Record<string, string>;
 
 const en: Dict = {
+  reqListTitle: 'Your requests', reqListNote: 'Saved only on this phone. The team confirms every request on WhatsApp.', reqListClear: 'Clear list',
   prefsTitle: 'Your preferences', prefsNote: 'Saved only on this phone. We add them to your requests so the team can tailor the answer. Optional.', prefsDiet: 'Allergies / food needs', prefsMusic: 'Music you like', prefsOccasion: 'Occasion (birthday, honeymoon…)', prefsSave: 'Save preferences', prefsSaved: 'Saved', prefsMsg: 'Preferences',
   tabAsk: 'Ask', askTitle: 'Ask about Ibiza', askSub: 'Beaches, getting around, nightlife, what to wear… ask anything.',
   askPlaceholder: 'Ask anything about Ibiza', askThinking: 'Thinking…', askError: 'Could not get an answer. Please try again.',
@@ -56,6 +57,7 @@ const en: Dict = {
   remTitleArtist: '{artist} plays today', remBodyArtist: '{title} · {club}', remTitlePlan: 'Today in your plan', remBodyPlan: '{title} · {club}',
 };
 const it: Dict = {
+  reqListTitle: 'Le tue richieste', reqListNote: 'Salvate solo su questo telefono. Il team conferma ogni richiesta su WhatsApp.', reqListClear: 'Svuota elenco',
   prefsTitle: 'Le tue preferenze', prefsNote: 'Salvate solo su questo telefono. Le aggiungiamo alle tue richieste così il team risponde su misura. Facoltative.', prefsDiet: 'Allergie / esigenze alimentari', prefsMusic: 'Musica che ti piace', prefsOccasion: 'Occasione (compleanno, viaggio di nozze…)', prefsSave: 'Salva preferenze', prefsSaved: 'Salvate', prefsMsg: 'Preferenze',
   tabAsk: 'Chiedi', askTitle: 'Chiedi su Ibiza', askSub: 'Spiagge, spostamenti, vita notturna, cosa mettere… chiedi pure.',
   askPlaceholder: 'Chiedi qualsiasi cosa su Ibiza', askThinking: 'Sto pensando…', askError: 'Non sono riuscito a rispondere. Riprova.',
@@ -108,6 +110,7 @@ const it: Dict = {
   remTitleArtist: '{artist} suona oggi', remBodyArtist: '{title} · {club}', remTitlePlan: 'Oggi nel tuo piano', remBodyPlan: '{title} · {club}',
 };
 const es: Dict = {
+  reqListTitle: 'Tus solicitudes', reqListNote: 'Se guardan solo en este teléfono. El equipo confirma cada solicitud por WhatsApp.', reqListClear: 'Vaciar lista',
   prefsTitle: 'Tus preferencias', prefsNote: 'Se guardan solo en este teléfono. Las añadimos a tus solicitudes para que el equipo responda a medida. Opcional.', prefsDiet: 'Alergias / necesidades alimentarias', prefsMusic: 'Música que te gusta', prefsOccasion: 'Ocasión (cumpleaños, luna de miel…)', prefsSave: 'Guardar preferencias', prefsSaved: 'Guardadas', prefsMsg: 'Preferencias',
   tabAsk: 'Pregunta', askTitle: 'Pregunta sobre Ibiza', askSub: 'Playas, transporte, vida nocturna, qué ponerse… pregunta lo que quieras.',
   askPlaceholder: 'Pregunta lo que quieras sobre Ibiza', askThinking: 'Pensando…', askError: 'No pude responder. Inténtalo de nuevo.',
