@@ -10,6 +10,8 @@ import { useT } from '../i18n';
 import { success } from '../haptics';
 import { daysUntil, fmtDate, fmtLong, parseDate } from '../utils';
 import { colors, radius, space } from '../theme';
+import { leaveReview } from '../reviewLink';
+import { openWhatsApp } from '../whatsapp';
 
 const toInput = (iso: string) => (iso ? `${iso.slice(8, 10)}/${iso.slice(5, 7)}/${iso.slice(0, 4)}` : '');
 
@@ -63,6 +65,16 @@ export default function PlanScreen() {
         <GoldCard style={{ marginBottom: space.md }}>
           <Text style={{ color: '#001014', fontSize: 22, fontWeight: '800' }}>{trip}</Text>
         </GoldCard>
+      )}
+
+      {/* Dopo la partenza: grazie, recensione vera e prossimo viaggio. */}
+      {!!departure && daysUntil(departure) < 0 && (
+        <Card style={{ marginBottom: space.md }}>
+          <Text style={s.doneTitle}>{t('tripDoneTitle')}</Text>
+          <Text style={s.doneBody}>{t('tripDoneBody')}</Text>
+          <Button label={t('reviewsLeave')} onPress={() => { success(); leaveReview(t('reviewWaMsg'), t('waMissing')); }} style={{ marginTop: space.md }} />
+          <Button variant="ghost" label={t('tripDoneTeam')} onPress={() => openWhatsApp(t('waFabMsg'), t('waMissing'))} style={{ marginTop: space.sm }} />
+        </Card>
       )}
 
       <Card style={{ marginBottom: space.md }}>
@@ -119,6 +131,8 @@ export default function PlanScreen() {
 }
 
 const s = StyleSheet.create({
+  doneTitle: { color: colors.text, fontSize: 20, fontWeight: '800' },
+  doneBody: { color: colors.muted, fontSize: 14, lineHeight: 21, marginTop: 6 },
   h1: { color: colors.text, fontSize: 26, fontWeight: '800', marginBottom: space.md },
   label: { color: colors.text, fontWeight: '700', fontSize: 16, marginBottom: space.sm },
   small: { color: colors.muted, fontSize: 12, marginBottom: 4 },

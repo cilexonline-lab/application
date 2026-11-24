@@ -5,17 +5,22 @@ Server minimo (Cloudflare Worker) tra l'app e l'API Anthropic.
 - La **chiave API** e le **regole dell'assistente** stanno solo qui.
 - Il contesto (eventi, regole club, consigli) viene scaricato dal server da `CONTENT_URL`: il client non può alterarlo né cambiare le regole (il campo `system` inviato dal client viene ignorato).
 - Validazione input (max 500 caratteri a messaggio, max 8 turni), limiti giornalieri per dispositivo e IP (serve il KV `RL`), errori senza dettagli verso il client.
-- Regole principali: non inventa prezzi/orari/disponibilità/line-up/servizi Cilex; per prenotazioni rimanda alla tab Request o al team su WhatsApp; resta su Ibiza; risponde nella lingua dell'utente.
+- Regole principali: non inventa prezzi/orari/disponibilità/line-up/servizi Cilex; non conferma prenotazioni; resta su Ibiza; risponde nella lingua dell'utente; non parla di guestlist.
+- **Pulsanti verso l'app**: la risposta è JSON strutturato `{ reply, actions }` (SDK Anthropic, `messages.parse` + schema Zod). `actions` (max 3) apre le sezioni dell'app: `table` (con club), `boat`, `concierge`, `villa`, `apartment`, `club`, `event`, `explore`, `map`, `plan`, `whatsapp`. Il server scarta azioni sconosciute e club/eventi che non esistono nei dati ufficiali; l'app le ricontrolla.
+- **FAQ di base** (`faq-app.json`): risposte vere su come funziona l'app (come chiedere tavolo, barca, ville, biglietti, promemoria). Le FAQ del team in `content.json` hanno la precedenza.
 
-## Deploy
-    npm i -g wrangler        # oppure npx wrangler
-    wrangler deploy
-    wrangler secret put ANTHROPIC_API_KEY
-    wrangler secret put APP_TOKEN          # facoltativo
+## Deploy (serve un account Cloudflare gratuito e una chiave API Anthropic)
+    npm install              # SDK Anthropic + zod (il bundle lo fa wrangler; serve compatibility_flags = ["nodejs_compat"], già impostato)
+    npx wrangler login
+    npx wrangler deploy
+    npx wrangler secret put ANTHROPIC_API_KEY
+    npx wrangler secret put APP_TOKEN      # facoltativo
+Poi nell'app (`cilex/src/config.ts`): `AI_ENDPOINT` = URL stampato da wrangler (es. `https://cilex-ai.<nome>.workers.dev`) e, se usato, `AI_APP_TOKEN`.
+Finché `AI_ENDPOINT` è vuoto la tab Chiedi funziona lo stesso in modalità locale: riconosce la richiesta (tavolo, barca, villa, eventi, club…) e apre la sezione giusta o il team su WhatsApp.
     # solo per provare l'app nel BROWSER (non serve su iPhone): ALLOW_ORIGIN = "http://localhost:8081" in [vars]
 
 ## Test
-    node test.mjs
+    npm install && node test.mjs     # API simulata, nessun costo
 
 ## Limiti noti (onesti)
 - `APP_TOKEN` è dentro l'app, quindi non è un vero segreto: scoraggia l'abuso casuale. La protezione reale sono i limiti e il tetto di spesa impostato nella console Anthropic.

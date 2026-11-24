@@ -1,0 +1,13 @@
+{
+  "name": "cilex-ai-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.13.0",
+    "zod": "^4.6.7"
+  }
+}

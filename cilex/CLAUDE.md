@@ -33,17 +33,27 @@ Prima di scrivere codice Expo/RN controlla la versione in `package.json` (Expo S
 - `src/stays.ts`, `src/places.ts` — modelli e sanitizzazione (JSON sbagliato non rompe l'app).
 - `src/components/IbizaMap.tsx` + `src/screens/Map3DScreen.tsx` — mappa illustrata (immagine `assets/ibiza-map.jpg` giorno / `ibiza-map-night.jpg` notte) con pin, zoom, pan. Le immagini si rigenerano con `python3 tools/make_map.py day` e `... night` (una alla volta, ~4 GB RAM; servono numpy, scipy, pillow). Contorno isola © OpenStreetMap contributors, rilievo Copernicus DEM; colori/alberi/casette/nuvole sono illustrazione. Le posizioni di paesi/saline nell'immagine sono approssimative: **da verificare**. Le coordinate dei club vengono da OpenStreetMap: **da verificare sul posto** (SWAG senza coordinate = nessun pin).
 - `src/screens/RequestScreen.tsx` — richieste che aprono WhatsApp con messaggio precompilato (`src/whatsapp.ts`).
-- `src/screens/AskScreen.tsx`, `src/ai.ts`, `backend/ai-worker/` — assistente IA via Cloudflare Worker (chiave Anthropic solo sul server; test in `backend/ai-worker/test.mjs`, `eval.mjs`, FAQ in `faq-template.json`).
+- `src/screens/AskScreen.tsx`, `src/ai.ts`, `src/intents.ts`, `backend/ai-worker/` — tab Chiedi. Con `AI_ENDPOINT`: assistente IA via Cloudflare Worker (SDK Anthropic, output strutturato `{reply, actions}`; chiave solo sul server; test in `backend/ai-worker/test.mjs`, `eval.mjs`; FAQ di base `faq-app.json`, FAQ del team in `content.json` → `faq`, modello `faq-template.json`). Senza `AI_ENDPOINT`: modalità locale (`src/intents.ts`) che riconosce la richiesta e propone i pulsanti verso la sezione giusta o il team. Le azioni (tavolo, barca, concierge, ville, appartamenti, club, evento, esplora, mappa, piano, WhatsApp) diventano pulsanti sotto la risposta.
 - `src/notify.ts`, `RemindersSync.tsx` — promemoria locali (solo iPhone/Android, non web).
 
-## Stato (18/11/2026)
-Fatto e verificato solo su anteprima web + export iOS: tutto quanto sopra. **Mai provato su un iPhone vero**: priorità 1 = provarlo con Expo Go (posizione del widget WhatsApp sopra la tab bar, safe area in alto, mappa a due dita, notifiche).
+## Stato (23/11/2026)
+Fatto e verificato solo su anteprima web + export iOS: tutto quanto sopra.
+- Mappa: all'apertura l'isola intera è centrata fra filtri (125 pt, 165 sotto i 360 pt) e pannello (215 pt); zoom minimo = copertura dello schermo; ⌂ torna lì; tocco su pin = 1,8× la vista iniziale.
+- Esplora: vetrine nere a tutta larghezza (`ClubCard`), luce nel colore del club dietro al logo bianco, zona + pillola "N eventi"/"Date in arrivo". Pagine club ed evento con testata a tutto schermo (`ClubHero`) e intestazione trasparente. Loghi Pacha/Amnesia in versione bianca (`assets/logo-*-white.png`, ricavati dagli originali). Nessun logo per SWAG (si vede il nome).
+- Anteprima web: `public/index.html` = modello con `viewport-fit=cover`, `100dvh` e, sopra i 600 px, cornice da telefono 400×860.
+- IA (24/11): codice pronto, **non ancora accesa** (servono le chiavi del titolare: guida `backend/ai-worker/ACCENDI-IA.md`). Workflow `.github/workflows/deploy-ai.yml` pubblica il server con 3 secret; `ci.yml` controlla ogni PR. Base di conoscenza = `content.json` generato da `npm run build:pages` (`tools/export-content.ts`, FAQ del team in `content/faq-team.json`). Chiedi: pulsante Team sempre visibile, passaggio a WhatsApp con le domande del cliente, domande suggerite.
+- Richiedi: "Come funziona" in 3 passi e conferma con "Riapri WhatsApp" (molti clienti non premono Invia). Esplora: filtri su una riga, stati vuoti con "Chiedi un consiglio". Mappa: etichette senza sovrapposizioni.
+- Recensioni: sezione "Dicono di noi" in Home (`src/data/reviews.ts` o `content.json` → `reviews`) visibile SOLO con recensioni vere e `consent: true`; mai inventarle (direttiva UE Omnibus, Apple 5.6.3). Piano: dopo la data di partenza scheda "Com'è andata?" con "Lascia una recensione" (`REVIEW_URL` in config, vuoto = WhatsApp).
+- Francesco da questo PC si fa chiamare **Alex**. Coordinarsi sempre con gli altri agenti (sessione di coordinamento "CILEX OFFICIAL APP", Agente DESIGNER contenuti/mappa: `places` e pin sono suoi) prima di toccare file condivisi.
+- Da verificare con Francesco: la promessa "Ti rispondiamo su WhatsApp entro 15 minuti" (`replyPromise`) vale anche di notte?
+
+**Mai provato su un iPhone vero**: priorità 1 = provarlo con Expo Go (posizione del widget WhatsApp sopra la tab bar, safe area in alto, mappa a due dita, notifiche).
 
 ## Da fare (richiede dati/azioni dell'utente)
-1. `WHATSAPP_NUMBER` in `src/config.ts` (formato `34XXXXXXXXX`, senza +) — oggi vuoto: i pulsanti WhatsApp mostrano "numero non configurato".
+1. `WHATSAPP_NUMBER` in `src/config.ts` è compilato: confermare che sia il numero aziendale (il repository è pubblico).
 2. Contenuti reali nel JSON remoto (`CONTENT_URL`): eventi con link biglietti, club, luoghi (beach club/ristoranti/attività con zona, link, coordinate), **immobili `stays`** (nome, zona generica, camere, bagni, ospiti, punti di forza, foto con permesso; prezzo solo se pubblico), FAQ reali (30–50 domande dei clienti). Poi `SHOW_DEMO_DATA = false`.
 3. `PRIVACY_URL`, `SUPPORT_URL` (obbligatori per App Store).
 4. Account Apple Developer (99 $/anno), bundle `com.cilex.ibiza`, build con EAS, schede App Store, screenshot.
-5. IA: chiave Anthropic + limite di spesa, deploy del worker (`backend/ai-worker/README.md`), poi `AI_ENDPOINT`/`AI_APP_TOKEN`.
-6. Coordinate di SWAG; verifica sul posto delle coordinate dei club.
+5. IA: account Cloudflare (gratuito) + chiave Anthropic con limite di spesa, deploy del worker (`backend/ai-worker/README.md`), poi `AI_ENDPOINT`/`AI_APP_TOKEN`. FAQ sul servizio (pagamenti, cancellazioni, orari del team, lingue): le scrive il team in `content.json` → serve `CONTENT_URL` pubblico.
+6. Coordinate e logo ufficiale di SWAG; verifica sul posto delle coordinate dei club. Permesso scritto di ogni club per loghi/foto (Apple 5.2).
 7. Idee non fatte: FAQ locale (menu a tocco + ricerca) senza IA, deep link/QR per PR, richiesta recensione, biglietti offline, push remote (serve server).

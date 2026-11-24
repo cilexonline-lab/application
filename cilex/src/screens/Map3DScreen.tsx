@@ -11,14 +11,14 @@ import { useT } from '../i18n';
 import { kindKey } from './ExploreScreen';
 import { colors, radius, space } from '../theme';
 
-type F = 'club' | 'beach' | 'restaurant' | 'day';
-const FILTERS: { k: F; label: string }[] = [{ k: 'club', label: 'segClubs' }, { k: 'beach', label: 'segBeach' }, { k: 'restaurant', label: 'segEat' }, { k: 'day', label: 'segDay' }];
+type F = 'club' | 'beach' | 'restaurant' | 'sunset' | 'day';
+const FILTERS: { k: F; label: string }[] = [{ k: 'club', label: 'segClubs' }, { k: 'beach', label: 'segBeach' }, { k: 'restaurant', label: 'segEat' }, { k: 'sunset', label: 'segSunset' }, { k: 'day', label: 'segDay' }];
 
 export default function Map3DScreen() {
   const t = useT();
   const nav = useNavigation<any>();
   const { clubs, places } = useContent();
-  const [filter, setFilter] = useState<F[]>(['club', 'beach', 'restaurant', 'day']);
+  const [filter, setFilter] = useState<F[]>(['club', 'beach', 'restaurant', 'sunset', 'day']);
   const [sel, setSel] = useState<string | null>(null);
 
   const all = useMemo<Pin[]>(() => {
@@ -28,7 +28,7 @@ export default function Map3DScreen() {
     return out;
   }, [clubs, places, nav]);
 
-  const segOf = (kind: string): F => (kind === 'kClub' ? 'club' : kind === 'kRestaurant' ? 'restaurant' : kind === 'kDay' ? 'day' : 'beach');
+  const segOf = (kind: string): F => (kind === 'kClub' ? 'club' : kind === 'kRestaurant' ? 'restaurant' : kind === 'kDay' ? 'day' : kind === 'kSunset' ? 'sunset' : 'beach');
   const pins = useMemo(() => all.filter((p) => filter.includes(segOf(p.kind))), [all, filter]);
   const selected = pins.find((p) => p.id === sel) ?? null;
   const missing = [...clubs.filter((c) => c.lat == null).map((c) => c.name), ...places.filter((p) => p.lat == null).map((p) => p.name)];
@@ -44,7 +44,7 @@ export default function Map3DScreen() {
           <LogoMark width={22} />
           <Text style={s.h1}>{t('map3dTitle')}</Text>
         </View>
-        <View style={s.row}>{FILTERS.map((x) => <Chip key={x.k} label={t(x.label)} active={filter.includes(x.k)} onPress={() => toggle(x.k)} />)}</View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flexGrow: 0, marginHorizontal: -space.md }} contentContainerStyle={{ paddingHorizontal: space.md }}>{FILTERS.map((x) => <Chip key={x.k} label={t(x.label)} active={filter.includes(x.k)} onPress={() => toggle(x.k)} />)}</ScrollView>
       </View>
 
       <LinearGradient pointerEvents="none" colors={['rgba(8,40,70,0)', 'rgba(8,40,70,0.88)']} style={s.botFade} />
@@ -78,7 +78,6 @@ const s = StyleSheet.create({
   topFade: { position: 'absolute', left: 0, right: 0, top: 0, height: 150 },
   top: { position: 'absolute', left: 0, right: 0, top: 0, paddingHorizontal: space.md, paddingTop: space.sm },
   h1: { color: colors.text, fontSize: 26, fontWeight: '800', marginBottom: space.sm },
-  row: { flexDirection: 'row', flexWrap: 'wrap' },
   botFade: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 240 },
   bottom: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: space.md, paddingBottom: space.sm },
   hint: { color: 'rgba(255,255,255,0.75)', fontSize: 13, marginBottom: space.sm },

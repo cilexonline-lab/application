@@ -1,10 +1,11 @@
-// Luoghi oltre ai club: beach club, spiagge, ristoranti, attività di giorno.
-// Contenuti gestiti dal JSON remoto. Il codice NON contiene luoghi "veri" inventati:
-// i dati inclusi sono solo esempi marcati demo.
+// Luoghi oltre ai club: beach club, spiagge, ristoranti, attività di giorno, tramonti.
+// I dati inclusi sono la "Selezione Cilex" (src/data/places.ts): solo luoghi reali, verificati su fonti
+// citate nel file. Il JSON remoto (chiave places), se presente, li sostituisce.
 import { SHOW_DEMO_DATA } from './config';
+import { selectionPlaces } from './data/places';
 
-export type PlaceKind = 'beachclub' | 'beach' | 'restaurant' | 'day';
-export const PLACE_KINDS: PlaceKind[] = ['beachclub', 'beach', 'restaurant', 'day'];
+export type PlaceKind = 'beachclub' | 'beach' | 'restaurant' | 'day' | 'sunset';
+export const PLACE_KINDS: PlaceKind[] = ['beachclub', 'beach', 'restaurant', 'day', 'sunset'];
 
 export type Place = {
   id: string;
@@ -52,10 +53,8 @@ export function sanitizePlaces(raw: unknown): Place[] {
   return out;
 }
 
+// Esempio rimasto solo per "Giorno" (non ancora coperto dalla Selezione Cilex).
 const demo: Place[] = [
-  { id: 'demo-beachclub', kind: 'beachclub', name: 'Beach club di esempio', description: 'Qui andranno i beach club che consigliate, con testo e link confermati da voi.', demo: true },
-  { id: 'demo-beach', kind: 'beach', name: 'Spiaggia di esempio', description: 'Qui andranno le spiagge, con note su parcheggio, accesso e servizi (solo se verificati).', demo: true },
-  { id: 'demo-restaurant', kind: 'restaurant', name: 'Ristorante di esempio', description: 'Qui andranno i ristoranti, con link a menù o prenotazione.', demo: true },
   { id: 'demo-day', kind: 'day', name: 'Attività di esempio', description: 'Qui andranno attività di giorno: barca, escursioni, relax.', demo: true },
 ];
-export const bundledPlaces: Place[] = SHOW_DEMO_DATA ? demo : [];
+export const bundledPlaces: Place[] = [...selectionPlaces, ...(SHOW_DEMO_DATA ? demo : [])];

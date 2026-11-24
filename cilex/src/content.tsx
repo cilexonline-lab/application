@@ -7,14 +7,16 @@ import { bundledNews, NewsItem } from './data/news';
 import { bundledTips, Tip } from './data/tips';
 import { bundledPlaces, Place, sanitizePlaces, validCoord } from './places';
 import { bundledStays, sanitizeStays, Stay } from './stays';
+import { bundledReviews, Review, REVIEW_SOURCES } from './data/reviews';
 import { todayStr } from './utils';
 
-type Remote = { clubs?: Club[]; events?: EventItem[]; news?: NewsItem[]; tips?: Tip[]; places?: Place[]; stays?: Stay[] };
+type Remote = { clubs?: Club[]; events?: EventItem[]; news?: NewsItem[]; tips?: Tip[]; places?: Place[]; stays?: Stay[]; reviews?: Review[] };
 type Ctx = {
   clubs: Club[];
   events: EventItem[]; // tutti
   upcoming: EventItem[]; // da oggi in poi
   news: NewsItem[];
+  reviews: Review[]; // solo recensioni reali con consenso, dalla più recente
   tips: Tip[];
   places: Place[];
   stays: Stay[];
@@ -44,6 +46,8 @@ export function sanitize(raw: any): Remote | null {
         rules: isStr(c.rules) ? c.rules : undefined,
         imageUrl: isStr(c.imageUrl) ? c.imageUrl : undefined,
         mapQuery: isStr(c.mapQuery) ? c.mapQuery : undefined,
+        area: isStr(c.area) ? c.area : undefined,
+        accent: typeof c.accent === 'string' && /^#[0-9a-fA-F]{6}$/.test(c.accent) ? c.accent : undefined,
         lat: validCoord(c.lat, c.lng) ? c.lat : undefined,
         lng: validCoord(c.lat, c.lng) ? c.lng : undefined,
       }));
@@ -56,6 +60,15 @@ export function sanitize(raw: any): Remote | null {
         lineup: Array.isArray(e.lineup) ? e.lineup.filter(isStr) : [],
         ticketUrl: isStr(e.ticketUrl) ? e.ticketUrl : undefined,
         imageUrl: isStr(e.imageUrl) ? e.imageUrl : undefined,
+      }));
+  }
+  if (Array.isArray(raw.reviews)) {
+    // Recensioni: solo con consenso esplicito, testo e fonte validi. Nessuna modifica al testo.
+    out.reviews = raw.reviews
+      .filter((r: any) => r && r.consent === true && isStr(r.id) && isStr(r.name) && isStr(r.text) && /^\d{4}-\d{2}-\d{2}$/.test(r.date ?? '') && REVIEW_SOURCES.includes(r.source))
+      .map((r: any) => ({
+        id: r.id, name: r.name.slice(0, 40), text: r.text.slice(0, 600), date: r.date, source: r.source, consent: true as const,
+        rating: Number.isInteger(r.rating) && r.rating >= 1 && r.rating <= 5 ? r.rating : undefined,
       }));
   }
   if (Array.isArray(raw.news)) {
@@ -125,12 +138,13 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
     const clubs = Array.from(map.values());
     const events = [...(remote.events ?? bundledEvents)].sort((a, b) => a.date.localeCompare(b.date));
     const news = [...(remote.news ?? bundledNews)].sort((a, b) => b.date.localeCompare(a.date));
+    const reviews = [...(remote.reviews ?? bundledReviews)].sort((a, b) => b.date.localeCompare(a.date));
     const tips = remote.tips ?? bundledTips;
     const places = remote.places ?? bundledPlaces;
     const stays = remote.stays ?? bundledStays;
     const today = todayStr();
     return {
-      clubs, events, news, tips, places, stays, refreshing, lastUpdated,
+      clubs, events, news, reviews, tips, places, stays, refreshing, lastUpdated,
       upcoming: events.filter((e) => e.date >= today),
       refresh: fetchRemote,
       getClub: (id) => clubs.find((c) => c.id === id),

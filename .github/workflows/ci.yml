@@ -1,0 +1,36 @@
+# Controlli automatici su ogni pull request: typecheck dell'app e test del server IA.
+name: Controlli
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cilex
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: content.json si genera
+        run: npm run content -- /tmp/content.json
+  ai:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend/ai-worker
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Test server IA
+        run: node test.mjs
