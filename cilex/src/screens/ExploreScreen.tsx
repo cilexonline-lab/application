@@ -47,9 +47,9 @@ export default function ExploreScreen() {
       <View style={{ paddingHorizontal: space.md, paddingTop: space.sm }}>
         <ScreenTitle style={s.h1}>{t('exploreTitle')}</ScreenTitle>
       </View>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: space.md, columnGap: 0, rowGap: space.sm, paddingBottom: space.sm }}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flexGrow: 0, flexShrink: 0 }} contentContainerStyle={{ paddingHorizontal: space.md, paddingBottom: space.sm }}>
         {SEGS.map((x) => <Chip key={x.k} label={t(x.label)} active={seg === x.k} onPress={() => setSeg(x.k)} />)}
-      </View>
+      </ScrollView>
 
       {seg === 'club' && (
         <FlatList
