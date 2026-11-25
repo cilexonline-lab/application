@@ -9,8 +9,9 @@ import { bundledPlaces, Place, sanitizePlaces, validCoord } from './places';
 import { bundledStays, sanitizeStays, Stay } from './stays';
 import { bundledReviews, Review, REVIEW_SOURCES } from './data/reviews';
 import { todayStr } from './utils';
+import { itineraries as bundledItineraries, Itinerary } from './data/itineraries';
 
-type Remote = { clubs?: Club[]; events?: EventItem[]; news?: NewsItem[]; tips?: Tip[]; places?: Place[]; stays?: Stay[]; reviews?: Review[] };
+type Remote = { clubs?: Club[]; events?: EventItem[]; news?: NewsItem[]; tips?: Tip[]; places?: Place[]; stays?: Stay[]; reviews?: Review[]; itineraries?: Itinerary[] };
 type Ctx = {
   clubs: Club[];
   events: EventItem[]; // tutti
@@ -20,6 +21,7 @@ type Ctx = {
   tips: Tip[];
   places: Place[];
   stays: Stay[];
+  itineraries: Itinerary[];
   refreshing: boolean;
   lastUpdated: number | null;
   refresh: () => Promise<void>;
@@ -86,6 +88,11 @@ export function sanitize(raw: any): Remote | null {
   }
   if (Array.isArray(raw.places)) out.places = sanitizePlaces(raw.places);
   if (Array.isArray(raw.stays)) out.stays = sanitizeStays(raw.stays);
+  if (Array.isArray(raw.itineraries)) {
+    const l3 = (v: any) => v && isStr(v.it) && isStr(v.en) && isStr(v.es);
+    out.itineraries = raw.itineraries.filter((x: any) => x && isStr(x.id) && l3(x.title) && l3(x.intro) && Array.isArray(x.stops)
+      && x.stops.length > 0 && x.stops.every((p: any) => p && (p.ref === 'place' || p.ref === 'club') && isStr(p.id) && isStr(p.role)));
+  }
   return out;
 }
 
@@ -142,9 +149,10 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
     const tips = remote.tips ?? bundledTips;
     const places = remote.places ?? bundledPlaces;
     const stays = remote.stays ?? bundledStays;
+    const itineraries = remote.itineraries ?? bundledItineraries;
     const today = todayStr();
     return {
-      clubs, events, news, reviews, tips, places, stays, refreshing, lastUpdated,
+      clubs, events, news, reviews, tips, places, stays, itineraries, refreshing, lastUpdated,
       upcoming: events.filter((e) => e.date >= today),
       refresh: fetchRemote,
       getClub: (id) => clubs.find((c) => c.id === id),

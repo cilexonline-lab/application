@@ -7,7 +7,8 @@ import { Icon, IconName } from '../components/Icon';
 import { useContent } from '../content';
 import { useStore } from '../store';
 import { useT } from '../i18n';
-import { fmtDate, parseDate, requestRef, todayStr } from '../utils';
+import DateRangePicker from '../components/DateRangePicker';
+import { fmtDate, requestRef, todayStr } from '../utils';
 import { CONCIERGE_TOPICS } from '../config';
 import { success } from '../haptics';
 import { openWhatsApp } from '../whatsapp';
@@ -23,12 +24,6 @@ const KINDS: { k: Kind; icon: IconName }[] = [
   { k: 'villa', icon: 'villa' },
 ];
 
-const isoToInput = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}/${iso.slice(0, 4)}`;
-
-// Date rapide a un tocco (oggi + 5 giorni): niente formato da indovinare, mese scritto per esteso.
-const QUICK_DAYS = 6;
-const quickDates = (now = new Date()) =>
-  Array.from({ length: QUICK_DAYS }, (_, i) => todayStr(new Date(now.getFullYear(), now.getMonth(), now.getDate() + i)));
 
 export default function RequestScreen() {
   const t = useT();
@@ -38,7 +33,7 @@ export default function RequestScreen() {
   const [kind, setKind] = useState<Kind>(params.kind ?? 'table');
   const [clubId, setClubId] = useState<string>(params.clubId ?? '');
   const [name, setName] = useState(savedName);
-  const [date, setDate] = useState(params.date ? isoToInput(params.date) : '');
+  const [date, setDate] = useState(params.date && params.date >= todayStr() ? params.date : '');
   const [checkout, setCheckout] = useState('');
   const [people, setPeople] = useState(2);
   const [notes, setNotes] = useState(params.note ?? '');
@@ -55,7 +50,7 @@ export default function RequestScreen() {
   useEffect(() => {
     if (params.kind) setKind(params.kind);
     if (params.clubId !== undefined) setClubId(params.clubId);
-    if (params.date) setDate(isoToInput(params.date));
+    if (params.date && params.date >= todayStr()) setDate(params.date);
     if (params.note) setNotes(params.note);
   }, [params.kind, params.clubId, params.date, params.note]);
 
@@ -77,11 +72,11 @@ export default function RequestScreen() {
   const fieldError = (field: Field) => (errField === field && !!error ? <Text style={s.fieldError}>{error}</Text> : null);
 
   const send = () => {
-    const iso = parseDate(date);
-    if (!iso) return fail(t('errDate'), 'date');
+    const iso = date;
+    if (!iso || iso < todayStr()) return fail(t('errDate'), 'date');
     if (people < 1) return fail(t('errPeople'), null);
-    const outIso = isApt && checkout.trim() ? parseDate(checkout) : null;
-    if (isApt && checkout.trim() && (!outIso || outIso <= iso)) return fail(t('errCheckOut'), 'checkout');
+    const outIso = isApt && checkout ? checkout : null;
+    if (outIso && outIso <= iso) return fail(t('errCheckOut'), 'checkout');
     setError('');
     setErrField(null);
     saveName(name.trim());
@@ -163,27 +158,17 @@ export default function RequestScreen() {
         <TextInput style={s.input} value={name} onChangeText={setName} autoCapitalize="words" textContentType="name" placeholderTextColor={colors.muted} />
 
         <Text style={s.label} onLayout={markY('date')}>{t(isApt ? 'checkIn' : 'date')}<Text style={s.req}> *</Text></Text>
-        {!isApt && (
-          <View style={s.row}>
-            {quickDates().map((iso, i) => (
-              <Chip
-                key={iso}
-                label={i === 0 ? t('dateToday') : i === 1 ? t('dateTomorrow') : fmtDate(iso)}
-                active={parseDate(date) === iso}
-                onPress={() => { setDate(isoToInput(iso)); clearErr('date'); }}
-              />
-            ))}
-          </View>
-        )}
-        <TextInput style={[s.input, errField === 'date' && s.inputErr]} value={date} onChangeText={(v) => { setDate(v); clearErr('date'); }} placeholder={isApt ? t('dateHint') : `${t('dateOther')} · ${t('dateHint')}`} keyboardType="numbers-and-punctuation" placeholderTextColor={colors.muted} />
+        <View onLayout={markY('date')} style={[s.calBox, errField === 'date' && s.inputErr]}>
+          <DateRangePicker
+            single={!isApt}
+            start={date}
+            end={isApt ? checkout : ''}
+            onChange={(a, b) => { setDate(a); setCheckout(b); clearErr('date'); }}
+            hint={isApt ? t(date && !checkout ? 'tripPickEnd' : 'tripPickStart') : undefined}
+          />
+          {!!date && <Text style={s.calSel}>{fmtDate(date)}{isApt && checkout ? ` → ${fmtDate(checkout)}` : ''}</Text>}
+        </View>
         {fieldError('date')}
-        {isApt && (
-          <>
-            <Text style={s.label} onLayout={markY('checkout')}>{t('checkOut')}</Text>
-            <TextInput style={[s.input, errField === 'checkout' && s.inputErr]} value={checkout} onChangeText={(v) => { setCheckout(v); clearErr('checkout'); }} placeholder={t('dateHint')} keyboardType="numbers-and-punctuation" placeholderTextColor={colors.muted} />
-            {fieldError('checkout')}
-          </>
-        )}
 
         <Text style={s.label}>{t('people')}</Text>
         <View style={s.stepper}>
@@ -199,7 +184,8 @@ export default function RequestScreen() {
         <TextInput style={s.input} value={pr} onChangeText={setPr} autoCapitalize="characters" placeholderTextColor={colors.muted} />
 
         {!!error && <Text style={s.error}>{errField ? t('errCheckField') : error}</Text>}
-        <Button label={t('send')} onPress={send} style={{ marginTop: space.lg }} />
+        <Text style={s.noCancel}>{t('noCancel')}</Text>
+        <Button label={t('send')} onPress={send} style={{ marginTop: space.sm }} />
         <Text style={s.promise}>{t('replyPromise')}</Text>
         {!!sentRef && (
           <View style={s.sent}>
@@ -233,6 +219,9 @@ export default function RequestScreen() {
 }
 
 const s = StyleSheet.create({
+  calBox: { backgroundColor: colors.cardAlt, borderRadius: radius.md, borderWidth: 1, borderColor: colors.border, padding: space.sm },
+  calSel: { color: colors.brand, fontSize: 14, fontWeight: '700', textAlign: 'center', marginTop: space.sm },
+  noCancel: { color: colors.text, fontSize: 13, fontWeight: '700', textAlign: 'center', marginTop: space.lg },
   h1: { color: colors.text, fontSize: 26, fontWeight: '800' },
   sub: { color: colors.muted, marginTop: 4, marginBottom: space.md },
   steps: { gap: 10, marginBottom: space.md, paddingVertical: 12, paddingHorizontal: 14, borderRadius: radius.lg, backgroundColor: colors.card },

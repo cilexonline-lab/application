@@ -2,6 +2,9 @@
 export const BRAND_NAME = 'CILEX';
 export const BRAND_TAGLINE = 'Ibiza Luxury Concierge';
 
+// Link che il cliente condivide con gli amici ("Invita un amico"). Ora: sito pubblico su GitHub Pages; sostituire col link App Store/dominio Cilex quando esiste.
+export const SHARE_URL = 'https://cilexonline-lab.github.io/application/';
+
 // Numero WhatsApp che riceve le richieste (formato internazionale, SOLO cifre, es. 34600000000).
 export const WHATSAPP_NUMBER = '393923689968';
 
@@ -16,6 +19,9 @@ export const REVIEW_URL = '';
 // Obbligatori per la pubblicazione su App Store.
 export const PRIVACY_URL = '';
 export const SUPPORT_URL = '';
+// Contatti ufficiali (confermati da Alex, 25/11/2026).
+export const SUPPORT_EMAIL = 'cilexibiza@gmail.com';
+export const SITE_URL = 'https://cilexibiza.com';
 
 // Mostra eventi di esempio (marcati DEMO). Mettere false quando si inseriscono eventi reali.
 export const SHOW_DEMO_DATA = false;

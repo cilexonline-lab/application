@@ -20,6 +20,18 @@
 - Nessun riferimento all'IA nella UI. Codice IA conservato e spento: `src/screens/AskScreenAI.tsx` (non collegato), `src/ai.ts`, `src/intents.ts`, `backend/ai-worker/`. Per riaccendere: in `App.tsx` usare AskScreenAI e rimettere la barra Home.
 - Promessa "24 ore su 24" scritta in app: assicurarsi che il team risponda davvero di notte.
 
+## Lotto pubblicato il 25/11 (su "pubblica" di Alex)
+- Uniti in un solo lotto: #37 link luoghi · #34+#38 Itinerari (dati + schermata) · #35 Vedi foto · #36 Invita un amico · #39+#42 calendario (Piano e Richiesta) · #40 testo Prenota + frase cancellazioni · #41 contatti Info · #43+#44 Home pulita + Prodotti (Standard/Luxury, due palette in `theme.ts`).
+- Menu: nuova voce "Prodotti" (Standard e Luxury); "Esplora" resta nelle rotte ma fuori dalla barra.
+- Ancora da fare: animazioni tra sezioni (passo 3: Standard scorrimento+glow azzurro, Luxury dissolvenza+luce oro, max 400–600 ms, Riduci movimento); testi Luxury veri da CONTENUTI (chiave `luxury`); statistiche anonime; mappa offline; meteo/mare; notifiche (solo progettazione).
+- In attesa di Alex: #19 FAQ (23 scelte, solo italiano), #17 kit App Store, #20 documento concorrenza.
+- Da sistemare: `SHARE_URL` ancora il sito di prova; il tasto indietro di Luxury è azzurro; coordinate di Sa Trinxa/Sa Caleta da verificare sul posto.
+
+### Cosa ha funzionato / cosa è andato storto / regola nuova
+- Ha funzionato: PR piccole + test Playwright su 4 formati; rilettura incrociata CONTENUTI/DEVELOPER (ha preso errori di nota e link).
+- Andato storto: i18n.ts toccato da quasi tutte le PR nello stesso punto → conflitti a catena; test con selettori sbagliati (pagine nascoste restano nel DOM).
+- Regola nuova: nuove chiavi i18n in coda al dizionario, non in testa; nei test usare `.last()` per i tab e controllare il testo visibile.
+
 ## In attesa (NON unire senza ok di Alex)
 - #19 BOZZA 30 FAQ: Alex deve sceglierne 20–25.
 - #17 BOZZA kit App Store.

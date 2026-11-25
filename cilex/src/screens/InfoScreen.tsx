@@ -1,8 +1,8 @@
 import React from 'react';
-import { Linking, ScrollView, Text, View } from 'react-native';
+import { Linking, ScrollView, Share, Text, View } from 'react-native';
 import { Button, Card, SectionTitle } from '../components/ui';
 import { LogoOval } from '../components/Logo';
-import { BRAND_TAGLINE, PRIVACY_URL, SUPPORT_URL } from '../config';
+import { BRAND_TAGLINE, PRIVACY_URL, SHARE_URL, SITE_URL, SUPPORT_EMAIL, SUPPORT_URL } from '../config';
 import { useContent } from '../content';
 import { useT } from '../i18n';
 import { openWhatsApp } from '../whatsapp';
@@ -11,6 +11,10 @@ import { colors, space } from '../theme';
 export default function InfoScreen() {
   const t = useT();
   const { lastUpdated, tips } = useContent();
+  const invite = async () => {
+    const text = `${t('inviteMsg')} ${SHARE_URL}`;
+    try { await Share.share({ message: text }); } catch { Linking.openURL(`https://wa.me/?text=${encodeURIComponent(text)}`); }
+  };
   return (
     <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: space.lg, paddingBottom: 64 }}>
       <View style={{ alignItems: 'center', marginVertical: space.lg }}>
@@ -19,6 +23,10 @@ export default function InfoScreen() {
       </View>
       <Text style={{ color: colors.muted, fontSize: 15, lineHeight: 23 }}>{t('infoText')}</Text>
       <Button label={t('contact')} onPress={() => openWhatsApp('Hi Cilex!', t('waMissing'))} style={{ marginTop: space.lg }} />
+
+      <Button label={t('inviteBtn')} variant="ghost" onPress={invite} style={{ marginTop: space.sm }} />
+      <Button label={`${t('emailUs')} · ${SUPPORT_EMAIL}`} variant="ghost" onPress={() => Linking.openURL(`mailto:${SUPPORT_EMAIL}`)} style={{ marginTop: space.sm }} />
+      <Button label={`${t('visitSite')} · cilexibiza.com`} variant="ghost" onPress={() => Linking.openURL(SITE_URL)} style={{ marginTop: space.sm }} />
 
       {tips.length > 0 && (
         <>

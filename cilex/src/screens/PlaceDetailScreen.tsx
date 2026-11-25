@@ -1,10 +1,11 @@
 import React from 'react';
-import { Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Banner, Button } from '../components/ui';
 import { useContent } from '../content';
 import { useT } from '../i18n';
 import { kindKey } from './ExploreScreen';
+import { seePhotosUrl } from '../photos';
 import { colors, space } from '../theme';
 
 export default function PlaceDetailScreen() {
@@ -23,6 +24,11 @@ export default function PlaceDetailScreen() {
       <Text style={s.kind}>{t(kindKey(p.kind)).toUpperCase()}{p.area ? ` · ${p.area}` : ''}</Text>
       <Text style={s.name}>{p.name}</Text>
       {!!p.description && <Text style={s.desc}>{p.description}</Text>}
+      {!!p.photos?.length && (
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: space.md }}>
+          {p.photos.map((u) => <Image key={u} source={{ uri: u }} style={{ width: 220, height: 150, borderRadius: 12, marginRight: 8 }} accessibilityLabel={p.name} />)}
+        </ScrollView>
+      )}
       <View style={{ gap: space.sm, marginTop: space.md }}>
         {/* Sempre un'azione verso Cilex: "Prenota" solo dove il servizio esiste (bookable), altrimenti "Chiedi". */}
         {p.bookable ? (
@@ -30,7 +36,16 @@ export default function PlaceDetailScreen() {
         ) : (
           <Button icon="ask" label={t('askCilex')} onPress={() => nav.navigate('Request', { kind: 'concierge', note: `${t('noteInfo')}: ${p.name}${p.area ? ` (${p.area})` : ''}` })} />
         )}
+        {p.bookable && (
+          <View>
+            <Text style={s.info}>{t('bookInfo')}</Text>
+            <Text style={s.warn}>{t('noCancel')}</Text>
+          </View>
+        )}
         {!!p.link && <Button label={t('openLink')} variant="ghost" onPress={() => Linking.openURL(p.link!)} />}
+        {seePhotosUrl(p.name, p.area, p.link) !== p.link && (
+          <Button icon="share" label={t('seePhotos')} variant="ghost" onPress={() => Linking.openURL(seePhotosUrl(p.name, p.area, p.link))} />
+        )}
         <Button icon="map" label={t('openMaps2')} variant="ghost" onPress={() => Linking.openURL(`http://maps.apple.com/?${q}`)} />
       </View>
     </ScrollView>
@@ -40,5 +55,7 @@ export default function PlaceDetailScreen() {
 const s = StyleSheet.create({
   kind: { color: colors.brand, fontSize: 12, fontWeight: '800', letterSpacing: 1.5, marginTop: space.md },
   name: { color: colors.text, fontSize: 30, fontWeight: '800', marginTop: 4 },
+  info: { color: colors.muted, fontSize: 13, lineHeight: 19, textAlign: 'center' },
+  warn: { color: colors.text, fontSize: 13, fontWeight: '700', textAlign: 'center', marginTop: 4 },
   desc: { color: colors.muted, fontSize: 15, marginTop: space.sm, lineHeight: 22 },
 });
