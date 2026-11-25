@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from 'react';
-import { Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, RefreshControl, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Card, Chip, EventCard, GoldCard, SectionTitle } from '../components/ui';
 import { LogoWordmark } from '../components/Logo';
 import { Icon, IconName } from '../components/Icon';
 import { useContent } from '../content';
 import { useStore } from '../store';
+import { sendQuestion } from '../askWhatsApp';
 import { BRAND_TAGLINE, CONTENT_URL } from '../config';
 import { LANGS, setLang, useLang, useT } from '../i18n';
 import { tap } from '../haptics';
@@ -28,7 +29,10 @@ export default function HomeScreen() {
   const lang = useLang();
   const nav = useNavigation<any>();
   const { clubs, upcoming, news, reviews, getClub, refresh, refreshing } = useContent();
-  const { name, following } = useStore();
+  const store = useStore();
+  const { name, following } = store;
+  const [homeQ, setHomeQ] = useState('');
+  const submitHome = async () => { if (!homeQ.trim()) return; tap(); if (await sendQuestion(homeQ, store, t)) setHomeQ(''); };
   const [club, setClub] = useState<string>('');
   const [time, setTime] = useState<TimeFilter>('all');
 
@@ -78,17 +82,23 @@ export default function HomeScreen() {
         </Card>
       )}
 
-      {/* Ingresso all'assistente: sembra una barra di ricerca, apre Chiedi. */}
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={t('homeAsk')}
-        onPress={() => { tap(); nav.navigate('Ask'); }}
-        style={({ pressed }) => [s.askBar, pressed && { opacity: 0.85 }]}
-      >
+      {/* Barra "Scrivi al tuo concierge": niente IA, invio diretto su WhatsApp col messaggio pronto. */}
+      <View style={s.askBar}>
         <Icon name="ask" size={18} color={colors.brand} />
-        <Text style={s.askBarTxt} numberOfLines={1}>{t('homeAsk')}</Text>
-        <View style={s.askBarGo}><Icon name="send" size={16} color="#001418" stroke={2.4} /></View>
-      </Pressable>
+        <TextInput
+          style={s.askBarInput}
+          value={homeQ}
+          onChangeText={setHomeQ}
+          placeholder={t('homeAsk')}
+          placeholderTextColor={colors.muted}
+          accessibilityLabel={t('homeAsk')}
+          returnKeyType="send"
+          onSubmitEditing={submitHome}
+        />
+        <Pressable accessibilityRole="button" accessibilityLabel={t('cqSend')} onPress={submitHome} hitSlop={6} style={[s.askBarGo, !homeQ.trim() && { opacity: 0.5 }]}>
+          <Icon name="send" size={16} color="#001418" stroke={2.4} />
+        </Pressable>
+      </View>
 
       <View style={s.quickRow}>
         {QUICK.map((q) => (
@@ -212,7 +222,7 @@ const s = StyleSheet.create({
   reviewBy: { color: colors.muted, fontSize: 12, letterSpacing: 0.3 },
   reviewLeave: { color: colors.brand, fontSize: 14, fontWeight: '700', marginTop: 12, alignSelf: 'flex-start' },
   askBar: { flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: colors.card, borderRadius: 999, paddingVertical: 8, paddingLeft: 16, paddingRight: 8, marginTop: space.md },
-  askBarTxt: { flex: 1, color: colors.muted, fontSize: 15 },
+  askBarInput: { flex: 1, minWidth: 0, color: colors.text, fontSize: 15, paddingVertical: 8 },
   askBarGo: { width: 34, height: 34, borderRadius: 17, backgroundColor: colors.brand, alignItems: 'center', justifyContent: 'center' },
   mapCard: { flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: colors.card, borderRadius: radius.md, borderWidth: 1, borderColor: colors.brand, padding: 14, marginTop: space.md },
   mapTitle: { color: colors.text, fontSize: 16, fontWeight: '800' },

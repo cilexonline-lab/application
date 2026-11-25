@@ -220,6 +220,7 @@ export default function RequestScreen() {
               <View key={r.ref} style={s.sent}>
                 <Text style={s.sentTitle}>{t(r.kind)} · Ref {r.ref}</Text>
                 <Text style={s.sentBody}>{fmtDate(r.at.slice(0, 10))}</Text>
+                {!!r.q && <Text style={s.sentBody} numberOfLines={3}>{r.q}</Text>}
                 <Button variant="ghost" label={t('reqReopen')} onPress={() => openWhatsApp(r.msg, t('waMissing'))} style={{ marginTop: space.sm }} />
               </View>
             ))}
