@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 type Dict = Record<string, string>;
 
 const en: Dict = {
+  lxSlogan: 'Ibiza, lived the way it deserves.', lxConcierge: 'Your private concierge', lxConciergeSub: 'A person from the team replies within 15 minutes, 24/7.', lxConciergeBtn: 'Write on WhatsApp', lxBespoke: 'Bespoke', lxYachtD: 'Boats and yachts for your day at sea.', lxBoatPartyD: 'A party at sea, organised by our team.', lxExcursionsD: 'Days and routes made around you.', lxOpenBarD: 'A private bar for your event.', lxVipD: 'A table in the clubs of Ibiza.', lxVillasD: 'Villas and apartments, selected by us.', lxBespokeD: 'Tell us what you wish: we take care of it.', lxNoPrices: 'Everything on request: availability and conditions are confirmed by our team.', lxHow: 'How it works', lxReqNote: 'Tell us what matters: occasion, preferences, wishes.', lxReqHolder: 'Your wishes…', lxPrivate: 'Handled directly by our team.', lxReqKind: 'Luxury',
   seeAll: 'See all',
   itinTitle: 'Itineraries', itinSub: 'Ready-made routes made of places in the app', itinStops: 'stops', roleBeach: 'Beach', roleLunch: 'Lunch', roleSunset: 'Sunset', roleDinner: 'Dinner', roleNight: 'Night', roleAfternoon: 'Afternoon', itinAsk: 'Plan this with Cilex', itinAskMsg: 'Hi Cilex! I would like to plan this itinerary:',
   seePhotos: 'See photos',
@@ -67,6 +68,7 @@ const en: Dict = {
   remTitleArtist: '{artist} plays today', remBodyArtist: '{title} · {club}', remTitlePlan: 'Today in your plan', remBodyPlan: '{title} · {club}',
 };
 const it: Dict = {
+  lxSlogan: 'Ibiza, vissuta come merita.', lxConcierge: 'Il tuo concierge privato', lxConciergeSub: 'Ti risponde una persona del team entro 15 minuti, h24.', lxConciergeBtn: 'Scrivi su WhatsApp', lxBespoke: 'Su misura', lxYachtD: 'Barche e yacht per la tua giornata in mare.', lxBoatPartyD: 'Una festa in mare, organizzata dal nostro team.', lxExcursionsD: 'Giornate e percorsi costruiti su di te.', lxOpenBarD: 'Un bar privato per il tuo evento.', lxVipD: 'Un tavolo nei club di Ibiza.', lxVillasD: 'Ville e appartamenti selezionati da noi.', lxBespokeD: 'Dicci cosa desideri: ci pensiamo noi.', lxNoPrices: 'Tutto su richiesta: disponibilità e condizioni le conferma il nostro team.', lxHow: 'Come funziona', lxReqNote: 'Dicci cosa conta: occasione, preferenze, desideri.', lxReqHolder: 'I tuoi desideri…', lxPrivate: 'Gestita direttamente dal nostro team.', lxReqKind: 'Luxury',
   seeAll: 'Vedi tutti',
   itinTitle: 'Itinerari', itinSub: 'Percorsi pronti fatti di luoghi dell’app', itinStops: 'tappe', roleBeach: 'Spiaggia', roleLunch: 'Pranzo', roleSunset: 'Tramonto', roleDinner: 'Cena', roleNight: 'Notte', roleAfternoon: 'Pomeriggio', itinAsk: 'Organizzalo con Cilex', itinAskMsg: 'Ciao Cilex! Vorrei organizzare questo itinerario:',
   seePhotos: 'Vedi foto',
@@ -130,6 +132,7 @@ const it: Dict = {
   remTitleArtist: '{artist} suona oggi', remBodyArtist: '{title} · {club}', remTitlePlan: 'Oggi nel tuo piano', remBodyPlan: '{title} · {club}',
 };
 const es: Dict = {
+  lxSlogan: 'Ibiza, vivida como merece.', lxConcierge: 'Tu concierge privado', lxConciergeSub: 'Te responde una persona del equipo en 15 minutos, 24 h.', lxConciergeBtn: 'Escribe por WhatsApp', lxBespoke: 'A medida', lxYachtD: 'Barcos y yates para tu día en el mar.', lxBoatPartyD: 'Una fiesta en el mar, organizada por nuestro equipo.', lxExcursionsD: 'Días y rutas hechos a tu medida.', lxOpenBarD: 'Un bar privado para tu evento.', lxVipD: 'Una mesa en los clubs de Ibiza.', lxVillasD: 'Villas y apartamentos seleccionados por nosotros.', lxBespokeD: 'Dinos qué deseas: nos ocupamos nosotros.', lxNoPrices: 'Todo bajo petición: el equipo confirma disponibilidad y condiciones.', lxHow: 'Cómo funciona', lxReqNote: 'Cuéntanos lo que importa: ocasión, preferencias, deseos.', lxReqHolder: 'Tus deseos…', lxPrivate: 'Gestionada directamente por nuestro equipo.', lxReqKind: 'Luxury',
   seeAll: 'Ver todo',
   itinTitle: 'Itinerarios', itinSub: 'Rutas listas con lugares de la app', itinStops: 'paradas', roleBeach: 'Playa', roleLunch: 'Comida', roleSunset: 'Atardecer', roleDinner: 'Cena', roleNight: 'Noche', roleAfternoon: 'Tarde', itinAsk: 'Organízalo con Cilex', itinAskMsg: '¡Hola Cilex! Quiero organizar este itinerario:',
   seePhotos: 'Ver fotos',
