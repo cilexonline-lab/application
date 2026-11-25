@@ -58,7 +58,7 @@ function Tabs() {
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: t('tabHome'), headerShown: false, tabBarIcon: icon('home') }} />
-      <Tab.Screen name="Products" component={ProductsScreen} options={{ title: t('tabProducts'), headerShown: false, tabBarIcon: icon('concierge') }} />
+      <Tab.Screen name="Products" component={ProductsScreen} options={{ title: t('tabProducts'), headerShown: false, tabBarIcon: icon('products') }} />
       {/* Explore resta raggiungibile (Prodotti → Standard) ma fuori dalla barra: 6 voci, non 7. */}
       <Tab.Screen name="Clubs" component={ExploreScreen} options={{ title: t('tabClubs'), headerShown: false, tabBarIcon: icon('clubs'), tabBarItemStyle: { display: 'none' } }} />
       <Tab.Screen name="Map3D" component={Map3DScreen} options={{ title: t('tabMap'), headerShown: false, tabBarIcon: icon('map') }} />
