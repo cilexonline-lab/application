@@ -2,7 +2,7 @@ import React from 'react';
 import { Linking, ScrollView, Text, View } from 'react-native';
 import { Button, Card, SectionTitle } from '../components/ui';
 import { LogoOval } from '../components/Logo';
-import { BRAND_TAGLINE, PRIVACY_URL, SUPPORT_URL } from '../config';
+import { BRAND_TAGLINE, PRIVACY_URL, SITE_URL, SUPPORT_EMAIL, SUPPORT_URL } from '../config';
 import { useContent } from '../content';
 import { useT } from '../i18n';
 import { openWhatsApp } from '../whatsapp';
@@ -19,6 +19,9 @@ export default function InfoScreen() {
       </View>
       <Text style={{ color: colors.muted, fontSize: 15, lineHeight: 23 }}>{t('infoText')}</Text>
       <Button label={t('contact')} onPress={() => openWhatsApp('Hi Cilex!', t('waMissing'))} style={{ marginTop: space.lg }} />
+
+      <Button label={`${t('emailUs')} · ${SUPPORT_EMAIL}`} variant="ghost" onPress={() => Linking.openURL(`mailto:${SUPPORT_EMAIL}`)} style={{ marginTop: space.sm }} />
+      <Button label={`${t('visitSite')} · cilexibiza.com`} variant="ghost" onPress={() => Linking.openURL(SITE_URL)} style={{ marginTop: space.sm }} />
 
       {tips.length > 0 && (
         <>
