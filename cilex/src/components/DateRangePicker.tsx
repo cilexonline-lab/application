@@ -6,10 +6,11 @@ import { useLang } from '../i18n';
 import { todayStr } from '../utils';
 import { colors, radius, space } from '../theme';
 
-type Props = { start: string; end: string; onChange: (start: string, end: string) => void; hint?: string };
+type Props = { start: string; end: string; onChange: (start: string, end: string) => void; hint?: string; single?: boolean };
 const iso = (y: number, m: number, d: number) => todayStr(new Date(y, m, d));
 
-export default function DateRangePicker({ start, end, onChange, hint }: Props) {
+// single = un solo giorno (tavolo, barca…); altrimenti periodo arrivo → partenza.
+export default function DateRangePicker({ start, end, onChange, hint, single }: Props) {
   const lang = useLang();
   const today = todayStr();
   const first = start || today;
@@ -33,6 +34,7 @@ export default function DateRangePicker({ start, end, onChange, hint }: Props) {
 
   const pick = (day: string) => {
     if (day < today) return;
+    if (single) return onChange(day, '');
     if (!start || (start && end)) return onChange(day, '');
     if (day <= start) return onChange(day, '');
     onChange(start, day);
