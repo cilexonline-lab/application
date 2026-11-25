@@ -18,6 +18,7 @@ export type Place = {
   lat?: number;
   lng?: number;
   imageUrl?: string;
+  photos?: string[]; // SOLO foto ufficiali inviate dal locale con permesso scritto. Vuoto = nessuna foto, non rompe nulla.
   bookable?: boolean; // true = mostra "Richiedi via Cilex" (solo dove avete un accordo/servizio reale)
   demo?: boolean;
 };
@@ -47,6 +48,7 @@ export function sanitizePlaces(raw: unknown): Place[] {
       lat: ok ? p.lat : undefined,
       lng: ok ? p.lng : undefined,
       imageUrl: safeUrl(p.imageUrl),
+      photos: Array.isArray(p.photos) ? (p.photos.map(safeUrl).filter(Boolean) as string[]).slice(0, 8) : undefined,
       bookable: p.bookable === true,
     });
   }

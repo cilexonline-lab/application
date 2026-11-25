@@ -3,6 +3,7 @@ import { Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Card, EventCard, SectionTitle } from '../components/ui';
+import { seePhotosUrl } from '../photos';
 import { ClubHero } from '../components/ClubCard';
 import { useContent } from '../content';
 import { useT } from '../i18n';
@@ -31,6 +32,7 @@ export default function ClubDetailScreen() {
         {/* Azione principale: richiesta a Cilex (modulo con data, persone e ID richiesta → WhatsApp). */}
         <Button icon="table" label={t('bookTableCilex')} onPress={() => nav.navigate('Request', { kind: 'table', clubId: club.id })} />
         <Button label={club.ticketUrl ? t('tickets') : t('ticketsSoon')} variant="ghost" disabled={!club.ticketUrl} onPress={() => Linking.openURL(club.ticketUrl)} />
+        <Button icon="map" label={t('seePhotos')} variant="ghost" onPress={() => Linking.openURL(seePhotosUrl(club.name, club.area))} />
         <Button icon="map" label={t('openMaps')} variant="ghost" onPress={() => Linking.openURL(`http://maps.apple.com/?q=${q}`)} />
       </View>
 
