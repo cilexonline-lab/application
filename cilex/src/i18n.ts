@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 type Dict = Record<string, string>;
 
 const en: Dict = {
+  bookInfo: 'We contact the venue and book for you. Reply within 15 minutes, 24/7.', noCancel: 'Bookings cannot be cancelled.',
   cqTitle: 'Write to your concierge', cqSub: 'Tell us what you need, in your own words. WhatsApp opens with your message ready: just tap Send.', cqPlaceholder: 'Write your message…', cqSend: 'Send on WhatsApp', cqReply: 'A person from the team replies, 24 hours a day', cqTable: 'I would like a VIP table for…', cqBoat: 'I would like to rent a boat for…', cqVilla: 'I am looking for a villa for…', cqTransfer: 'I need a transfer from/to…', cqTonight: 'What do you recommend for tonight?', cqKind: 'Message', cqLang: 'App language', homeAsk: 'Write to your concierge…',
   reqListTitle: 'Your requests', reqListNote: 'Saved only on this phone. The team confirms every request on WhatsApp.', reqListClear: 'Clear list',
   prefsTitle: 'Your preferences', prefsNote: 'Saved only on this phone. We add them to your requests so the team can tailor the answer. Optional.', prefsDiet: 'Allergies / food needs', prefsMusic: 'Music you like', prefsOccasion: 'Occasion (birthday, honeymoon…)', prefsSave: 'Save preferences', prefsSaved: 'Saved', prefsMsg: 'Preferences',
@@ -58,6 +59,7 @@ const en: Dict = {
   remTitleArtist: '{artist} plays today', remBodyArtist: '{title} · {club}', remTitlePlan: 'Today in your plan', remBodyPlan: '{title} · {club}',
 };
 const it: Dict = {
+  bookInfo: 'Contattiamo noi il locale e prenotiamo per te. Risposta entro 15 minuti, h24.', noCancel: 'Le prenotazioni non prevedono annullamenti o cancellazioni.',
   cqTitle: 'Scrivi al tuo concierge', cqSub: 'Dicci cosa ti serve, con parole tue. Si apre WhatsApp con il messaggio già pronto: tocca Invia.', cqPlaceholder: 'Scrivi il tuo messaggio…', cqSend: 'Invia su WhatsApp', cqReply: 'Risponde una persona del team, 24 ore su 24', cqTable: 'Vorrei un tavolo VIP per…', cqBoat: 'Vorrei noleggiare una barca per…', cqVilla: 'Cerco una villa per…', cqTransfer: 'Mi serve un transfer da/per…', cqTonight: 'Cosa mi consigliate per stasera?', cqKind: 'Messaggio', cqLang: 'Lingua dell’app', homeAsk: 'Scrivi al tuo concierge…',
   reqListTitle: 'Le tue richieste', reqListNote: 'Salvate solo su questo telefono. Il team conferma ogni richiesta su WhatsApp.', reqListClear: 'Svuota elenco',
   prefsTitle: 'Le tue preferenze', prefsNote: 'Salvate solo su questo telefono. Le aggiungiamo alle tue richieste così il team risponde su misura. Facoltative.', prefsDiet: 'Allergie / esigenze alimentari', prefsMusic: 'Musica che ti piace', prefsOccasion: 'Occasione (compleanno, viaggio di nozze…)', prefsSave: 'Salva preferenze', prefsSaved: 'Salvate', prefsMsg: 'Preferenze',
@@ -112,6 +114,7 @@ const it: Dict = {
   remTitleArtist: '{artist} suona oggi', remBodyArtist: '{title} · {club}', remTitlePlan: 'Oggi nel tuo piano', remBodyPlan: '{title} · {club}',
 };
 const es: Dict = {
+  bookInfo: 'Contactamos nosotros con el local y reservamos por ti. Respuesta en 15 minutos, 24 h.', noCancel: 'Las reservas no admiten anulaciones ni cancelaciones.',
   cqTitle: 'Escribe a tu concierge', cqSub: 'Cuéntanos lo que necesitas, con tus palabras. Se abre WhatsApp con el mensaje listo: toca Enviar.', cqPlaceholder: 'Escribe tu mensaje…', cqSend: 'Enviar por WhatsApp', cqReply: 'Te responde una persona del equipo, las 24 horas', cqTable: 'Quiero una mesa VIP para…', cqBoat: 'Quiero alquilar un barco para…', cqVilla: 'Busco una villa para…', cqTransfer: 'Necesito un transfer desde/hacia…', cqTonight: '¿Qué me recomendáis para esta noche?', cqKind: 'Mensaje', cqLang: 'Idioma de la app', homeAsk: 'Escribe a tu concierge…',
   reqListTitle: 'Tus solicitudes', reqListNote: 'Se guardan solo en este teléfono. El equipo confirma cada solicitud por WhatsApp.', reqListClear: 'Vaciar lista',
   prefsTitle: 'Tus preferencias', prefsNote: 'Se guardan solo en este teléfono. Las añadimos a tus solicitudes para que el equipo responda a medida. Opcional.', prefsDiet: 'Alergias / necesidades alimentarias', prefsMusic: 'Música que te gusta', prefsOccasion: 'Ocasión (cumpleaños, luna de miel…)', prefsSave: 'Guardar preferencias', prefsSaved: 'Guardadas', prefsMsg: 'Preferencias',
