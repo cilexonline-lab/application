@@ -1,0 +1,118 @@
+{
+ "_bozza": "BOZZA da approvare da Alex: testi della sezione Luxury. Niente prezzi, niente foto (servono permessi), niente descrizioni di cosa è incluso: non ho dati. Il pulsante porta alla richiesta (formato da concordare col DEVELOPER). Prima della richiesta va mostrato chiaro: nessun annullamento (vedi docs/legale-per-termini.md).",
+ "luxury": [
+  {
+   "id": "boat-party",
+   "title": {
+    "it": "Boat party",
+    "en": "Boat party",
+    "es": "Boat party"
+   },
+   "blurb": {
+    "it": "Dicci data e persone: ti proponiamo le feste in barca disponibili.",
+    "en": "Tell us the date and group size: we suggest the boat parties available.",
+    "es": "Dinos fecha y personas: te proponemos los boat party disponibles."
+   },
+   "cta": {
+    "it": "Richiedi a Cilex",
+    "en": "Request via Cilex",
+    "es": "Solicitar a Cilex"
+   }
+  },
+  {
+   "id": "escursioni",
+   "title": {
+    "it": "Escursioni",
+    "en": "Excursions",
+    "es": "Excursiones"
+   },
+   "blurb": {
+    "it": "Dicci cosa ti interessa: ti proponiamo le escursioni disponibili.",
+    "en": "Tell us what interests you: we suggest the excursions available.",
+    "es": "Dinos qué te interesa: te proponemos las excursiones disponibles."
+   },
+   "cta": {
+    "it": "Richiedi a Cilex",
+    "en": "Request via Cilex",
+    "es": "Solicitar a Cilex"
+   }
+  },
+  {
+   "id": "open-bar",
+   "title": {
+    "it": "Open bar",
+    "en": "Open bar",
+    "es": "Open bar"
+   },
+   "blurb": {
+    "it": "Dicci serata e persone: ti proponiamo le opzioni open bar disponibili.",
+    "en": "Tell us the night and group size: we suggest the open bar options available.",
+    "es": "Dinos noche y personas: te proponemos las opciones de open bar disponibles."
+   },
+   "cta": {
+    "it": "Richiedi a Cilex",
+    "en": "Request via Cilex",
+    "es": "Solicitar a Cilex"
+   }
+  },
+  {
+   "id": "yacht",
+   "title": {
+    "it": "Yacht",
+    "en": "Yacht",
+    "es": "Yate"
+   },
+   "blurb": {
+    "it": "Dicci data e persone: ti proponiamo gli yacht disponibili.",
+    "en": "Tell us the date and group size: we suggest the yachts available.",
+    "es": "Dinos fecha y personas: te proponemos los yates disponibles."
+   },
+   "cta": {
+    "it": "Richiedi a Cilex",
+    "en": "Request via Cilex",
+    "es": "Solicitar a Cilex"
+   }
+  },
+  {
+   "id": "tavolo-vip",
+   "title": {
+    "it": "Tavolo VIP",
+    "en": "VIP table",
+    "es": "Mesa VIP"
+   },
+   "blurb": {
+    "it": "Scegli il locale: lo contattiamo e prenotiamo per te. Ti mandiamo un link per riservare il tavolo.",
+    "en": "Choose the venue: we contact it and book for you. We send you a link to reserve the table.",
+    "es": "Elige el local: lo contactamos y reservamos por ti. Te enviamos un enlace para reservar la mesa."
+   },
+   "cta": {
+    "it": "Richiedi a Cilex",
+    "en": "Request via Cilex",
+    "es": "Solicitar a Cilex"
+   }
+  },
+  {
+   "id": "ville",
+   "title": {
+    "it": "Ville",
+    "en": "Villas",
+    "es": "Villas"
+   },
+   "blurb": {
+    "it": "Dicci date e persone: ti proponiamo le ville disponibili.",
+    "en": "Tell us the dates and group size: we suggest the villas available.",
+    "es": "Dinos fechas y personas: te proponemos las villas disponibles."
+   },
+   "cta": {
+    "it": "Richiedi a Cilex",
+    "en": "Request via Cilex",
+    "es": "Solicitar a Cilex"
+   }
+  }
+ ],
+ "avviso_prima_della_richiesta": {
+  "it": "Non sono previsti annullamenti né cancellazioni.",
+  "en": "Cancellations are not available.",
+  "es": "No existen anulaciones ni cancelaciones."
+ }
+}

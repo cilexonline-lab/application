@@ -1,0 +1,182 @@
+{
+ "_bozza": "BOZZA da approvare da Alex (fatti dati da Alex il 25/11 tramite coordinamento). NON mostrare in app né all'IA finché Alex non approva e i testi non vengono copiati in faq-team.json. Mai scrivere 'partner' o 'partner ufficiale': solo Tantra e Rigatoni hanno un accordo; per gli altri locali scrivere 'prenotiamo noi per te'.",
+ "faq": [
+  {
+   "id": 0,
+   "q": "Come si prenota un tavolo e quando è confermato?",
+   "a": {
+    "it": "Con Cilex contattiamo noi il locale e prenotiamo per te. Un operatore risponde e conferma entro 15 minuti, a qualsiasi ora, tutto l'anno. Se il locale è pieno, ti proponiamo alternative.",
+    "en": "With Cilex we contact the venue and book for you. An operator replies and confirms within 15 minutes, at any hour, all year round. If the venue is full, we suggest alternatives.",
+    "es": "Con Cilex contactamos nosotros el local y reservamos por ti. Un operador responde y confirma en 15 minutos, a cualquier hora, todo el año. Si el local está lleno, te proponemos alternativas."
+   }
+  },
+  {
+   "id": 1,
+   "q": "Come si paga un tavolo (acconto, saldo, metodi)?",
+   "a": {
+    "it": "Paghi i servizi direttamente al locale. I tavoli si riservano tramite un link che ti mandiamo noi.",
+    "en": "You pay for the services directly to the venue. Tables are reserved through a link that we send you.",
+    "es": "Pagas los servicios directamente al local. Las mesas se reservan mediante un enlace que te enviamos nosotros."
+   }
+  },
+  {
+   "id": 2,
+   "q": "Posso cancellare o spostare un tavolo?",
+   "a": {
+    "it": "Non sono previsti annullamenti né cancellazioni: lo comunichiamo chiaramente prima della richiesta.",
+    "en": "Cancellations are not available: we state this clearly before you send your request.",
+    "es": "No existen anulaciones ni cancelaciones: lo indicamos claramente antes de enviar la solicitud."
+   }
+  },
+  {
+   "id": 12,
+   "q": "Rispondete anche di notte? Qual è l'orario del servizio?",
+   "a": {
+    "it": "Sì. Un operatore è sempre attivo, 24 ore su 24, tutto l'anno, e risponde e conferma entro 15 minuti.",
+    "en": "Yes. An operator is always available, 24 hours a day, all year round, and replies and confirms within 15 minutes.",
+    "es": "Sí. Hay siempre un operador disponible, las 24 horas, todo el año, que responde y confirma en 15 minutos."
+   }
+  },
+  {
+   "id": 13,
+   "q": "In che lingue parlate con i clienti?",
+   "a": {
+    "it": "Il team parla tutte le lingue.",
+    "en": "The team speaks all languages.",
+    "es": "El equipo habla todos los idiomas."
+   }
+  },
+  {
+   "id": 18,
+   "q": "Come si paga e serve un acconto?",
+   "a": {
+    "it": "Paghi i servizi direttamente al locale. I tavoli si riservano tramite un link che ti mandiamo noi. Prenotare con Cilex non costa nulla in più.",
+    "en": "You pay for the services directly to the venue. Tables are reserved through a link that we send you. Booking with Cilex costs nothing extra.",
+    "es": "Pagas los servicios directamente al local. Las mesas se reservan mediante un enlace que te enviamos nosotros. Reservar con Cilex no cuesta nada más."
+   }
+  },
+  {
+   "id": 19,
+   "q": "Quali lingue parla il team?",
+   "a": {
+    "it": "Il team parla tutte le lingue.",
+    "en": "The team speaks all languages.",
+    "es": "El equipo habla todos los idiomas."
+   }
+  },
+  {
+   "id": 21,
+   "q": "Potete consigliarmi un ristorante e prenotarlo?",
+   "a": {
+    "it": "Sì. Chiamiamo il locale e prenotiamo per te. Se è pieno, ti proponiamo alternative.",
+    "en": "Yes. We call the venue and book for you. If it is full, we suggest alternatives.",
+    "es": "Sí. Llamamos al local y reservamos por ti. Si está lleno, te proponemos alternativas."
+   }
+  },
+  {
+   "id": 22,
+   "q": "Fate servizio anche fuori stagione (inverno)?",
+   "a": {
+    "it": "Sì: il servizio è attivo tutto l'anno, con un operatore sempre disponibile.",
+    "en": "Yes: the service runs all year round, with an operator always available.",
+    "es": "Sí: el servicio funciona todo el año, con un operador siempre disponible."
+   }
+  }
+ ],
+ "nuove_domande_proposte": [
+  {
+   "q": {
+    "it": "Cosa succede se il locale è pieno?",
+    "en": "What happens if the venue is full?",
+    "es": "¿Qué pasa si el local está lleno?"
+   },
+   "a": {
+    "it": "Ti proponiamo alternative.",
+    "en": "We suggest alternatives.",
+    "es": "Te proponemos alternativas."
+   }
+  },
+  {
+   "q": {
+    "it": "Prenotare con Cilex costa di più?",
+    "en": "Does booking with Cilex cost more?",
+    "es": "¿Reservar con Cilex cuesta más?"
+   },
+   "a": {
+    "it": "No: prenotare con Cilex non costa nulla in più.",
+    "en": "No: booking with Cilex costs nothing extra.",
+    "es": "No: reservar con Cilex no cuesta nada más."
+   }
+  },
+  {
+   "q": {
+    "it": "Come vi contatto?",
+    "en": "How do I contact you?",
+    "es": "¿Cómo os contacto?"
+   },
+   "a": {
+    "it": "Supporto: cilexibiza@gmail.com. Sito: cilexibiza.com. (DA CONFERMARE da Alex: il repository è pubblico, l'email sarebbe visibile a tutti.)",
+    "en": "Support: cilexibiza@gmail.com. Website: cilexibiza.com. (TO CONFIRM by Alex: the repository is public, the email would be visible to everyone.)",
+    "es": "Soporte: cilexibiza@gmail.com. Web: cilexibiza.com. (POR CONFIRMAR por Alex: el repositorio es público, el correo sería visible para todos.)"
+   }
+  }
+ ],
+ "da_completare_da_alex": [
+  {
+   "id": 3,
+   "q": "Come funziona la prenotazione di una barca?"
+  },
+  {
+   "id": 4,
+   "q": "Che cosa è incluso nel noleggio barca (skipper, carburante, bibite)?"
+  },
+  {
+   "id": 5,
+   "q": "Offrite transfer da/per aeroporto e hotel?"
+  },
+  {
+   "id": 6,
+   "q": "Come compro i biglietti dei club?"
+  },
+  {
+   "id": 7,
+   "q": "I biglietti sono rimborsabili?"
+  },
+  {
+   "id": 8,
+   "q": "C'è un'età minima per entrare nei club?"
+  },
+  {
+   "id": 9,
+   "q": "Quali documenti servono all'ingresso?"
+  },
+  {
+   "id": 10,
+   "q": "Che dress code c'è nei club?"
+  },
+  {
+   "id": 11,
+   "q": "Quanto tempo prima devo scrivervi per una richiesta?"
+  },
+  {
+   "id": 14,
+   "q": "Come si ottiene una cena/chef privato o una villa?"
+  },
+  {
+   "id": 15,
+   "q": "Dove vi trovo fisicamente / come ci incontriamo?"
+  },
+  {
+   "id": 16,
+   "q": "Cosa succede se un evento viene cancellato o cambia line-up?"
+  },
+  {
+   "id": 17,
+   "q": "Come funziona il codice PR?"
+  },
+  {
+   "id": 20,
+   "q": "Organizzate feste private o eventi in villa?"
+  }
+ ]
+}
