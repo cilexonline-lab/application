@@ -12,7 +12,7 @@ import { LANGS, setLang, useLang, useT } from '../i18n';
 import { tap } from '../haptics';
 import { matchesTime, monthShort, TimeFilter, todayStr } from '../utils';
 import { leaveReview } from '../reviewLink';
-import { colors, radius, space } from '../theme';
+import { colors, luxury, radius, space, type } from '../theme';
 
 const QUICK: { kind: string; icon: IconName }[] = [
   { kind: 'table', icon: 'table' },
@@ -20,6 +20,11 @@ const QUICK: { kind: string; icon: IconName }[] = [
   { kind: 'concierge', icon: 'concierge' },
   { kind: 'apartment', icon: 'apartment' },
   { kind: 'villa', icon: 'villa' },
+];
+const SHORT: { key: string; label: string; icon: IconName; to: string }[] = [
+  { key: 'events', label: 'tonight', icon: 'clubs', to: 'Clubs' },
+  { key: 'map', label: 'tabMap', icon: 'map', to: 'Map3D' },
+  { key: 'plan', label: 'tabPlan', icon: 'plan', to: 'Plan' },
 ];
 const TIMES: TimeFilter[] = ['all', 'tonight', 'weekend', 'week'];
 const timeKey: Record<TimeFilter, string> = { all: 'all', tonight: 'tonight', weekend: 'weekend', week: 'week' };
@@ -62,6 +67,24 @@ export default function HomeScreen() {
         {!!name && <Text style={s.hello}>{t('hello')}, {name.split(' ')[0]}</Text>}
       </View>
 
+      <Text style={s.heroLine}>{t('heroTitle')}</Text>
+      <Pressable accessibilityRole="button" accessibilityLabel={t('worldStandard')} onPress={() => { tap(); nav.navigate('Clubs'); }} style={({ pressed }) => [s.world, s.worldStd, pressed && { opacity: 0.85 }]}>
+        <View style={{ flex: 1 }}>
+          <Text style={[s.worldKicker, { color: colors.brand }]}>{t('worldStandardKicker').toUpperCase()}</Text>
+          <Text style={[s.worldTitle, { color: colors.text }]}>{t('worldStandard')}</Text>
+          <Text style={s.worldSub}>{t('worldStandardSub')}</Text>
+        </View>
+        <Icon name="chevron" size={22} color={colors.brand} />
+      </Pressable>
+      <Pressable accessibilityRole="button" accessibilityLabel={t('worldLuxury')} onPress={() => { tap(); nav.navigate('Request', { kind: 'concierge' }); }} style={({ pressed }) => [s.world, s.worldLux, pressed && { opacity: 0.85 }]}>
+        <View style={{ flex: 1 }}>
+          <Text style={[s.worldKicker, type.luxury.kicker, { color: luxury.brand }]}>{t('worldLuxuryKicker').toUpperCase()}</Text>
+          <Text style={[s.worldTitle, type.luxury.title, { color: luxury.text }]}>{t('worldLuxury')}</Text>
+          <Text style={[s.worldSub, { color: luxury.muted }]}>{t('worldLuxurySub')}</Text>
+        </View>
+        <Icon name="chevron" size={22} color={luxury.brand} />
+      </Pressable>
+
       {tonight.length > 0 ? (
         <GoldCard>
           <Text style={s.goldKicker}>{t('tonightTitle').toUpperCase()}</Text>
@@ -76,10 +99,7 @@ export default function HomeScreen() {
           ))}
         </GoldCard>
       ) : (
-        <Card style={s.hero}>
-          <Text style={s.heroTitle}>{t('heroTitle')}</Text>
-          <Text style={s.heroSub}>{t('heroSub')}</Text>
-        </Card>
+        null
       )}
 
       {/* Barra "Scrivi al tuo concierge": niente IA, invio diretto su WhatsApp col messaggio pronto. */}
@@ -101,6 +121,16 @@ export default function HomeScreen() {
       </View>
 
       <View style={s.quickRow}>
+        {SHORT.map((q) => (
+          <Pressable key={q.key} accessibilityRole="button" accessibilityLabel={t(q.label)} onPress={() => { tap(); nav.navigate(q.to); }} style={({ pressed }) => [s.quick, pressed && { opacity: 0.8 }]}>
+            <View style={s.quickIcon}><Icon name={q.icon} size={22} color={colors.brand} /></View>
+            <Text style={s.quickLabel} numberOfLines={1}>{t(q.label)}</Text>
+          </Pressable>
+        ))}
+      </View>
+
+      <SectionTitle>{t('worldServices')}</SectionTitle>
+      <View style={s.quickRow}>
         {QUICK.map((q) => (
           <Pressable
             key={q.kind}
@@ -115,19 +145,6 @@ export default function HomeScreen() {
         ))}
       </View>
 
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={t('map3dTitle')}
-        onPress={() => { tap(); nav.navigate('Map3D'); }}
-        style={({ pressed }) => [s.mapCard, pressed && { opacity: 0.85 }]}
-      >
-        <View style={s.quickIcon}><Icon name="map" size={22} color={colors.brand} /></View>
-        <View style={{ flex: 1 }}>
-          <Text style={s.mapTitle}>{t('map3dTitle')}</Text>
-          <Text style={s.mapSub}>{t('map3dSub')}</Text>
-        </View>
-        <Icon name="chevron" size={20} color={colors.muted} />
-      </Pressable>
 
       <Pressable
         accessibilityRole="button"
@@ -235,6 +252,13 @@ const s = StyleSheet.create({
   reviewTxt: { color: colors.text, fontSize: 15, lineHeight: 22 },
   reviewBy: { color: colors.muted, fontSize: 12, letterSpacing: 0.3 },
   reviewLeave: { color: colors.brand, fontSize: 14, fontWeight: '700', marginTop: 12, alignSelf: 'flex-start' },
+  heroLine: { color: colors.text, fontSize: 18, fontWeight: '700', textAlign: 'center', lineHeight: 25, marginBottom: space.md },
+  world: { flexDirection: 'row', alignItems: 'center', borderRadius: radius.lg, borderWidth: 1, padding: space.md, minHeight: 96, marginBottom: space.sm },
+  worldStd: { backgroundColor: colors.card, borderColor: colors.brand },
+  worldLux: { backgroundColor: luxury.bg, borderColor: luxury.brandDark, borderWidth: StyleSheet.hairlineWidth * 2 },
+  worldKicker: { fontSize: 11, fontWeight: '800', letterSpacing: 1.5 },
+  worldTitle: { fontSize: 26, fontWeight: '800', marginTop: 2 },
+  worldSub: { color: colors.muted, fontSize: 13, marginTop: 4, lineHeight: 18 },
   askBar: { flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: colors.card, borderRadius: 999, paddingVertical: 8, paddingLeft: 16, paddingRight: 8, marginTop: space.md },
   askBarInput: { flex: 1, minWidth: 0, color: colors.text, fontSize: 15, paddingVertical: 8 },
   askBarGo: { width: 34, height: 34, borderRadius: 17, backgroundColor: colors.brand, alignItems: 'center', justifyContent: 'center' },
