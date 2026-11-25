@@ -32,7 +32,7 @@ export default function ClubDetailScreen() {
         {/* Azione principale: richiesta a Cilex (modulo con data, persone e ID richiesta → WhatsApp). */}
         <Button icon="table" label={t('bookTableCilex')} onPress={() => nav.navigate('Request', { kind: 'table', clubId: club.id })} />
         <Button label={club.ticketUrl ? t('tickets') : t('ticketsSoon')} variant="ghost" disabled={!club.ticketUrl} onPress={() => Linking.openURL(club.ticketUrl)} />
-        <Button icon="share" label={t('seePhotos')} variant="ghost" onPress={() => Linking.openURL(seePhotosUrl(club.name, club.area))} />
+        <Button icon="camera" label={t('seePhotos')} variant="ghost" onPress={() => Linking.openURL(seePhotosUrl(club.name, club.area))} />
         <Button icon="map" label={t('openMaps')} variant="ghost" onPress={() => Linking.openURL(`http://maps.apple.com/?q=${q}`)} />
       </View>
 

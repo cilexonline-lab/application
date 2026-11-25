@@ -17,9 +17,9 @@ import { colors, radius, space } from '../theme';
 
 // Home pulita: un solo messaggio, un'azione principale (scrivi al concierge), due mondi, gli eventi in un carosello.
 const DISCOVER: { key: string; label: string; icon: IconName; to: string }[] = [
-  { key: 'itin', label: 'itinTitle', icon: 'plan', to: 'Itineraries' },
+  { key: 'itin', label: 'itinTitle', icon: 'compass', to: 'Itineraries' },
   { key: 'map', label: 'tabMap', icon: 'map', to: 'Map3D' },
-  { key: 'plan', label: 'tabPlan', icon: 'clubs', to: 'Plan' },
+  { key: 'plan', label: 'tabPlan', icon: 'plan', to: 'Plan' },
 ];
 
 export default function HomeScreen() {

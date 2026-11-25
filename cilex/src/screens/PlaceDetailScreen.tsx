@@ -44,7 +44,7 @@ export default function PlaceDetailScreen() {
         )}
         {!!p.link && <Button label={t('openLink')} variant="ghost" onPress={() => Linking.openURL(p.link!)} />}
         {seePhotosUrl(p.name, p.area, p.link) !== p.link && (
-          <Button icon="share" label={t('seePhotos')} variant="ghost" onPress={() => Linking.openURL(seePhotosUrl(p.name, p.area, p.link))} />
+          <Button icon="camera" label={t('seePhotos')} variant="ghost" onPress={() => Linking.openURL(seePhotosUrl(p.name, p.area, p.link))} />
         )}
         <Button icon="map" label={t('openMaps2')} variant="ghost" onPress={() => Linking.openURL(`http://maps.apple.com/?${q}`)} />
       </View>

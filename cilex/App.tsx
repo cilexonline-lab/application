@@ -25,6 +25,7 @@ import ItinerariesScreen from './src/screens/ItinerariesScreen';
 import ProductsScreen from './src/screens/ProductsScreen';
 import StandardScreen from './src/screens/StandardScreen';
 import LuxuryScreen from './src/screens/LuxuryScreen';
+import LuxuryRequestScreen from './src/screens/LuxuryRequestScreen';
 import StayDetailScreen from './src/screens/StayDetailScreen';
 import { StoreProvider } from './src/store';
 import { ContentProvider } from './src/content';
@@ -58,7 +59,7 @@ function Tabs() {
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: t('tabHome'), headerShown: false, tabBarIcon: icon('home') }} />
-      <Tab.Screen name="Products" component={ProductsScreen} options={{ title: t('tabProducts'), headerShown: false, tabBarIcon: icon('concierge') }} />
+      <Tab.Screen name="Products" component={ProductsScreen} options={{ title: t('tabProducts'), headerShown: false, tabBarIcon: icon('products') }} />
       {/* Explore resta raggiungibile (Prodotti → Standard) ma fuori dalla barra: 6 voci, non 7. */}
       <Tab.Screen name="Clubs" component={ExploreScreen} options={{ title: t('tabClubs'), headerShown: false, tabBarIcon: icon('clubs'), tabBarItemStyle: { display: 'none' } }} />
       <Tab.Screen name="Map3D" component={Map3DScreen} options={{ title: t('tabMap'), headerShown: false, tabBarIcon: icon('map') }} />
@@ -84,6 +85,17 @@ const heroHeader = ({ navigation }: any) => ({
   headerTransparent: true,
   headerStyle: { backgroundColor: 'transparent' },
   headerLeft: () => (navigation.canGoBack() ? <HeroBack onPress={() => navigation.goBack()} /> : null),
+});
+
+// Header delle schermate Luxury: nero profondo, tasto indietro oro.
+const luxuryHeader = ({ navigation }: any) => ({
+  title: '',
+  headerStyle: { backgroundColor: '#030303' },
+  headerLeft: () => (navigation.canGoBack() ? (
+    <Pressable accessibilityRole="button" accessibilityLabel="Back" onPress={() => navigation.goBack()} hitSlop={12} style={{ paddingLeft: 8 }}>
+      <Text style={{ color: '#D9B96E', fontSize: 32, lineHeight: 34, paddingRight: 12 }}>‹</Text>
+    </Pressable>
+  ) : null),
 });
 
 export default function App() {
@@ -118,7 +130,8 @@ export default function App() {
           <Stack.Screen name="PlaceDetail" component={PlaceDetailScreen} options={{ title: '' }} />
           <Stack.Screen name="Itineraries" component={ItinerariesScreen} options={{ title: '' }} />
           <Stack.Screen name="Standard" component={StandardScreen} options={{ title: '' }} />
-          <Stack.Screen name="Luxury" component={LuxuryScreen} options={{ title: '', headerStyle: { backgroundColor: '#030303' }, headerTintColor: '#D9B96E' }} />
+          <Stack.Screen name="Luxury" component={LuxuryScreen} options={luxuryHeader} />
+          <Stack.Screen name="LuxuryRequest" component={LuxuryRequestScreen} options={luxuryHeader} />
           <Stack.Screen name="Stays" component={StaysScreen} options={{ title: '' }} />
           <Stack.Screen name="StayDetail" component={StayDetailScreen} options={{ title: '' }} />
           <Stack.Screen name="Request" component={RequestScreen} options={{ title: '' }} />

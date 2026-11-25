@@ -8,11 +8,11 @@ import { colors, radius, space } from '../theme';
 
 type Item = { key: string; label: string; icon: IconName; go: (nav: any) => void };
 const ITEMS: Item[] = [
-  { key: 'clubs', label: 'stdClubs', icon: 'clubs', go: (n) => n.navigate('Clubs', { seg: 'club' }) },
-  { key: 'beach', label: 'stdBeach', icon: 'map', go: (n) => n.navigate('Clubs', { seg: 'beach' }) },
-  { key: 'food', label: 'stdFood', icon: 'table', go: (n) => n.navigate('Clubs', { seg: 'restaurant' }) },
+  { key: 'clubs', label: 'stdClubs', icon: 'music', go: (n) => n.navigate('Clubs', { seg: 'club' }) },
+  { key: 'beach', label: 'stdBeach', icon: 'umbrella', go: (n) => n.navigate('Clubs', { seg: 'beach' }) },
+  { key: 'food', label: 'stdFood', icon: 'dining', go: (n) => n.navigate('Clubs', { seg: 'restaurant' }) },
   { key: 'map', label: 'tabMap', icon: 'map', go: (n) => n.navigate('Map3D') },
-  { key: 'table', label: 'table', icon: 'concierge', go: (n) => n.navigate('Request', { kind: 'table' }) },
+  { key: 'table', label: 'table', icon: 'table', go: (n) => n.navigate('Request', { kind: 'table' }) },
 ];
 
 // Standard: identità CILEX (nero + azzurro). Club, eventi, ristoranti, beach club, Selezione Cilex.

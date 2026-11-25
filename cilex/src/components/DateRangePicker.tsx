@@ -6,11 +6,12 @@ import { useLang } from '../i18n';
 import { todayStr } from '../utils';
 import { colors, radius, space } from '../theme';
 
-type Props = { start: string; end: string; onChange: (start: string, end: string) => void; hint?: string; single?: boolean };
+type Props = { start: string; end: string; onChange: (start: string, end: string) => void; hint?: string; single?: boolean; accent?: string };
 const iso = (y: number, m: number, d: number) => todayStr(new Date(y, m, d));
 
 // single = un solo giorno (tavolo, barca…); altrimenti periodo arrivo → partenza.
-export default function DateRangePicker({ start, end, onChange, hint, single }: Props) {
+export default function DateRangePicker({ start, end, onChange, hint, single, accent }: Props) {
+  const ac = accent || colors.brand;
   const lang = useLang();
   const today = todayStr();
   const first = start || today;
@@ -66,9 +67,9 @@ export default function DateRangePicker({ start, end, onChange, hint, single }: 
               accessibilityState={{ disabled: past, selected: isStart || isEnd }}
               disabled={past}
               onPress={() => pick(day)}
-              style={[s.cell, inRange && s.inRange, (isStart || isEnd) && s.edge, isStart && !!end && s.edgeL, isEnd && s.edgeR]}
+              style={[s.cell, inRange && [s.inRange, !!accent && { backgroundColor: ac + '29' }], (isStart || isEnd) && [s.edge, { backgroundColor: ac }], isStart && !!end && s.edgeL, isEnd && s.edgeR]}
             >
-              <Text style={[s.day, past && { opacity: 0.3 }, (isStart || isEnd) && { color: '#001418', fontWeight: '800' }, day === today && !isStart && !isEnd && { color: colors.brand }]}>{+day.slice(8)}</Text>
+              <Text style={[s.day, past && { opacity: 0.3 }, (isStart || isEnd) && { color: '#001418', fontWeight: '800' }, day === today && !isStart && !isEnd && { color: ac }]}>{+day.slice(8)}</Text>
             </Pressable>
           );
         })}
