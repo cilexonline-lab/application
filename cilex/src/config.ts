@@ -2,6 +2,9 @@
 export const BRAND_NAME = 'CILEX';
 export const BRAND_TAGLINE = 'Ibiza Luxury Concierge';
 
+// Link che il cliente condivide con gli amici ("Invita un amico"). Ora: sito pubblico su GitHub Pages; sostituire col link App Store/dominio Cilex quando esiste.
+export const SHARE_URL = 'https://cilexonline-lab.github.io/application/';
+
 // Numero WhatsApp che riceve le richieste (formato internazionale, SOLO cifre, es. 34600000000).
 export const WHATSAPP_NUMBER = '393923689968';
 
