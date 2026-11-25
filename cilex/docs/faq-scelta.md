@@ -43,7 +43,7 @@ Consigliate da togliere: 6, 9, 13, 15, 17, 20, 30.
 Da verificare: le risposte con date o regole (tassa turistica, orari club, trasporti) cambiano ogni anno.
 
 ## Da sapere prima di usarle
-- Le 30 FAQ sono solo in italiano: servono EN e ES prima di mostrarle in app. Per ora servono al team (risposte su WhatsApp).
+- Le 23 FAQ hanno ora anche EN e ES (campi `en` e `es`), tradotte dall'italiano senza aggiungere informazioni. Da far rileggere a un madrelingua prima di mostrarle in app.
 - Le date "verificato 24/11" nel file vanno riconfermate: i link ufficiali non sono stati riaperti in questa sessione (proxy). Chiamale DA VERIFICARE finché una persona non apre le fonti.
 
 ## Risposte sui servizi Cilex (le scrive Alex)
