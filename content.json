@@ -1,6 +1,6 @@
 {
  "_info": "Generato da cilex/tools/export-content.ts – non modificare a mano: cambia i dati in cilex/src/data o cilex/content/faq-team.json.",
- "generated": "2026-11-25T08:42:23.258Z",
+ "generated": "2026-11-25T11:23:00.265Z",
  "clubs": [
   {
    "id": "unvrs",
@@ -269,7 +269,7 @@
    "name": "Experimental Beach",
    "area": "Cap des Falcó",
    "description": "",
-   "link": "https://www.experimentalbeachibiza.com/",
+   "link": "https://www.experimentalgroup.com/ibiza/experimental-beach-ibiza",
    "lat": 38.8516828,
    "lng": 1.3676351,
    "bookable": true
@@ -291,7 +291,6 @@
    "name": "Cotton Beach Club",
    "area": "Cala Tarida",
    "description": "",
-   "link": "https://www.cottonlifestyle.com/cotton-beach-club-ibiza/",
    "lat": 38.9403501,
    "lng": 1.2362461,
    "bookable": true
@@ -379,7 +378,6 @@
    "name": "Es Boldado",
    "area": "Cala d'Hort",
    "description": "",
-   "link": "https://esboldadoibiza.com/",
    "lat": 38.8904535,
    "lng": 1.2212321,
    "bookable": true
@@ -461,7 +459,6 @@
    "name": "Sunset Cala Conta",
    "area": "Cala Comte",
    "description": "",
-   "link": "https://sunsetcalaconta.com/en/",
    "lat": 38.9627176,
    "lng": 1.220812
   },
@@ -481,7 +478,6 @@
    "name": "Kumharas",
    "area": "Cala de Bou",
    "description": "",
-   "link": "https://kumharas.org/en/",
    "lat": 38.9721715,
    "lng": 1.2825561
   },
@@ -515,5 +511,162 @@
  ],
  "stays": [],
  "reviews": [],
- "faq": []
+ "faq": [],
+ "itineraries": [
+  {
+   "id": "una-giornata-a-ibiza",
+   "title": {
+    "it": "Una giornata a Ibiza",
+    "en": "A day in Ibiza",
+    "es": "Un día en Ibiza"
+   },
+   "intro": {
+    "it": "Dal mare del sud al tramonto sulla costa ovest, poi cena a Sant Antoni.",
+    "en": "From the southern sea to sunset on the west coast, then dinner in Sant Antoni.",
+    "es": "Del mar del sur al atardecer en la costa oeste y cena en Sant Antoni."
+   },
+   "season": {
+    "it": "Stagione indicativa: da maggio a ottobre.",
+    "en": "Indicative season: May to October.",
+    "es": "Temporada orientativa: de mayo a octubre."
+   },
+   "stops": [
+    {
+     "ref": "place",
+     "id": "ses-salines",
+     "role": "beach"
+    },
+    {
+     "ref": "place",
+     "id": "sa-trinxa",
+     "role": "lunch",
+     "note": {
+      "it": "A Ses Salines.",
+      "en": "At Ses Salines.",
+      "es": "En Ses Salines."
+     }
+    },
+    {
+     "ref": "place",
+     "id": "cafe-del-mar",
+     "role": "sunset",
+     "note": {
+      "it": "Tramonto a Sant Antoni.",
+      "en": "Sunset in Sant Antoni.",
+      "es": "Atardecer en Sant Antoni."
+     }
+    },
+    {
+     "ref": "place",
+     "id": "sa-capella",
+     "role": "dinner"
+    }
+   ]
+  },
+  {
+   "id": "notte-al-pacha",
+   "title": {
+    "it": "Notte al Pacha",
+    "en": "A night at Pacha",
+    "es": "Noche en Pacha"
+   },
+   "intro": {
+    "it": "Pomeriggio a Playa d'en Bossa, cena a Talamanca, poi Ibiza Città: Pacha e Chinois sono vicini.",
+    "en": "Afternoon in Playa d'en Bossa, dinner in Talamanca, then Ibiza Town: Pacha and Chinois are close to each other.",
+    "es": "Tarde en Playa d'en Bossa, cena en Talamanca y después Ibiza Ciudad: Pacha y Chinois están cerca."
+   },
+   "season": {
+    "it": "Stagione indicativa: da maggio a ottobre.",
+    "en": "Indicative season: May to October.",
+    "es": "Temporada orientativa: de mayo a octubre."
+   },
+   "stops": [
+    {
+     "ref": "place",
+     "id": "nassau",
+     "role": "afternoon"
+    },
+    {
+     "ref": "place",
+     "id": "sa-punta",
+     "role": "dinner",
+     "note": {
+      "it": "Ristorante a Talamanca.",
+      "en": "Restaurant in Talamanca.",
+      "es": "Restaurante en Talamanca."
+     }
+    },
+    {
+     "ref": "club",
+     "id": "pacha",
+     "role": "night",
+     "note": {
+      "it": "Le date e i biglietti sono nella sezione Eventi.",
+      "en": "Dates and tickets are in the Events section.",
+      "es": "Fechas y entradas están en la sección Eventos."
+     }
+    },
+    {
+     "ref": "club",
+     "id": "chinois",
+     "role": "night",
+     "note": {
+      "it": "Per chi vuole una notte intera: seconda tappa a Marina Ibiza.",
+      "en": "For those who want a full night: a second stop at Marina Ibiza.",
+      "es": "Para quien quiere una noche entera: segunda parada en Marina Ibiza."
+     }
+    }
+   ]
+  },
+  {
+   "id": "mare-e-tramonto",
+   "title": {
+    "it": "Giorno di mare e tramonto",
+    "en": "Sea and sunset day",
+    "es": "Día de mar y atardecer"
+   },
+   "intro": {
+    "it": "Le calette della costa ovest, una dopo l’altra, fino al tramonto.",
+    "en": "The coves of the west coast, one after another, until sunset.",
+    "es": "Las calas de la costa oeste, una tras otra, hasta el atardecer."
+   },
+   "season": {
+    "it": "Stagione indicativa: da maggio a ottobre.",
+    "en": "Indicative season: May to October.",
+    "es": "Temporada orientativa: de mayo a octubre."
+   },
+   "stops": [
+    {
+     "ref": "place",
+     "id": "cala-bassa",
+     "role": "beach"
+    },
+    {
+     "ref": "place",
+     "id": "cbbc",
+     "role": "lunch",
+     "note": {
+      "it": "Beach club sulla stessa spiaggia.",
+      "en": "Beach club on the same beach.",
+      "es": "Beach club en la misma playa."
+     }
+    },
+    {
+     "ref": "place",
+     "id": "cala-comte",
+     "role": "beach"
+    },
+    {
+     "ref": "place",
+     "id": "sunset-cala-conta",
+     "role": "sunset",
+     "note": {
+      "it": "Già Sunset Ashram.",
+      "en": "Formerly Sunset Ashram.",
+      "es": "Antes Sunset Ashram."
+     }
+    }
+   ]
+  }
+ ]
 }
