@@ -1,5 +1,5 @@
 {
- "_bozza": "BOZZA da approvare da Alex. Domande e risposte su Ibiza con fonte, verificate il 24/11/2026. Non vengono lette dall'app né dall'IA finché non vengono copiate in faq-team.json. Niente prezzi né orari.",
+ "_bozza": "BOZZA da approvare da Alex. Domande e risposte su Ibiza con fonte, verificate il 24/11/2026. Non vengono lette dall'app né dall'IA finché non vengono copiate in faq-team.json. Niente prezzi né orari. Alex ha scelto 23 FAQ su 30 il 25/11.",
  "faq": [
   {
    "q": "Qual è l'aeroporto di Ibiza e qual è il suo codice?",
@@ -32,12 +32,6 @@
    "verificato": "2026-11-24"
   },
   {
-   "q": "Dove trovo gli orari aggiornati degli autobus?",
-   "a": "Sul sito ufficiale di Alsa Ibiza, nella sezione orari. Dal 1° aprile 2026 è in servizio una nuova rete di linee: il sito pubblica una tabella di equivalenza tra le vecchie e le nuove linee. Gli orari cambiano con la stagione, quindi vanno sempre verificati prima di partire.",
-   "fonte": "https://www.alsaibiza.es/en/schedules",
-   "verificato": "2026-11-24"
-  },
-  {
    "q": "Da dove parte il traghetto per Formentera e dove arriva?",
    "a": "I traghetti partono dal porto di Ibiza (Eivissa città) e arrivano al porto di La Savina, nel nord di Formentera, che è l'unico punto di accesso via mare dell'isola.",
    "fonte": "https://www.balearia.com/en/routes-timetables/ferry-ibiza-formentera",
@@ -47,12 +41,6 @@
    "q": "Quanto dura la traversata Ibiza-Formentera?",
    "a": "Baleària indica una traversata di circa 30 minuti con i suoi traghetti veloci. Partenze e orari variano con la stagione: vanno verificati sul sito dell'operatore.",
    "fonte": "https://www.balearia.com/en/routes-timetables/ferry-ibiza-formentera",
-   "verificato": "2026-11-24"
-  },
-  {
-   "q": "Quali compagnie collegano Ibiza e Formentera?",
-   "a": "Tra gli operatori della tratta ci sono Trasmapi (trasmapi.com) e Baleària (balearia.com, anche tramite il suo sito Formentera Express). Orari e biglietti vanno verificati sui siti ufficiali degli operatori.",
-   "fonte": "https://www.trasmapi.com/",
    "verificato": "2026-11-24"
   },
   {
@@ -74,32 +62,14 @@
    "verificato": "2026-11-24"
   },
   {
-   "q": "Cosa comprende il sito UNESCO di Ibiza?",
-   "a": "Comprende quattro elementi: la città alta fortificata (Dalt Vila), l'insediamento fenicio di Sa Caleta, la necropoli di Puig des Molins e le praterie marine di Posidonia oceanica, considerate da UNESCO le meglio conservate del Mediterraneo.",
-   "fonte": "https://whc.unesco.org/en/list/417/",
-   "verificato": "2026-11-24"
-  },
-  {
    "q": "Cos'è Dalt Vila?",
    "a": "Dalt Vila è la città alta fortificata di Ibiza. Secondo UNESCO è un esempio eccezionale di architettura militare rinascimentale: le mura furono costruite nel XVI secolo e influenzarono le fortificazioni spagnole in America.",
    "fonte": "https://whc.unesco.org/en/list/417/",
    "verificato": "2026-11-24"
   },
   {
-   "q": "Ses Feixes e le saline fanno parte del sito UNESCO?",
-   "a": "No, non sono nel bene iscritto. UNESCO cita Ses Feixes e le antiche saline come elementi della zona cuscinetto, per i quali è in valutazione una futura inclusione.",
-   "fonte": "https://whc.unesco.org/en/list/417/",
-   "verificato": "2026-11-24"
-  },
-  {
    "q": "Cos'è il Parco Naturale di Ses Salines?",
    "a": "Il Parco Naturale di Ses Salines d'Eivissa i Formentera si estende dal sud di Ibiza al nord di Formentera, compreso il braccio di mare tra le due isole, nei comuni di Sant Josep de sa Talaia e Formentera. È stato dichiarato Parco Naturale con la Legge 17/2001 ed è gestito dal Govern balear.",
-   "fonte": "https://www.caib.es/sites/espaisnaturalsprotegits/es/parque_natural_de_ses_salines_de_ibiza_y_formentera/",
-   "verificato": "2026-11-24"
-  },
-  {
-   "q": "Cosa è vietato nel Parco Naturale di Ses Salines?",
-   "a": "Sono vietati, tra l'altro: moto d'acqua, pesca subacquea, sbarco sugli isolotti (tranne s'Espalmador, con regole proprie), bagni di fango nella laguna di s'Espalmador, campeggio e pernottamento in caravan, raccolta di flora e fauna, e camminare sulle dune fuori dai sentieri segnalati.",
    "fonte": "https://www.caib.es/sites/espaisnaturalsprotegits/es/parque_natural_de_ses_salines_de_ibiza_y_formentera/",
    "verificato": "2026-11-24"
   },
@@ -112,12 +82,6 @@
   {
    "q": "Dove si può ancorare la barca nel Parco di Ses Salines?",
    "a": "Solo sui fondali di sabbia ammessi dalla normativa: è vietato ancorare sulla posidonia e nelle zone di ancoraggio vietato. Nei campi boe regolamentati (spiaggia di Ses Salines, baia di s'Alga a s'Espalmador, Caló de s'Oli) bisogna ormeggiarsi alle boe predisposte.",
-   "fonte": "https://www.caib.es/sites/cuidamposidonia/es/normativa_de_aplicacian_en_los_campos_de_boyas_regulados/",
-   "verificato": "2026-11-24"
-  },
-  {
-   "q": "Si può ancorare sulla posidonia alle Baleari?",
-   "a": "No. Il Decreto balear 25/2018 sulla conservazione della Posidonia oceanica vieta in generale l'ancoraggio sulla posidonia e qualsiasi ancoraggio incontrollato. L'uso di boe a basso impatto debitamente autorizzate è consentito. La mappa ufficiale delle praterie è su ideib.caib.es/posidonia.",
    "fonte": "https://www.caib.es/sites/cuidamposidonia/es/normativa_de_aplicacian_en_los_campos_de_boyas_regulados/",
    "verificato": "2026-11-24"
   },
@@ -173,12 +137,6 @@
    "q": "La tessera sanitaria europea (TEAM) vale a Ibiza?",
    "a": "Sì, ma solo nella sanità pubblica spagnola. Bisogna verificare che il medico o il centro sia pubblico e mostrare la tessera all'accettazione. Se viene chiesto di pagare in anticipo, non si tratta del servizio pubblico e la tessera non è accettata. Le cure private non sono rimborsate.",
    "fonte": "https://employment-social-affairs.ec.europa.eu/policies-and-activities/moving-working-europe/eu-social-security-coordination/european-health-insurance-card/how-use-card/spain-european-health-insurance-card_en",
-   "verificato": "2026-11-24"
-  },
-  {
-   "q": "Quali lingue si parlano ufficialmente a Ibiza?",
-   "a": "Secondo l'articolo 4 dello Statuto di Autonomia delle Baleari, il catalano, lingua propria delle isole, è lingua ufficiale insieme al castigliano (spagnolo). Per questo nomi e cartelli compaiono spesso in entrambe le forme (es. Eivissa/Ibiza).",
-   "fonte": "https://www.caib.es/sites/institutestudisautonomics/f/417814",
    "verificato": "2026-11-24"
   }
  ],

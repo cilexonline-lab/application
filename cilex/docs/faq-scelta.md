@@ -1,4 +1,8 @@
-# Scelta FAQ (30 → 20–25)
+# Scelta FAQ: decisione di Alex 25/11, 23 FAQ tenute su 30
+
+Tolte le 7 consigliate (6, 9, 13, 15, 17, 20, 30) da `faq-ibiza-bozza.json`. Restano 23.
+
+## Lista originale (30)
 
 Segna con una X le domande da tenere. In fondo i miei consigli (7 da togliere = 23 restano).
 
@@ -41,3 +45,6 @@ Da verificare: le risposte con date o regole (tassa turistica, orari club, trasp
 ## Da sapere prima di usarle
 - Le 30 FAQ sono solo in italiano: servono EN e ES prima di mostrarle in app. Per ora servono al team (risposte su WhatsApp).
 - Le date "verificato 24/11" nel file vanno riconfermate: i link ufficiali non sono stati riaperti in questa sessione (proxy). Chiamale DA VERIFICARE finché una persona non apre le fonti.
+
+## Risposte sui servizi Cilex (le scrive Alex)
+Orari di risposta, pagamenti, cosa include "Prenota": sono in `faq-team.json` con risposta vuota (`"a": ""`). **DA COMPLETARE da Alex.** Finché mancano non vanno né all'IA né in app (il generatore salta le voci vuote). Non sono state inventate.
