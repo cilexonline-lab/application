@@ -1,5 +1,5 @@
 {
- "_bozza": "BOZZA da approvare da Alex (fatti dati da Alex il 25/11 tramite coordinamento). NON mostrare in app né all'IA finché Alex non approva e i testi non vengono copiati in faq-team.json. Mai scrivere 'partner' o 'partner ufficiale': solo Tantra e Rigatoni hanno un accordo; per gli altri locali scrivere 'prenotiamo noi per te'.",
+ "_bozza": "BOZZA da approvare da Alex (fatti dati da Alex il 25/11 tramite coordinamento). NON mostrare in app né all'IA finché Alex non approva e i testi non vengono copiati in faq-team.json. Mai scrivere 'partner' o 'partner ufficiale': solo Tantra e Rigatoni hanno un accordo; per gli altri locali scrivere 'prenotiamo noi per te'. Confermato da Alex il 25/11: 'Rispondiamo in tutte le lingue'; partner solo Tantra e Rigatoni.",
  "faq": [
   {
    "id": 0,
@@ -41,9 +41,9 @@
    "id": 13,
    "q": "In che lingue parlate con i clienti?",
    "a": {
-    "it": "Il team parla tutte le lingue.",
-    "en": "The team speaks all languages.",
-    "es": "El equipo habla todos los idiomas."
+    "it": "Rispondiamo in tutte le lingue.",
+    "en": "We reply in all languages.",
+    "es": "Respondemos en todos los idiomas."
    }
   },
   {
@@ -59,9 +59,9 @@
    "id": 19,
    "q": "Quali lingue parla il team?",
    "a": {
-    "it": "Il team parla tutte le lingue.",
-    "en": "The team speaks all languages.",
-    "es": "El equipo habla todos los idiomas."
+    "it": "Rispondiamo in tutte le lingue.",
+    "en": "We reply in all languages.",
+    "es": "Respondemos en todos los idiomas."
    }
   },
   {
