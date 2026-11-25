@@ -19,6 +19,9 @@ export const REVIEW_URL = '';
 // Obbligatori per la pubblicazione su App Store.
 export const PRIVACY_URL = '';
 export const SUPPORT_URL = '';
+// Contatti ufficiali (confermati da Alex, 25/11/2026).
+export const SUPPORT_EMAIL = 'cilexibiza@gmail.com';
+export const SITE_URL = 'https://cilexibiza.com';
 
 // Mostra eventi di esempio (marcati DEMO). Mettere false quando si inseriscono eventi reali.
 export const SHOW_DEMO_DATA = false;
