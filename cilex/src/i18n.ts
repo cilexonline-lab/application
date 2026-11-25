@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 type Dict = Record<string, string>;
 
 const en: Dict = {
+  cqTitle: 'Write to your concierge', cqSub: 'Tell us what you need, in your own words. WhatsApp opens with your message ready: just tap Send.', cqPlaceholder: 'Write your message…', cqSend: 'Send on WhatsApp', cqReply: 'A person from the team replies, 24 hours a day', cqTable: 'I would like a VIP table for…', cqBoat: 'I would like to rent a boat for…', cqVilla: 'I am looking for a villa for…', cqTransfer: 'I need a transfer from/to…', cqTonight: 'What do you recommend for tonight?', cqKind: 'Message', cqLang: 'App language', homeAsk: 'Write to your concierge…',
   reqListTitle: 'Your requests', reqListNote: 'Saved only on this phone. The team confirms every request on WhatsApp.', reqListClear: 'Clear list',
   prefsTitle: 'Your preferences', prefsNote: 'Saved only on this phone. We add them to your requests so the team can tailor the answer. Optional.', prefsDiet: 'Allergies / food needs', prefsMusic: 'Music you like', prefsOccasion: 'Occasion (birthday, honeymoon…)', prefsSave: 'Save preferences', prefsSaved: 'Saved', prefsMsg: 'Preferences',
   tabAsk: 'Ask', askTitle: 'Ask about Ibiza', askSub: 'Beaches, getting around, nightlife, what to wear… ask anything.',
@@ -16,7 +17,7 @@ const en: Dict = {
   askTeamShort: 'Team', askHandoff: 'Hi Cilex! I am writing from the app. My questions:',
   reqStep1: 'Choose the service and the date', reqStep2: 'WhatsApp opens with the message ready: tap Send', reqStep3: 'The Cilex team replies with availability and conditions', reqSentTitle: 'Request ready on WhatsApp', reqSentBody: 'Remember to tap Send in WhatsApp: only then does the team receive it.', reqReopen: 'Reopen WhatsApp',
   placesAskBody: 'In the meantime, ask the Cilex team for a tip: they reply on WhatsApp.', placesAskBtn: 'Ask for a tip', placesAskMsg: 'Hi Cilex! I would like a tip for:',
-  homeAsk: 'Ask Cilex anything…',
+ 
   reviewsTitle: 'What our guests say', reviewsLeave: 'Leave a review', reviewWaMsg: 'Hi Cilex! I would like to leave a review:', src_google: 'Google', src_trustpilot: 'Trustpilot', src_tripadvisor: 'Tripadvisor', src_whatsapp: 'WhatsApp', src_email: 'Email', src_app: 'Cilex app', tripDoneTitle: 'How was Ibiza?', tripDoneBody: 'Thank you for choosing Cilex. Your opinion helps other guests and helps us improve.', tripDoneTeam: 'Your next trip',
   bookTableCilex: 'Book a table with Cilex', bookWithCilex: 'Book with Cilex', askCilex: 'Ask Cilex', noteBook: 'Booking', noteInfo: 'Information about',
   sugg1: 'Best beaches for sunset?', sugg2: 'How do I get around Ibiza at night?', sugg3: 'What should I wear to a club?', sugg4: 'What can I do during the day?',
@@ -57,6 +58,7 @@ const en: Dict = {
   remTitleArtist: '{artist} plays today', remBodyArtist: '{title} · {club}', remTitlePlan: 'Today in your plan', remBodyPlan: '{title} · {club}',
 };
 const it: Dict = {
+  cqTitle: 'Scrivi al tuo concierge', cqSub: 'Dicci cosa ti serve, con parole tue. Si apre WhatsApp con il messaggio già pronto: tocca Invia.', cqPlaceholder: 'Scrivi il tuo messaggio…', cqSend: 'Invia su WhatsApp', cqReply: 'Risponde una persona del team, 24 ore su 24', cqTable: 'Vorrei un tavolo VIP per…', cqBoat: 'Vorrei noleggiare una barca per…', cqVilla: 'Cerco una villa per…', cqTransfer: 'Mi serve un transfer da/per…', cqTonight: 'Cosa mi consigliate per stasera?', cqKind: 'Messaggio', cqLang: 'Lingua dell’app', homeAsk: 'Scrivi al tuo concierge…',
   reqListTitle: 'Le tue richieste', reqListNote: 'Salvate solo su questo telefono. Il team conferma ogni richiesta su WhatsApp.', reqListClear: 'Svuota elenco',
   prefsTitle: 'Le tue preferenze', prefsNote: 'Salvate solo su questo telefono. Le aggiungiamo alle tue richieste così il team risponde su misura. Facoltative.', prefsDiet: 'Allergie / esigenze alimentari', prefsMusic: 'Musica che ti piace', prefsOccasion: 'Occasione (compleanno, viaggio di nozze…)', prefsSave: 'Salva preferenze', prefsSaved: 'Salvate', prefsMsg: 'Preferenze',
   tabAsk: 'Chiedi', askTitle: 'Chiedi su Ibiza', askSub: 'Spiagge, spostamenti, vita notturna, cosa mettere… chiedi pure.',
@@ -69,7 +71,7 @@ const it: Dict = {
   askTeamShort: 'Team', askHandoff: 'Ciao Cilex! Vi scrivo dall’app. Le mie domande:',
   reqStep1: 'Scegli il servizio e la data', reqStep2: 'Si apre WhatsApp con il messaggio pronto: premi Invia', reqStep3: 'Il team Cilex ti risponde con disponibilità e condizioni', reqSentTitle: 'Richiesta pronta su WhatsApp', reqSentBody: 'Ricordati di premere Invia in WhatsApp: solo così il team la riceve.', reqReopen: 'Riapri WhatsApp',
   placesAskBody: 'Intanto chiedi un consiglio al team Cilex: ti risponde su WhatsApp.', placesAskBtn: 'Chiedi un consiglio', placesAskMsg: 'Ciao Cilex! Vorrei un consiglio per:',
-  homeAsk: 'Chiedi a Cilex…',
+ 
   reviewsTitle: 'Dicono di noi', reviewsLeave: 'Lascia una recensione', reviewWaMsg: 'Ciao Cilex! Vorrei lasciare una recensione:', src_google: 'Google', src_trustpilot: 'Trustpilot', src_tripadvisor: 'Tripadvisor', src_whatsapp: 'WhatsApp', src_email: 'Email', src_app: 'App Cilex', tripDoneTitle: 'Com’è andata a Ibiza?', tripDoneBody: 'Grazie per aver scelto Cilex. La tua opinione aiuta altri ospiti e ci aiuta a migliorare.', tripDoneTeam: 'Il prossimo viaggio',
   bookTableCilex: 'Prenota un tavolo con Cilex', bookWithCilex: 'Prenota con Cilex', askCilex: 'Chiedi a Cilex', noteBook: 'Prenotazione', noteInfo: 'Informazioni su',
   sugg1: 'Le migliori spiagge per il tramonto?', sugg2: 'Come mi sposto a Ibiza di notte?', sugg3: 'Come mi vesto per un club?', sugg4: 'Cosa posso fare di giorno?',
@@ -110,6 +112,7 @@ const it: Dict = {
   remTitleArtist: '{artist} suona oggi', remBodyArtist: '{title} · {club}', remTitlePlan: 'Oggi nel tuo piano', remBodyPlan: '{title} · {club}',
 };
 const es: Dict = {
+  cqTitle: 'Escribe a tu concierge', cqSub: 'Cuéntanos lo que necesitas, con tus palabras. Se abre WhatsApp con el mensaje listo: toca Enviar.', cqPlaceholder: 'Escribe tu mensaje…', cqSend: 'Enviar por WhatsApp', cqReply: 'Te responde una persona del equipo, las 24 horas', cqTable: 'Quiero una mesa VIP para…', cqBoat: 'Quiero alquilar un barco para…', cqVilla: 'Busco una villa para…', cqTransfer: 'Necesito un transfer desde/hacia…', cqTonight: '¿Qué me recomendáis para esta noche?', cqKind: 'Mensaje', cqLang: 'Idioma de la app', homeAsk: 'Escribe a tu concierge…',
   reqListTitle: 'Tus solicitudes', reqListNote: 'Se guardan solo en este teléfono. El equipo confirma cada solicitud por WhatsApp.', reqListClear: 'Vaciar lista',
   prefsTitle: 'Tus preferencias', prefsNote: 'Se guardan solo en este teléfono. Las añadimos a tus solicitudes para que el equipo responda a medida. Opcional.', prefsDiet: 'Alergias / necesidades alimentarias', prefsMusic: 'Música que te gusta', prefsOccasion: 'Ocasión (cumpleaños, luna de miel…)', prefsSave: 'Guardar preferencias', prefsSaved: 'Guardadas', prefsMsg: 'Preferencias',
   tabAsk: 'Pregunta', askTitle: 'Pregunta sobre Ibiza', askSub: 'Playas, transporte, vida nocturna, qué ponerse… pregunta lo que quieras.',
@@ -122,7 +125,7 @@ const es: Dict = {
   askTeamShort: 'Equipo', askHandoff: '¡Hola Cilex! Os escribo desde la app. Mis preguntas:',
   reqStep1: 'Elige el servicio y la fecha', reqStep2: 'Se abre WhatsApp con el mensaje listo: pulsa Enviar', reqStep3: 'El equipo Cilex te responde con disponibilidad y condiciones', reqSentTitle: 'Solicitud lista en WhatsApp', reqSentBody: 'Recuerda pulsar Enviar en WhatsApp: solo así el equipo la recibe.', reqReopen: 'Volver a abrir WhatsApp',
   placesAskBody: 'Mientras tanto, pide un consejo al equipo Cilex: te responde por WhatsApp.', placesAskBtn: 'Pedir un consejo', placesAskMsg: '¡Hola Cilex! Quería un consejo para:',
-  homeAsk: 'Pregunta a Cilex…',
+ 
   reviewsTitle: 'Lo que dicen de nosotros', reviewsLeave: 'Dejar una reseña', reviewWaMsg: '¡Hola Cilex! Quería dejar una reseña:', src_google: 'Google', src_trustpilot: 'Trustpilot', src_tripadvisor: 'Tripadvisor', src_whatsapp: 'WhatsApp', src_email: 'Email', src_app: 'App Cilex', tripDoneTitle: '¿Qué tal Ibiza?', tripDoneBody: 'Gracias por elegir Cilex. Tu opinión ayuda a otros huéspedes y nos ayuda a mejorar.', tripDoneTeam: 'Tu próximo viaje',
   bookTableCilex: 'Reserva mesa con Cilex', bookWithCilex: 'Reserva con Cilex', askCilex: 'Pregunta a Cilex', noteBook: 'Reserva', noteInfo: 'Información sobre',
   sugg1: '¿Mejores playas para el atardecer?', sugg2: '¿Cómo me muevo por Ibiza de noche?', sugg3: '¿Qué me pongo para un club?', sugg4: '¿Qué puedo hacer de día?',

@@ -14,6 +14,12 @@
 
 - "Le tue richieste" (schermata Richiesta): ultime 10 richieste inviate (ID CX-…, data, servizio), salvate solo sul telefono, con "Riapri WhatsApp" e "Svuota elenco". Nessuno stato "confermata": serve un server. Funzione 4 di `proposte-concorrenza.md`.
 
+## IA spenta, Chiedi = WhatsApp diretto (25/11, richiesta di Alex)
+- Tab Chiedi = "Scrivi al tuo concierge" (`AskScreen.tsx`): campo, "Invia su WhatsApp", 5 suggerimenti che riempiono il campo. Barra Home idem (invio diretto).
+- Messaggio: `Cilex App · CX-…`, lingua app, `PR:` se presente, domanda alla lettera (`src/askWhatsApp.ts`). Salvato in "Le tue richieste" con il testo.
+- Nessun riferimento all'IA nella UI. Codice IA conservato e spento: `src/screens/AskScreenAI.tsx` (non collegato), `src/ai.ts`, `src/intents.ts`, `backend/ai-worker/`. Per riaccendere: in `App.tsx` usare AskScreenAI e rimettere la barra Home.
+- Promessa "24 ore su 24" scritta in app: assicurarsi che il team risponda davvero di notte.
+
 ## In attesa (NON unire senza ok di Alex)
 - #19 BOZZA 30 FAQ: Alex deve sceglierne 20–25.
 - #17 BOZZA kit App Store.
