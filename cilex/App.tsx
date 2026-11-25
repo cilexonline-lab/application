@@ -20,6 +20,7 @@ import PlanScreen from './src/screens/PlanScreen';
 import AskScreen from './src/screens/AskScreen';
 import NewsStoryScreen from './src/screens/NewsStoryScreen';
 import StaysScreen from './src/screens/StaysScreen';
+import ItinerariesScreen from './src/screens/ItinerariesScreen';
 import StayDetailScreen from './src/screens/StayDetailScreen';
 import { StoreProvider } from './src/store';
 import { ContentProvider } from './src/content';
@@ -109,6 +110,7 @@ export default function App() {
           <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
           <Stack.Screen name="ClubDetail" component={ClubDetailScreen} options={heroHeader} />
           <Stack.Screen name="PlaceDetail" component={PlaceDetailScreen} options={{ title: '' }} />
+          <Stack.Screen name="Itineraries" component={ItinerariesScreen} options={{ title: '' }} />
           <Stack.Screen name="Stays" component={StaysScreen} options={{ title: '' }} />
           <Stack.Screen name="StayDetail" component={StayDetailScreen} options={{ title: '' }} />
           <Stack.Screen name="Request" component={RequestScreen} options={{ title: '' }} />
