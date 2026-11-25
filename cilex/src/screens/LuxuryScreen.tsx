@@ -12,13 +12,13 @@ import { luxury, radius, space, type } from '../theme';
 type Item = { key: string; label: string; desc: string; icon: IconName; kind: string };
 // Servizi Luxury: nessun prezzo; ogni voce apre la richiesta dedicata (WhatsApp precompilato). Le descrizioni sono generiche, non promesse.
 const ITEMS: Item[] = [
-  { key: 'yacht', label: 'lxYacht', desc: 'lxYachtD', icon: 'boat', kind: 'boat' },
-  { key: 'boatparty', label: 'lxBoatParty', desc: 'lxBoatPartyD', icon: 'boat', kind: 'boat' },
-  { key: 'excursions', label: 'lxExcursions', desc: 'lxExcursionsD', icon: 'map', kind: 'concierge' },
-  { key: 'openbar', label: 'lxOpenBar', desc: 'lxOpenBarD', icon: 'concierge', kind: 'concierge' },
+  { key: 'yacht', label: 'lxYacht', desc: 'lxYachtD', icon: 'yacht', kind: 'boat' },
+  { key: 'boatparty', label: 'lxBoatParty', desc: 'lxBoatPartyD', icon: 'party', kind: 'boat' },
+  { key: 'excursions', label: 'lxExcursions', desc: 'lxExcursionsD', icon: 'compass', kind: 'concierge' },
+  { key: 'openbar', label: 'lxOpenBar', desc: 'lxOpenBarD', icon: 'cocktail', kind: 'concierge' },
   { key: 'vip', label: 'table', desc: 'lxVipD', icon: 'table', kind: 'table' },
   { key: 'villas', label: 'lxVillas', desc: 'lxVillasD', icon: 'villa', kind: 'villa' },
-  { key: 'bespoke', label: 'lxBespoke', desc: 'lxBespokeD', icon: 'ask', kind: 'concierge' },
+  { key: 'bespoke', label: 'lxBespoke', desc: 'lxBespokeD', icon: 'sparkle', kind: 'concierge' },
 ];
 
 // Luxury: nero profondo, oro/champagne, tipografia leggera e spaziata, filetti sottili, "su invito".
