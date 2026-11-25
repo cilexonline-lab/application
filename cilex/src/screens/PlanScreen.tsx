@@ -3,6 +3,7 @@ import { ScrollView, Share, StyleSheet, Text, TextInput, View } from 'react-nati
 import { useNavigation } from '@react-navigation/native';
 import { Button, Card, EventCard, GoldCard, ScreenTitle } from '../components/ui';
 import { Icon } from '../components/Icon';
+import DateRangePicker from '../components/DateRangePicker';
 import RemindersCard from '../components/RemindersCard';
 import { useContent } from '../content';
 import { useStore } from '../store';
@@ -13,8 +14,6 @@ import { colors, radius, space } from '../theme';
 import { leaveReview } from '../reviewLink';
 import { openWhatsApp } from '../whatsapp';
 
-const toInput = (iso: string) => (iso ? `${iso.slice(8, 10)}/${iso.slice(5, 7)}/${iso.slice(0, 4)}` : '');
-
 export default function PlanScreen() {
   const t = useT();
   const nav = useNavigation<any>();
@@ -22,9 +21,6 @@ export default function PlanScreen() {
   const [pf, setPf] = useState(prefs);
   const [pfSaved, setPfSaved] = useState(false);
   const { events, getClub } = useContent();
-  const [a, setA] = useState(toInput(arrival));
-  const [d, setD] = useState(toInput(departure));
-  const [err, setErr] = useState('');
 
   const list = events.filter((e) => planned.includes(e.id));
   const days = Array.from(new Set(list.map((e) => e.date))).sort();
@@ -37,14 +33,6 @@ export default function PlanScreen() {
     else if (!departure || daysUntil(departure) >= 0) trip = t('tripToday').replace('{n}', String(1 - n));
   }
 
-  const saveTrip = () => {
-    const A = a.trim() ? parseDate(a, new Date(), true) : '';
-    const D = d.trim() ? parseDate(d, new Date(), true) : '';
-    if ((a.trim() && !A) || (d.trim() && !D) || (A && D && D < A)) return setErr(t('errTrip'));
-    setErr('');
-    success();
-    setTrip(A ?? '', D ?? '');
-  };
 
   const sharePlan = async () => {
     const lines = [`${t('sharePlanMsg')} 🌴`];
@@ -81,18 +69,12 @@ export default function PlanScreen() {
 
       <Card style={{ marginBottom: space.md }}>
         <Text style={s.label}>{t('yourTrip')}</Text>
-        <View style={{ flexDirection: 'row', gap: space.sm }}>
-          <View style={{ flex: 1 }}>
-            <Text style={s.small}>{t('arrival')}</Text>
-            <TextInput style={[s.input, s.dateInput]} value={a} onChangeText={setA} placeholder={t('dateHint')} placeholderTextColor={colors.muted} keyboardType="numbers-and-punctuation" />
-          </View>
-          <View style={{ flex: 1 }}>
-            <Text style={s.small}>{t('departure')}</Text>
-            <TextInput style={[s.input, s.dateInput]} value={d} onChangeText={setD} placeholder={t('dateHint')} placeholderTextColor={colors.muted} keyboardType="numbers-and-punctuation" />
-          </View>
-        </View>
-        {!!err && <Text style={{ color: colors.danger, marginTop: 8 }}>{err}</Text>}
-        <Button label={t('saveTrip')} variant="ghost" onPress={saveTrip} style={{ marginTop: space.sm }} />
+        <DateRangePicker start={arrival} end={departure} onChange={(x, y) => { setTrip(x, y); if (y) success(); }} hint={t(arrival && !departure ? 'tripPickEnd' : 'tripPickStart')} />
+        {!!arrival && (
+          <Text style={[s.small, { marginTop: space.sm, textAlign: 'center' }]}>
+            {fmtDate(arrival)}{departure ? ` → ${fmtDate(departure)}` : ''}  ·  <Text style={{ color: colors.brand }} onPress={() => setTrip('', '')} accessibilityRole="button">{t('tripClear')}</Text>
+          </Text>
+        )}
       </Card>
 
       <Card style={{ marginBottom: space.md }}>
