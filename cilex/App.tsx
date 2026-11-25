@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Pressable, Text } from 'react-native';
+import SectionTransition from './src/components/SectionTransition';
 import { DarkTheme, NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -128,6 +129,7 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
       <WhatsAppFab route={route} />
+      <SectionTransition route={route} />
       </StoreProvider>
       </ContentProvider>
     </SafeAreaProvider>

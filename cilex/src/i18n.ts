@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 type Dict = Record<string, string>;
 
 const en: Dict = {
+  seeAll: 'See all',
   itinTitle: 'Itineraries', itinSub: 'Ready-made routes made of places in the app', itinStops: 'stops', roleBeach: 'Beach', roleLunch: 'Lunch', roleSunset: 'Sunset', roleDinner: 'Dinner', roleNight: 'Night', roleAfternoon: 'Afternoon', itinAsk: 'Plan this with Cilex', itinAskMsg: 'Hi Cilex! I would like to plan this itinerary:',
   seePhotos: 'See photos',
   inviteBtn: 'Invite a friend', inviteMsg: 'Discover Ibiza with Cilex: clubs, events and concierge on WhatsApp.',
@@ -66,6 +67,7 @@ const en: Dict = {
   remTitleArtist: '{artist} plays today', remBodyArtist: '{title} · {club}', remTitlePlan: 'Today in your plan', remBodyPlan: '{title} · {club}',
 };
 const it: Dict = {
+  seeAll: 'Vedi tutti',
   itinTitle: 'Itinerari', itinSub: 'Percorsi pronti fatti di luoghi dell’app', itinStops: 'tappe', roleBeach: 'Spiaggia', roleLunch: 'Pranzo', roleSunset: 'Tramonto', roleDinner: 'Cena', roleNight: 'Notte', roleAfternoon: 'Pomeriggio', itinAsk: 'Organizzalo con Cilex', itinAskMsg: 'Ciao Cilex! Vorrei organizzare questo itinerario:',
   seePhotos: 'Vedi foto',
   inviteBtn: 'Invita un amico', inviteMsg: 'Scopri Ibiza con Cilex: club, eventi e concierge su WhatsApp.',
@@ -128,6 +130,7 @@ const it: Dict = {
   remTitleArtist: '{artist} suona oggi', remBodyArtist: '{title} · {club}', remTitlePlan: 'Oggi nel tuo piano', remBodyPlan: '{title} · {club}',
 };
 const es: Dict = {
+  seeAll: 'Ver todo',
   itinTitle: 'Itinerarios', itinSub: 'Rutas listas con lugares de la app', itinStops: 'paradas', roleBeach: 'Playa', roleLunch: 'Comida', roleSunset: 'Atardecer', roleDinner: 'Cena', roleNight: 'Noche', roleAfternoon: 'Tarde', itinAsk: 'Organízalo con Cilex', itinAskMsg: '¡Hola Cilex! Quiero organizar este itinerario:',
   seePhotos: 'Ver fotos',
   inviteBtn: 'Invita a un amigo', inviteMsg: 'Descubre Ibiza con Cilex: clubs, eventos y concierge por WhatsApp.',
