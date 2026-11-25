@@ -10,7 +10,8 @@ export type ItineraryStop = {
   role: 'beach' | 'lunch' | 'sunset' | 'dinner' | 'night' | 'afternoon';
   note?: L3; // una riga, solo fatti già confermati nei dati
 };
-export type Itinerary = { id: string; title: L3; intro: L3; stops: ItineraryStop[] };
+// season: indicazione di stagione indicativa (le date esatte cambiano per locale e per anno: DA VERIFICARE prima di promettere un'apertura).
+export type Itinerary = { id: string; title: L3; intro: L3; season: L3; stops: ItineraryStop[] };
 
 export const itineraries: Itinerary[] = [
   {
@@ -21,6 +22,7 @@ export const itineraries: Itinerary[] = [
       en: 'From the southern sea to sunset on the west coast, then dinner in Sant Antoni.',
       es: 'Del mar del sur al atardecer en la costa oeste y cena en Sant Antoni.',
     },
+    season: { it: 'Stagione indicativa: da maggio a ottobre.', en: 'Indicative season: May to October.', es: 'Temporada orientativa: de mayo a octubre.' },
     stops: [
       { ref: 'place', id: 'ses-salines', role: 'beach' },
       { ref: 'place', id: 'sa-trinxa', role: 'lunch', note: { it: 'Beach bar su Ses Salines.', en: 'Beach bar on Ses Salines.', es: 'Beach bar en Ses Salines.' } },
@@ -36,11 +38,12 @@ export const itineraries: Itinerary[] = [
       en: "Afternoon in Playa d'en Bossa, dinner in Talamanca, then Ibiza Town: Pacha and Chinois are close to each other.",
       es: 'Tarde en Playa d\'en Bossa, cena en Talamanca y después Ibiza Ciudad: Pacha y Chinois están cerca.',
     },
+    season: { it: 'Stagione indicativa: da maggio a ottobre.', en: 'Indicative season: May to October.', es: 'Temporada orientativa: de mayo a octubre.' },
     stops: [
       { ref: 'place', id: 'nassau', role: 'afternoon' },
       { ref: 'place', id: 'sa-punta', role: 'dinner', note: { it: 'Ristorante a Talamanca.', en: 'Restaurant in Talamanca.', es: 'Restaurante en Talamanca.' } },
       { ref: 'club', id: 'pacha', role: 'night', note: { it: 'Le date e i biglietti sono nella sezione Eventi.', en: 'Dates and tickets are in the Events section.', es: 'Fechas y entradas están en la sección Eventos.' } },
-      { ref: 'club', id: 'chinois', role: 'night', note: { it: 'Opzione per dopo, a Marina Ibiza.', en: 'An option for later, at Marina Ibiza.', es: 'Opción para después, en Marina Ibiza.' } },
+      { ref: 'club', id: 'chinois', role: 'night', note: { it: 'Per chi vuole una notte intera: seconda tappa a Marina Ibiza.', en: 'For those who want a full night: a second stop at Marina Ibiza.', es: 'Para quien quiere una noche entera: segunda parada en Marina Ibiza.' } },
     ],
   },
   {
@@ -51,6 +54,7 @@ export const itineraries: Itinerary[] = [
       en: 'The coves of the west coast, one after another, until sunset.',
       es: 'Las calas de la costa oeste, una tras otra, hasta el atardecer.',
     },
+    season: { it: 'Stagione indicativa: da maggio a ottobre.', en: 'Indicative season: May to October.', es: 'Temporada orientativa: de mayo a octubre.' },
     stops: [
       { ref: 'place', id: 'cala-bassa', role: 'beach' },
       { ref: 'place', id: 'cbbc', role: 'lunch', note: { it: 'Beach club sulla stessa spiaggia.', en: 'Beach club on the same beach.', es: 'Beach club en la misma playa.' } },
