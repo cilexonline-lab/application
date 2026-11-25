@@ -129,6 +129,20 @@ export default function HomeScreen() {
         <Icon name="chevron" size={20} color={colors.muted} />
       </Pressable>
 
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={t('itinTitle')}
+        onPress={() => { tap(); nav.navigate('Itineraries'); }}
+        style={({ pressed }) => [s.mapCard, pressed && { opacity: 0.85 }]}
+      >
+        <View style={s.quickIcon}><Icon name="plan" size={22} color={colors.brand} /></View>
+        <View style={{ flex: 1 }}>
+          <Text style={s.mapTitle}>{t('itinTitle')}</Text>
+          <Text style={s.mapSub}>{t('itinSub')}</Text>
+        </View>
+        <Icon name="chevron" size={20} color={colors.muted} />
+      </Pressable>
+
       {mine.length > 0 && (
         <>
           <SectionTitle>{t('yourArtists')}</SectionTitle>
