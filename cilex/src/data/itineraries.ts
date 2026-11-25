@@ -25,7 +25,7 @@ export const itineraries: Itinerary[] = [
     season: { it: 'Stagione indicativa: da maggio a ottobre.', en: 'Indicative season: May to October.', es: 'Temporada orientativa: de mayo a octubre.' },
     stops: [
       { ref: 'place', id: 'ses-salines', role: 'beach' },
-      { ref: 'place', id: 'sa-trinxa', role: 'lunch', note: { it: 'Beach bar su Ses Salines.', en: 'Beach bar on Ses Salines.', es: 'Beach bar en Ses Salines.' } },
+      { ref: 'place', id: 'sa-trinxa', role: 'lunch', note: { it: 'A Ses Salines.', en: 'At Ses Salines.', es: 'En Ses Salines.' } },
       { ref: 'place', id: 'cafe-del-mar', role: 'sunset', note: { it: 'Tramonto a Sant Antoni.', en: 'Sunset in Sant Antoni.', es: 'Atardecer en Sant Antoni.' } },
       { ref: 'place', id: 'sa-capella', role: 'dinner' },
     ],
