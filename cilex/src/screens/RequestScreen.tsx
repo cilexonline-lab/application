@@ -184,7 +184,8 @@ export default function RequestScreen() {
         <TextInput style={s.input} value={pr} onChangeText={setPr} autoCapitalize="characters" placeholderTextColor={colors.muted} />
 
         {!!error && <Text style={s.error}>{errField ? t('errCheckField') : error}</Text>}
-        <Button label={t('send')} onPress={send} style={{ marginTop: space.lg }} />
+        <Text style={s.noCancel}>{t('noCancel')}</Text>
+        <Button label={t('send')} onPress={send} style={{ marginTop: space.sm }} />
         <Text style={s.promise}>{t('replyPromise')}</Text>
         {!!sentRef && (
           <View style={s.sent}>
@@ -220,6 +221,7 @@ export default function RequestScreen() {
 const s = StyleSheet.create({
   calBox: { backgroundColor: colors.cardAlt, borderRadius: radius.md, borderWidth: 1, borderColor: colors.border, padding: space.sm },
   calSel: { color: colors.brand, fontSize: 14, fontWeight: '700', textAlign: 'center', marginTop: space.sm },
+  noCancel: { color: colors.text, fontSize: 13, fontWeight: '700', textAlign: 'center', marginTop: space.lg },
   h1: { color: colors.text, fontSize: 26, fontWeight: '800' },
   sub: { color: colors.muted, marginTop: 4, marginBottom: space.md },
   steps: { gap: 10, marginBottom: space.md, paddingVertical: 12, paddingHorizontal: 14, borderRadius: radius.lg, backgroundColor: colors.card },

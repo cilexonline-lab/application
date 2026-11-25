@@ -36,6 +36,12 @@ export default function PlaceDetailScreen() {
         ) : (
           <Button icon="ask" label={t('askCilex')} onPress={() => nav.navigate('Request', { kind: 'concierge', note: `${t('noteInfo')}: ${p.name}${p.area ? ` (${p.area})` : ''}` })} />
         )}
+        {p.bookable && (
+          <View>
+            <Text style={s.info}>{t('bookInfo')}</Text>
+            <Text style={s.warn}>{t('noCancel')}</Text>
+          </View>
+        )}
         {!!p.link && <Button label={t('openLink')} variant="ghost" onPress={() => Linking.openURL(p.link!)} />}
         {seePhotosUrl(p.name, p.area, p.link) !== p.link && (
           <Button icon="share" label={t('seePhotos')} variant="ghost" onPress={() => Linking.openURL(seePhotosUrl(p.name, p.area, p.link))} />
@@ -49,5 +55,7 @@ export default function PlaceDetailScreen() {
 const s = StyleSheet.create({
   kind: { color: colors.brand, fontSize: 12, fontWeight: '800', letterSpacing: 1.5, marginTop: space.md },
   name: { color: colors.text, fontSize: 30, fontWeight: '800', marginTop: 4 },
+  info: { color: colors.muted, fontSize: 13, lineHeight: 19, textAlign: 'center' },
+  warn: { color: colors.text, fontSize: 13, fontWeight: '700', textAlign: 'center', marginTop: 4 },
   desc: { color: colors.muted, fontSize: 15, marginTop: space.sm, lineHeight: 22 },
 });
