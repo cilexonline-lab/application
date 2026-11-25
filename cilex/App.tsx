@@ -20,6 +20,9 @@ import PlanScreen from './src/screens/PlanScreen';
 import AskScreen from './src/screens/AskScreen';
 import NewsStoryScreen from './src/screens/NewsStoryScreen';
 import StaysScreen from './src/screens/StaysScreen';
+import ProductsScreen from './src/screens/ProductsScreen';
+import StandardScreen from './src/screens/StandardScreen';
+import LuxuryScreen from './src/screens/LuxuryScreen';
 import StayDetailScreen from './src/screens/StayDetailScreen';
 import { StoreProvider } from './src/store';
 import { ContentProvider } from './src/content';
@@ -53,7 +56,9 @@ function Tabs() {
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: t('tabHome'), headerShown: false, tabBarIcon: icon('home') }} />
-      <Tab.Screen name="Clubs" component={ExploreScreen} options={{ title: t('tabClubs'), headerShown: false, tabBarIcon: icon('clubs') }} />
+      <Tab.Screen name="Products" component={ProductsScreen} options={{ title: t('tabProducts'), headerShown: false, tabBarIcon: icon('concierge') }} />
+      {/* Explore resta raggiungibile (Prodotti → Standard) ma fuori dalla barra: 6 voci, non 7. */}
+      <Tab.Screen name="Clubs" component={ExploreScreen} options={{ title: t('tabClubs'), headerShown: false, tabBarIcon: icon('clubs'), tabBarItemStyle: { display: 'none' } }} />
       <Tab.Screen name="Map3D" component={Map3DScreen} options={{ title: t('tabMap'), headerShown: false, tabBarIcon: icon('map') }} />
       <Tab.Screen name="Ask" component={AskScreen} options={{ title: t('tabAsk'), headerShown: false, tabBarIcon: icon('ask') }} />
       <Tab.Screen name="Plan" component={PlanScreen} options={{ title: t('tabPlan'), headerShown: false, tabBarIcon: icon('plan') }} />
@@ -109,6 +114,8 @@ export default function App() {
           <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
           <Stack.Screen name="ClubDetail" component={ClubDetailScreen} options={heroHeader} />
           <Stack.Screen name="PlaceDetail" component={PlaceDetailScreen} options={{ title: '' }} />
+          <Stack.Screen name="Standard" component={StandardScreen} options={{ title: '' }} />
+          <Stack.Screen name="Luxury" component={LuxuryScreen} options={{ title: '', headerStyle: { backgroundColor: '#030303' }, headerTintColor: '#D9B96E' }} />
           <Stack.Screen name="Stays" component={StaysScreen} options={{ title: '' }} />
           <Stack.Screen name="StayDetail" component={StayDetailScreen} options={{ title: '' }} />
           <Stack.Screen name="Request" component={RequestScreen} options={{ title: '' }} />

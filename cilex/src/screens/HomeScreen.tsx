@@ -3,6 +3,7 @@ import { Pressable, RefreshControl, ScrollView, StyleSheet, Text, TextInput, Vie
 import { useNavigation } from '@react-navigation/native';
 import { Card, Chip, EventCard, GoldCard, SectionTitle } from '../components/ui';
 import { LogoWordmark } from '../components/Logo';
+import WorldCards from '../components/WorldCards';
 import { Icon, IconName } from '../components/Icon';
 import { useContent } from '../content';
 import { useStore } from '../store';
@@ -12,7 +13,7 @@ import { LANGS, setLang, useLang, useT } from '../i18n';
 import { tap } from '../haptics';
 import { matchesTime, monthShort, TimeFilter, todayStr } from '../utils';
 import { leaveReview } from '../reviewLink';
-import { colors, luxury, radius, space, type } from '../theme';
+import { colors, radius, space } from '../theme';
 
 const QUICK: { kind: string; icon: IconName }[] = [
   { kind: 'table', icon: 'table' },
@@ -68,22 +69,7 @@ export default function HomeScreen() {
       </View>
 
       <Text style={s.heroLine}>{t('heroTitle')}</Text>
-      <Pressable accessibilityRole="button" accessibilityLabel={t('worldStandard')} onPress={() => { tap(); nav.navigate('Clubs'); }} style={({ pressed }) => [s.world, s.worldStd, pressed && { opacity: 0.85 }]}>
-        <View style={{ flex: 1 }}>
-          <Text style={[s.worldKicker, { color: colors.brand }]}>{t('worldStandardKicker').toUpperCase()}</Text>
-          <Text style={[s.worldTitle, { color: colors.text }]}>{t('worldStandard')}</Text>
-          <Text style={s.worldSub}>{t('worldStandardSub')}</Text>
-        </View>
-        <Icon name="chevron" size={22} color={colors.brand} />
-      </Pressable>
-      <Pressable accessibilityRole="button" accessibilityLabel={t('worldLuxury')} onPress={() => { tap(); nav.navigate('Request', { kind: 'concierge' }); }} style={({ pressed }) => [s.world, s.worldLux, pressed && { opacity: 0.85 }]}>
-        <View style={{ flex: 1 }}>
-          <Text style={[s.worldKicker, type.luxury.kicker, { color: luxury.brand }]}>{t('worldLuxuryKicker').toUpperCase()}</Text>
-          <Text style={[s.worldTitle, type.luxury.title, { color: luxury.text }]}>{t('worldLuxury')}</Text>
-          <Text style={[s.worldSub, { color: luxury.muted }]}>{t('worldLuxurySub')}</Text>
-        </View>
-        <Icon name="chevron" size={22} color={luxury.brand} />
-      </Pressable>
+      <WorldCards />
 
       {tonight.length > 0 ? (
         <GoldCard>
@@ -239,12 +225,6 @@ const s = StyleSheet.create({
   reviewBy: { color: colors.muted, fontSize: 12, letterSpacing: 0.3 },
   reviewLeave: { color: colors.brand, fontSize: 14, fontWeight: '700', marginTop: 12, alignSelf: 'flex-start' },
   heroLine: { color: colors.text, fontSize: 18, fontWeight: '700', textAlign: 'center', lineHeight: 25, marginBottom: space.md },
-  world: { flexDirection: 'row', alignItems: 'center', borderRadius: radius.lg, borderWidth: 1, padding: space.md, minHeight: 96, marginBottom: space.sm },
-  worldStd: { backgroundColor: colors.card, borderColor: colors.brand },
-  worldLux: { backgroundColor: luxury.bg, borderColor: luxury.brandDark, borderWidth: StyleSheet.hairlineWidth * 2 },
-  worldKicker: { fontSize: 11, fontWeight: '800', letterSpacing: 1.5 },
-  worldTitle: { fontSize: 26, fontWeight: '800', marginTop: 2 },
-  worldSub: { color: colors.muted, fontSize: 13, marginTop: 4, lineHeight: 18 },
   askBar: { flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: colors.card, borderRadius: 999, paddingVertical: 8, paddingLeft: 16, paddingRight: 8, marginTop: space.md },
   askBarInput: { flex: 1, minWidth: 0, color: colors.text, fontSize: 15, paddingVertical: 8 },
   askBarGo: { width: 34, height: 34, borderRadius: 17, backgroundColor: colors.brand, alignItems: 'center', justifyContent: 'center' },
