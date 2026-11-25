@@ -36,3 +36,9 @@
 ## Note tecniche
 - Verifica: `npx tsc --noEmit` OK; export web con `EXPO_PUBLIC_AI_MOCK=1` OK. Il bundle usa il prefisso `/application/`: per provarlo in locale servire la cartella sotto quel percorso.
 - Contesto: aprire una sessione nuova per risparmiare.
+
+## Agente CONTENUTI (25/11/2026) — lotto: sostituti Selezione, itinerari, FAQ
+- **Ha funzionato:** coordinate da Nominatim (via Firecrawl, perché il proxy blocca i siti diretti) + sito ufficiale/Instagram per la stagione 2026; controllo nel generatore (`export-content.ts`) che ferma gli id inesistenti negli itinerari.
+- **Andato storto:** avevo dichiarato "typecheck pulito" senza dipendenze installate (`npm ci` mancava): ora si fa `npm ci` prima di `tsc`. Il controllo dei link con curl dà 000 per il blocco del proxy, non per link rotti.
+- **Regola nuova:** non dichiarare mai un controllo "ok" se l'ambiente non lo ha davvero eseguito; segnalare "non verificato".
+- **Proposta (non fatta):** script che segnala luoghi senza fonte nel commento e senza coordinate; il controllo dei link va fatto da un ambiente senza proxy (o con ok di Alex alla scansione Firecrawl, 25 pagine).
