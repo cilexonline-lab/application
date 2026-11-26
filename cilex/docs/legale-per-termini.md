@@ -1,0 +1,4 @@
+# Cosa serve a un legale per i Termini (bozza, non è consulenza legale)
+1. **Nessun annullamento:** per servizi con data fissa la normativa UE sui consumatori può escludere il recesso, ma solo se comunicato chiaramente PRIMA della richiesta e accettato. Un legale deve confermare il testo e dove mostrarlo (pagina richiesta, non solo i Termini).
+2. **Ruolo di Cilex:** si prenota per conto del cliente, il pagamento va al locale, Cilex guadagna dalla vendita di servizi (boat party, escursioni, open bar). Va definito chi è il venditore, chi risponde di problemi e come si comunica il compenso, e che cosa si dice dei locali non partner (solo Tantra e Rigatoni hanno un accordo).
+3. **Dati e promesse:** privacy (richieste, preferenze, WhatsApp), ragione sociale/P.IVA/indirizzo del titolare, e le promesse "risposta in 15 minuti, 24 ore su 24" (da poter mantenere); "rispondiamo in tutte le lingue" è confermata da Alex.

@@ -1,0 +1,328 @@
+{
+ "_bozza": "BOZZA da approvare da Alex. Domande e risposte su Ibiza con fonte, verificate il 24/11/2026. Non vengono lette dall'app né dall'IA finché non vengono copiate in faq-team.json. Niente prezzi né orari. Alex ha scelto 23 FAQ su 30 il 25/11. Traduzioni EN/ES aggiunte il 25/11 (stesse fonti, nessuna informazione nuova): da far rileggere a un madrelingua prima di mostrarle.",
+ "faq": [
+  {
+   "q": "Qual è l'aeroporto di Ibiza e qual è il suo codice?",
+   "a": "L'isola è servita dall'Aeroporto di Ibiza, gestito da Aena, con codice IBZ. Informazioni ufficiali su voli, servizi e collegamenti sono sul sito di Aena.",
+   "fonte": "https://www.aena.es/en/ibiza/airlines-and-destinations/airport-destinations.html",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "What is Ibiza's airport and its code?",
+    "a": "The island is served by Ibiza Airport, run by Aena, with the code IBZ. Official information on flights, services and connections is on the Aena website."
+   },
+   "es": {
+    "q": "¿Cuál es el aeropuerto de Ibiza y su código?",
+    "a": "La isla cuenta con el Aeropuerto de Ibiza, gestionado por Aena, con código IBZ. La información oficial sobre vuelos, servicios y conexiones está en la web de Aena."
+   }
+  },
+  {
+   "q": "Ci sono autobus dall'aeroporto verso le principali località?",
+   "a": "Sì. Aena indica le linee AERO1-AERO5, che collegano l'aeroporto con Ibiza città (anche la stazione degli autobus), Sant Josep e Sant Antoni, Santa Eulària, Es Canar e Cala Nova, Platja d'en Bossa e Ses Figueretes. Alcune linee sono stagionali: orari e tariffe sul sito di Alsa Ibiza.",
+   "fonte": "https://www.aena.es/en/ibiza/getting-there/bus.html",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Are there buses from the airport to the main resorts?",
+    "a": "Yes. Aena lists lines AERO1-AERO5, linking the airport with Ibiza town (including the bus station), Sant Josep and Sant Antoni, Santa Eulària, Es Canar and Cala Nova, Platja d'en Bossa and Ses Figueretes. Some lines are seasonal: check times and fares on the Alsa Ibiza website."
+   },
+   "es": {
+    "q": "¿Hay autobuses del aeropuerto a las principales localidades?",
+    "a": "Sí. Aena indica las líneas AERO1-AERO5, que conectan el aeropuerto con Ibiza ciudad (también la estación de autobuses), Sant Josep y Sant Antoni, Santa Eulària, Es Canar y Cala Nova, Platja d'en Bossa y Ses Figueretes. Algunas líneas son de temporada: horarios y tarifas en la web de Alsa Ibiza."
+   }
+  },
+  {
+   "q": "Come prendere un taxi all'aeroporto di Ibiza?",
+   "a": "Aena raccomanda di prendere il taxi solo alla fermata taxi segnalata del terminal e di evitare autisti che offrono il servizio in altri punti. Valigie e animali sono trasportati senza supplemento; in caso di reclamo bisogna chiedere la ricevuta.",
+   "fonte": "https://www.aena.es/en/ibiza/getting-there/taxi.html",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "How do I take a taxi at Ibiza airport?",
+    "a": "Aena recommends taking a taxi only at the signposted taxi rank at the terminal and avoiding drivers who offer the service elsewhere. Luggage and pets are carried at no extra charge; if you want to complain, ask for a receipt."
+   },
+   "es": {
+    "q": "¿Cómo coger un taxi en el aeropuerto de Ibiza?",
+    "a": "Aena recomienda coger el taxi solo en la parada señalizada de la terminal y evitar a los conductores que ofrecen el servicio en otros puntos. Las maletas y los animales se transportan sin suplemento; para reclamar hay que pedir el recibo."
+   }
+  },
+  {
+   "q": "I taxi a Ibiza devono usare il tassametro?",
+   "a": "Sì. Secondo la Legge balear 4/2014 sul trasporto e la mobilità sostenibile, tutti i taxi devono avere un tassametro con le tariffe e i supplementi autorizzati, che si attiva all'inizio del servizio. Le tariffe sono approvate ufficialmente e pubblicate nel BOIB.",
+   "fonte": "https://www.aena.es/en/ibiza/getting-there/taxi.html",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Do taxis in Ibiza have to use the meter?",
+    "a": "Yes. Under Balearic Law 4/2014 on transport and sustainable mobility, all taxis must have a meter with the authorised fares and supplements, which is switched on at the start of the journey. Fares are officially approved and published in the BOIB."
+   },
+   "es": {
+    "q": "¿Los taxis de Ibiza deben usar taxímetro?",
+    "a": "Sí. Según la Ley balear 4/2014 de transporte y movilidad sostenible, todos los taxis deben llevar taxímetro con las tarifas y suplementos autorizados, que se activa al iniciar el servicio. Las tarifas se aprueban oficialmente y se publican en el BOIB."
+   }
+  },
+  {
+   "q": "Chi gestisce gli autobus pubblici a Ibiza?",
+   "a": "Il servizio di autobus urbano di Ibiza città e la rete di linee dell'isola sono operati da Alsa (Alsa Ibiza). Linee, mappa, orari e tariffe aggiornati sono sul sito ufficiale alsaibiza.es.",
+   "fonte": "https://www.alsaibiza.es/en/",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Who runs the public buses in Ibiza?",
+    "a": "The city bus service in Ibiza town and the island's network of lines are run by Alsa (Alsa Ibiza). Up-to-date lines, map, timetables and fares are on the official website alsaibiza.es."
+   },
+   "es": {
+    "q": "¿Quién gestiona los autobuses públicos de Ibiza?",
+    "a": "El servicio de autobús urbano de Ibiza ciudad y la red de líneas de la isla los opera Alsa (Alsa Ibiza). Líneas, mapa, horarios y tarifas actualizados están en la web oficial alsaibiza.es."
+   }
+  },
+  {
+   "q": "Da dove parte il traghetto per Formentera e dove arriva?",
+   "a": "I traghetti partono dal porto di Ibiza (Eivissa città) e arrivano al porto di La Savina, nel nord di Formentera, che è l'unico punto di accesso via mare dell'isola.",
+   "fonte": "https://www.balearia.com/en/routes-timetables/ferry-ibiza-formentera",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Where does the ferry to Formentera leave from and where does it arrive?",
+    "a": "Ferries leave from the port of Ibiza (Eivissa town) and arrive at the port of La Savina, in the north of Formentera, which is the island's only access point by sea."
+   },
+   "es": {
+    "q": "¿De dónde sale el ferri a Formentera y adónde llega?",
+    "a": "Los ferris salen del puerto de Ibiza (Eivissa ciudad) y llegan al puerto de La Savina, en el norte de Formentera, que es el único punto de acceso por mar a la isla."
+   }
+  },
+  {
+   "q": "Quanto dura la traversata Ibiza-Formentera?",
+   "a": "Baleària indica una traversata di circa 30 minuti con i suoi traghetti veloci. Partenze e orari variano con la stagione: vanno verificati sul sito dell'operatore.",
+   "fonte": "https://www.balearia.com/en/routes-timetables/ferry-ibiza-formentera",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "How long is the Ibiza-Formentera crossing?",
+    "a": "Baleària indicates a crossing of about 30 minutes with its fast ferries. Departures and times vary with the season: check them on the operator's website."
+   },
+   "es": {
+    "q": "¿Cuánto dura la travesía Ibiza-Formentera?",
+    "a": "Baleària indica una travesía de unos 30 minutos con sus ferris rápidos. Las salidas y los horarios varían según la temporada: conviene comprobarlos en la web del operador."
+   }
+  },
+  {
+   "q": "Si può raggiungere Ibiza in traghetto dalla penisola o da Maiorca?",
+   "a": "Sì. Baleària collega Ibiza con Palma di Maiorca, Barcellona, Valencia e Dénia. Orari, durata e porti di partenza vanno verificati sul sito dell'operatore.",
+   "fonte": "https://www.balearia.com/en/routes-timetables/ferry-ibiza-denia",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Can I reach Ibiza by ferry from the mainland or Mallorca?",
+    "a": "Yes. Baleària links Ibiza with Palma de Mallorca, Barcelona, Valencia and Dénia. Times, duration and departure ports should be checked on the operator's website."
+   },
+   "es": {
+    "q": "¿Se puede llegar a Ibiza en ferri desde la península o Mallorca?",
+    "a": "Sí. Baleària conecta Ibiza con Palma de Mallorca, Barcelona, Valencia y Dénia. Horarios, duración y puertos de salida deben comprobarse en la web del operador."
+   }
+  },
+  {
+   "q": "Quali sono i comuni di Ibiza?",
+   "a": "L'isola ha cinque comuni: Eivissa (Ibiza città, il capoluogo), Santa Eulària des Riu, Sant Antoni de Portmany, Sant Josep de sa Talaia e Sant Joan de Labritja.",
+   "fonte": "https://www.santjosep.net/wp-content/uploads/pdf/ibiza-info-en.pdf",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "What are the municipalities of Ibiza?",
+    "a": "The island has five municipalities: Eivissa (Ibiza town, the capital), Santa Eulària des Riu, Sant Antoni de Portmany, Sant Josep de sa Talaia and Sant Joan de Labritja."
+   },
+   "es": {
+    "q": "¿Cuáles son los municipios de Ibiza?",
+    "a": "La isla tiene cinco municipios: Eivissa (Ibiza ciudad, la capital), Santa Eulària des Riu, Sant Antoni de Portmany, Sant Josep de sa Talaia y Sant Joan de Labritja."
+   }
+  },
+  {
+   "q": "Ibiza è Patrimonio dell'Umanità UNESCO?",
+   "a": "Sì. Dal 1999 il sito \"Ibiza, Biodiversità e Cultura\" è iscritto nella Lista del Patrimonio Mondiale UNESCO come bene misto, naturale e culturale. Copre circa 9.020 ettari, per lo più di mare.",
+   "fonte": "https://whc.unesco.org/en/list/417/",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Is Ibiza a UNESCO World Heritage Site?",
+    "a": "Yes. Since 1999 the site \"Ibiza, Biodiversity and Culture\" has been on the UNESCO World Heritage List as a mixed natural and cultural property. It covers about 9,020 hectares, mostly sea."
+   },
+   "es": {
+    "q": "¿Ibiza es Patrimonio de la Humanidad de la UNESCO?",
+    "a": "Sí. Desde 1999 el sitio «Ibiza, biodiversidad y cultura» está inscrito en la Lista del Patrimonio Mundial de la UNESCO como bien mixto, natural y cultural. Abarca unas 9.020 hectáreas, en su mayoría de mar."
+   }
+  },
+  {
+   "q": "Cos'è Dalt Vila?",
+   "a": "Dalt Vila è la città alta fortificata di Ibiza. Secondo UNESCO è un esempio eccezionale di architettura militare rinascimentale: le mura furono costruite nel XVI secolo e influenzarono le fortificazioni spagnole in America.",
+   "fonte": "https://whc.unesco.org/en/list/417/",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "What is Dalt Vila?",
+    "a": "Dalt Vila is Ibiza's fortified upper town. According to UNESCO it is an outstanding example of Renaissance military architecture: the walls were built in the 16th century and influenced Spanish fortifications in the Americas."
+   },
+   "es": {
+    "q": "¿Qué es Dalt Vila?",
+    "a": "Dalt Vila es la ciudad alta fortificada de Ibiza. Según la UNESCO es un ejemplo excepcional de arquitectura militar renacentista: las murallas se construyeron en el siglo XVI e influyeron en las fortificaciones españolas en América."
+   }
+  },
+  {
+   "q": "Cos'è il Parco Naturale di Ses Salines?",
+   "a": "Il Parco Naturale di Ses Salines d'Eivissa i Formentera si estende dal sud di Ibiza al nord di Formentera, compreso il braccio di mare tra le due isole, nei comuni di Sant Josep de sa Talaia e Formentera. È stato dichiarato Parco Naturale con la Legge 17/2001 ed è gestito dal Govern balear.",
+   "fonte": "https://www.caib.es/sites/espaisnaturalsprotegits/es/parque_natural_de_ses_salines_de_ibiza_y_formentera/",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "What is the Ses Salines Natural Park?",
+    "a": "The Ses Salines d'Eivissa i Formentera Natural Park extends from the south of Ibiza to the north of Formentera, including the stretch of sea between the two islands, in the municipalities of Sant Josep de sa Talaia and Formentera. It was declared a Natural Park by Law 17/2001 and is managed by the Balearic Government."
+   },
+   "es": {
+    "q": "¿Qué es el Parque Natural de Ses Salines?",
+    "a": "El Parque Natural de Ses Salines d'Eivissa i Formentera se extiende desde el sur de Ibiza hasta el norte de Formentera, incluido el brazo de mar entre las dos islas, en los municipios de Sant Josep de sa Talaia y Formentera. Fue declarado Parque Natural por la Ley 17/2001 y lo gestiona el Govern balear."
+   }
+  },
+  {
+   "q": "Si possono portare i cani a Ses Salines?",
+   "a": "Nel Parco Naturale i cani non sono ammessi fuori dalle zone urbane, e anche lì devono sempre stare al guinzaglio. Le saline, le dune e Cap des Falcó nel periodo di nidificazione (1° marzo - 31 luglio) sono zone ad accesso limitato.",
+   "fonte": "https://www.caib.es/sites/espaisnaturalsprotegits/es/parque_natural_de_ses_salines_de_ibiza_y_formentera/",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Can I take dogs to Ses Salines?",
+    "a": "In the Natural Park dogs are not allowed outside urban areas, and even there they must always be on a lead. The salt pans, the dunes and Cap des Falcó during the nesting season (1 March - 31 July) are restricted-access areas."
+   },
+   "es": {
+    "q": "¿Se puede ir con perros a Ses Salines?",
+    "a": "En el Parque Natural no se admiten perros fuera de las zonas urbanas, y allí deben ir siempre con correa. Las salinas, las dunas y Cap des Falcó en época de nidificación (1 de marzo - 31 de julio) son zonas de acceso restringido."
+   }
+  },
+  {
+   "q": "Dove si può ancorare la barca nel Parco di Ses Salines?",
+   "a": "Solo sui fondali di sabbia ammessi dalla normativa: è vietato ancorare sulla posidonia e nelle zone di ancoraggio vietato. Nei campi boe regolamentati (spiaggia di Ses Salines, baia di s'Alga a s'Espalmador, Caló de s'Oli) bisogna ormeggiarsi alle boe predisposte.",
+   "fonte": "https://www.caib.es/sites/cuidamposidonia/es/normativa_de_aplicacian_en_los_campos_de_boyas_regulados/",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Where can I anchor a boat in the Ses Salines Park?",
+    "a": "Only on the sandy seabeds allowed by the regulations: anchoring on posidonia and in no-anchoring areas is prohibited. In the regulated buoy fields (Ses Salines beach, s'Alga bay at s'Espalmador, Caló de s'Oli) you must moor to the buoys provided."
+   },
+   "es": {
+    "q": "¿Dónde se puede fondear el barco en el Parque de Ses Salines?",
+    "a": "Solo en los fondos de arena que permite la normativa: está prohibido fondear sobre posidonia y en las zonas de fondeo prohibido. En los campos de boyas regulados (playa de Ses Salines, bahía de s'Alga en s'Espalmador, Caló de s'Oli) hay que amarrar a las boyas habilitadas."
+   }
+  },
+  {
+   "q": "Es Vedrà è un'area protetta? Si può sbarcare?",
+   "a": "Sì. Es Vedrà, Es Vedranell e gli Illots de Ponent formano una riserva naturale nel comune di Sant Josep. Lo sbarco non è consentito ed è vietato prelevare piante, animali o reperti. Va evitato di avvicinarsi agli isolotti, soprattutto durante la nidificazione degli uccelli (aprile-giugno).",
+   "fonte": "https://www.santjosep.net/en/what-to-see/nature/natural-reserve-of-es-vedra-es-vedranells-and-the-illots-de-ponent/",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Is Es Vedrà a protected area? Can I land there?",
+    "a": "Yes. Es Vedrà, Es Vedranell and the Illots de Ponent form a nature reserve in the municipality of Sant Josep. Landing is not allowed and it is forbidden to take plants, animals or artefacts. Avoid approaching the islets, especially during the bird nesting season (April-June)."
+   },
+   "es": {
+    "q": "¿Es Vedrà es un área protegida? ¿Se puede desembarcar?",
+    "a": "Sí. Es Vedrà, Es Vedranell y los Illots de Ponent forman una reserva natural en el municipio de Sant Josep. No se permite desembarcar y está prohibido llevarse plantas, animales o restos. Hay que evitar acercarse a los islotes, sobre todo durante la nidificación de las aves (abril-junio)."
+   }
+  },
+  {
+   "q": "Esiste una tassa turistica a Ibiza?",
+   "a": "Sì. Dal 1° luglio 2016 in tutte le Baleari si applica l'Impuesto de Turismo Sostenible (imposta sul turismo sostenibile) sui soggiorni in strutture turistiche. Le informazioni ufficiali sono sul portale illessostenibles.travel.",
+   "fonte": "https://www.caib.es/sites/oie/es/impuesto_turismo_sostenible/",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Is there a tourist tax in Ibiza?",
+    "a": "Yes. Since 1 July 2016 the Impuesto de Turismo Sostenible (sustainable tourism tax) applies across the Balearic Islands to stays in tourist accommodation. Official information is on the illessostenibles.travel portal."
+   },
+   "es": {
+    "q": "¿Existe una tasa turística en Ibiza?",
+    "a": "Sí. Desde el 1 de julio de 2016 se aplica en todas las Baleares el Impuesto de Turismo Sostenible a las estancias en establecimientos turísticos. La información oficial está en el portal illessostenibles.travel."
+   }
+  },
+  {
+   "q": "Chi deve pagare la tassa turistica?",
+   "a": "La paga il turista (persona fisica) che soggiorna nella struttura turistica; la struttura la riscuote come sostituto d'imposta. Sono previste esenzioni, tra cui i minori di 16 anni, i casi di forza maggiore, i motivi di salute e i programmi sociali. Per gli importi chiedere alla struttura.",
+   "fonte": "https://www.atib.es/DescargaDocs/Manual%20informativo%20general_s.pdf",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Who has to pay the tourist tax?",
+    "a": "The tourist (private individual) staying in the accommodation pays it; the establishment collects it as withholding agent. Exemptions include under-16s, force majeure, health reasons and social programmes. Ask the accommodation for the amounts."
+   },
+   "es": {
+    "q": "¿Quién debe pagar la tasa turística?",
+    "a": "La paga el turista (persona física) que se aloja en el establecimiento turístico; el establecimiento la cobra como sustituto del contribuyente. Hay exenciones, entre ellas los menores de 16 años, los casos de fuerza mayor, los motivos de salud y los programas sociales. Para los importes, pregunte en el alojamiento."
+   }
+  },
+  {
+   "q": "Cosa dice la legge balear sull'età per entrare in discoteca?",
+   "a": "La Legge balear 7/2013 vieta l'ingresso ai minori di 16 anni in discoteche, sale da ballo e locali musicali, salvo eccezioni limitate per i ragazzi di 14-16 anni accompagnati. Ai minori di 18 anni è vietato vendere alcol e tabacco. Molti club applicano comunque il limite dei 18 anni.",
+   "fonte": "https://www.caib.es/sites/policiestutorsillesbalears/es/normativa_locales_y_establecimientos_publicos-79063/",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "What does Balearic law say about the age to enter a nightclub?",
+    "a": "Balearic Law 7/2013 bans anyone under 16 from nightclubs, dance halls and music venues, with limited exceptions for accompanied 14-16 year olds. Selling alcohol and tobacco to under-18s is prohibited. Many clubs apply an 18 age limit anyway."
+   },
+   "es": {
+    "q": "¿Qué dice la ley balear sobre la edad para entrar en una discoteca?",
+    "a": "La Ley balear 7/2013 prohíbe la entrada a menores de 16 años en discotecas, salas de baile y locales musicales, salvo excepciones limitadas para jóvenes de 14 a 16 años acompañados. Está prohibido vender alcohol y tabaco a menores de 18 años. Muchos clubes aplican igualmente el límite de 18 años."
+   }
+  },
+  {
+   "q": "Serve un documento per entrare nei club?",
+   "a": "Sì. Club come Hï Ibiza applicano il limite dei 18 anni e possono chiedere un documento a chi sembra più giovane. Valgono carta d'identità o passaporto originali: fotocopie e foto non sono accettate. Le condizioni vanno verificate sul sito di ciascun club.",
+   "fonte": "https://www.hiibiza.com/contact-faq",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Do I need ID to enter clubs?",
+    "a": "Yes. Clubs such as Hï Ibiza apply the 18 age limit and may ask for ID from anyone who looks younger. An original ID card or passport is valid: photocopies and photos are not accepted. Check the conditions on each club's website."
+   },
+   "es": {
+    "q": "¿Hace falta documento para entrar en los clubes?",
+    "a": "Sí. Clubes como Hï Ibiza aplican el límite de 18 años y pueden pedir documento a quien parezca más joven. Valen el DNI o el pasaporte originales: no se aceptan fotocopias ni fotos. Las condiciones deben comprobarse en la web de cada club."
+   }
+  },
+  {
+   "q": "Qual è il numero di emergenza a Ibiza?",
+   "a": "Il 112 è il numero gratuito per le emergenze che richiedono vigili del fuoco, forze di sicurezza o servizi sanitari. Si può chiamare da qualsiasi punto delle Baleari, sia da fisso sia da cellulare.",
+   "fonte": "https://www.caib.es/webgoib/es/emerg%C3%A8ncies",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "What is the emergency number in Ibiza?",
+    "a": "112 is the free number for emergencies requiring the fire service, security forces or medical services. You can call it from anywhere in the Balearic Islands, from a landline or a mobile."
+   },
+   "es": {
+    "q": "¿Cuál es el número de emergencias en Ibiza?",
+    "a": "El 112 es el número gratuito para emergencias que requieren bomberos, fuerzas de seguridad o servicios sanitarios. Se puede llamar desde cualquier punto de las Baleares, desde teléfono fijo o móvil."
+   }
+  },
+  {
+   "q": "Qual è l'ospedale pubblico di Ibiza?",
+   "a": "È l'Hospital Can Misses, in Calle Corona s/n a Eivissa. Fa parte del servizio sanitario pubblico delle Baleari (IB-Salut, Area di Salute di Ibiza e Formentera) e ha un pronto soccorso (Urgencias).",
+   "fonte": "https://www.ibsalut.es/es/servicio-de-salud/organizacion/gerencias-ibsalut/gerencia-del-area-de-salud-de-ibiza-y-formentera/hospital-can-misses",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "What is Ibiza's public hospital?",
+    "a": "It is Hospital Can Misses, at Calle Corona s/n in Eivissa. It is part of the Balearic public health service (IB-Salut, Ibiza and Formentera Health Area) and has an emergency department (Urgencias)."
+   },
+   "es": {
+    "q": "¿Cuál es el hospital público de Ibiza?",
+    "a": "Es el Hospital Can Misses, en la calle Corona s/n, en Eivissa. Forma parte del servicio público de salud de las Baleares (IB-Salut, Área de Salud de Ibiza y Formentera) y tiene servicio de urgencias."
+   }
+  },
+  {
+   "q": "Come trovo una farmacia di turno?",
+   "a": "Il Collegio Ufficiale dei Farmacisti delle Baleari (COFIB) pubblica sul suo sito l'elenco delle farmacie aperte e di turno (farmacias de guardia). È meglio consultarlo il giorno stesso, perché i turni cambiano.",
+   "fonte": "https://www.cofib.es/es/FarmaciesObertes.aspx",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "How do I find an on-duty pharmacy?",
+    "a": "The Balearic Official College of Pharmacists (COFIB) publishes on its website the list of open and on-duty pharmacies (farmacias de guardia). It is best to check it on the same day, because duty rotas change."
+   },
+   "es": {
+    "q": "¿Cómo encuentro una farmacia de guardia?",
+    "a": "El Colegio Oficial de Farmacéuticos de las Baleares (COFIB) publica en su web la lista de farmacias abiertas y de guardia. Conviene consultarla el mismo día, porque los turnos cambian."
+   }
+  },
+  {
+   "q": "La tessera sanitaria europea (TEAM) vale a Ibiza?",
+   "a": "Sì, ma solo nella sanità pubblica spagnola. Bisogna verificare che il medico o il centro sia pubblico e mostrare la tessera all'accettazione. Se viene chiesto di pagare in anticipo, non si tratta del servizio pubblico e la tessera non è accettata. Le cure private non sono rimborsate.",
+   "fonte": "https://employment-social-affairs.ec.europa.eu/policies-and-activities/moving-working-europe/eu-social-security-coordination/european-health-insurance-card/how-use-card/spain-european-health-insurance-card_en",
+   "verificato": "2026-11-24",
+   "en": {
+    "q": "Is the European Health Insurance Card (EHIC) valid in Ibiza?",
+    "a": "Yes, but only in Spanish public healthcare. Check that the doctor or centre is public and show the card at reception. If you are asked to pay in advance, it is not the public service and the card is not accepted. Private care is not reimbursed."
+   },
+   "es": {
+    "q": "¿Vale la tarjeta sanitaria europea (TSE) en Ibiza?",
+    "a": "Sí, pero solo en la sanidad pública española. Hay que comprobar que el médico o el centro sea público y mostrar la tarjeta en admisión. Si piden pagar por adelantado, no es el servicio público y la tarjeta no se acepta. La atención privada no se reembolsa."
+   }
+  }
+ ],
+ "_nota_limite": "Il server IA usa al massimo 60 FAQ in tutto (MAX_FAQ in backend/ai-worker/worker.js): FAQ del team (content.json, oggi 23 domande da compilare) + 7 FAQ dell'app. 30 + 23 + 7 = 60: nessuna viene tagliata ma non c'è margine. Consigliato sceglierne 20-25."
+}
