@@ -8,10 +8,10 @@ import { colors, radius, space } from '../theme';
 
 type Item = { key: string; label: string; icon: IconName; go: (nav: any) => void };
 const ITEMS: Item[] = [
-  { key: 'clubs', label: 'stdClubs', icon: 'music', go: (n) => n.navigate('Clubs', { seg: 'club' }) },
-  { key: 'beach', label: 'stdBeach', icon: 'umbrella', go: (n) => n.navigate('Clubs', { seg: 'beach' }) },
-  { key: 'food', label: 'stdFood', icon: 'dining', go: (n) => n.navigate('Clubs', { seg: 'restaurant' }) },
-  { key: 'map', label: 'tabMap', icon: 'map', go: (n) => n.navigate('Map3D') },
+  { key: 'clubs', label: 'stdClubs', icon: 'music', go: (n) => n.navigate('Tabs', { screen: 'Clubs', params: { seg: 'club' } }) },
+  { key: 'beach', label: 'stdBeach', icon: 'umbrella', go: (n) => n.navigate('Tabs', { screen: 'Clubs', params: { seg: 'beach' } }) },
+  { key: 'food', label: 'stdFood', icon: 'dining', go: (n) => n.navigate('Tabs', { screen: 'Clubs', params: { seg: 'restaurant' } }) },
+  { key: 'map', label: 'tabMap', icon: 'map', go: (n) => n.navigate('Tabs', { screen: 'Map3D' }) },
   { key: 'table', label: 'table', icon: 'table', go: (n) => n.navigate('Request', { kind: 'table' }) },
 ];
 
