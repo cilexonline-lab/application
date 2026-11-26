@@ -1,7 +1,7 @@
 import React from 'react';
 import { Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Sheet from '../components/Sheet';
 import { Button, Card, EventCard, SectionTitle } from '../components/ui';
 import { seePhotosUrl } from '../photos';
 import { ClubHero } from '../components/ClubCard';
@@ -14,15 +14,15 @@ export default function ClubDetailScreen() {
   const nav = useNavigation<any>();
   const { clubId } = useRoute<any>().params;
   const { getClub, upcoming } = useContent();
-  const insets = useSafeAreaInsets();
   const club = getClub(clubId);
   if (!club) return null;
   const list = upcoming.filter((e) => e.clubId === club.id);
   const q = encodeURIComponent(club.mapQuery || `${club.name} Ibiza`);
 
   return (
+    <Sheet>
     <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ paddingBottom: 120 }}>
-      <ClubHero club={club} topInset={insets.top + 44} />
+      <ClubHero club={club} topInset={44} />
       <View style={{ paddingHorizontal: space.md }}>
       {!!club.area && <Text style={s.area}>{club.area.toUpperCase()}</Text>}
       <Text style={s.name}>{club.name}</Text>
@@ -50,6 +50,7 @@ export default function ClubDetailScreen() {
       ))}
       </View>
     </ScrollView>
+    </Sheet>
   );
 }
 

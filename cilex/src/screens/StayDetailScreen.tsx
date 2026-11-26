@@ -1,6 +1,7 @@
 import React from 'react';
 import { Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import Sheet from '../components/Sheet';
 import { Banner, Button } from '../components/ui';
 import { useContent } from '../content';
 import { useT } from '../i18n';
@@ -17,7 +18,8 @@ export default function StayDetailScreen() {
   if (!st) return null;
   const facts = stayFacts(st, t);
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: space.md, paddingBottom: 120 }}>
+    <Sheet>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: space.md, paddingTop: 44, paddingBottom: 120 }}>
       <Banner name={st.name} imageUrl={st.imageUrl} height={210} />
       <Text style={s.kind}>{t(st.kind).toUpperCase()}{st.area ? ` · ${st.area}` : ''}{st.demo ? ` · ${t('demoTag')}` : ''}</Text>
       <Text style={s.name}>{st.name}</Text>
@@ -42,6 +44,7 @@ export default function StayDetailScreen() {
         {!!st.link && <Button label={t('moreInfo')} variant="ghost" onPress={() => Linking.openURL(st.link!)} />}
       </View>
     </ScrollView>
+    </Sheet>
   );
 }
 
