@@ -33,7 +33,7 @@ export const luxury: Palette = palettes.luxury;
 // Tipografia: Standard = peso pieno e compatto; Luxury = più leggera e spaziata.
 export const type = {
   standard: { title: { fontWeight: '800' as const, letterSpacing: 0 }, kicker: { fontWeight: '800' as const, letterSpacing: 1.5 } },
-  luxury: { title: { fontWeight: '300' as const, letterSpacing: 3 }, kicker: { fontWeight: '600' as const, letterSpacing: 4 } },
+  luxury: { title: { fontWeight: '300' as const, letterSpacing: 3 }, kicker: { fontWeight: '600' as const, letterSpacing: 4 }, brand: { fontWeight: '800' as const, letterSpacing: 4 } },
 };
 
 export const radius = { sm: 10, md: 16, lg: 24 };

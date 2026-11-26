@@ -31,7 +31,7 @@ export default function LuxuryScreen() {
       <LinearGradient colors={[luxury.bg, '#1A140A', luxury.bg]} locations={[0, 0.4, 1]} style={s.hero}>
         <FadeIn>
           <Text style={[s.kicker, type.luxury.kicker]}>{t('worldLuxuryKicker').toUpperCase()}</Text>
-          <Text style={[s.h1, type.luxury.title]}>{t('worldLuxury').toUpperCase()}</Text>
+          <Text style={[s.h1, type.luxury.brand]}>{t('worldLuxury').toUpperCase()}</Text>
           <View style={s.rule} />
           <Text style={s.slogan}>{t('lxSlogan')}</Text>
         </FadeIn>
