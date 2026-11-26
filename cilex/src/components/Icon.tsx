@@ -4,7 +4,7 @@ import Svg, { Circle, Path, Rect } from 'react-native-svg';
 export type IconName =
   | 'home' | 'clubs' | 'plan' | 'request' | 'info' | 'share' | 'table' | 'boat'
   | 'ask' | 'send' | 'concierge' | 'apartment' | 'villa' | 'chevron' | 'map' | 'check' | 'plus' | 'minus'
-  | 'products' | 'music' | 'umbrella' | 'dining' | 'cocktail' | 'party' | 'compass' | 'yacht' | 'sparkle' | 'camera';
+  | 'products' | 'music' | 'umbrella' | 'dining' | 'cocktail' | 'party' | 'compass' | 'yacht' | 'sparkle' | 'camera' | 'car' | 'helicopter';
 
 // Set di icone "duotone": tratto pulito + riempimento tenue dello stesso colore (profondità senza peso).
 export function Icon({ name, size = 22, color = '#fff', stroke = 1.8 }: { name: IconName; size?: number; color?: string; stroke?: number }) {
@@ -39,6 +39,8 @@ export function Icon({ name, size = 22, color = '#fff', stroke = 1.8 }: { name: 
       {name === 'compass' && (<><Circle cx="12" cy="12" r="9" {...f} /><Path d="M15.8 8.2l-2.1 5.5-5.5 2.1 2.1-5.5z" {...p} /></>)}
       {name === 'yacht' && (<><Path d="M3 17h18l-3 4H6z" {...f} /><Path d="M12 3v13M12 4.5l6.5 10.5H12M12 7.5L6.5 15H12" {...p} /></>)}
       {name === 'sparkle' && <Path d="M12 3c.9 5 3 7.1 8 9-5 1.9-7.1 4-8 9-.9-5-3-7.1-8-9 5-1.9 7.1-4 8-9z" {...f} />}
+      {name === 'car' && (<><Path d="M3.5 17v-4l2-5.5h13l2 5.5v4z" {...f} /><Path d="M3.5 13h17M6 17v2M18 17v2" {...p} /><Circle cx="8" cy="15.2" r="0.6" {...p} /><Circle cx="16" cy="15.2" r="0.6" {...p} /></>)}
+      {name === 'helicopter' && (<><Path d="M5.5 13a5 4 0 0 1 5-4H15a4 4 0 0 1 4 4v1.5H5.5z" {...f} /><Path d="M3 5.5h18M12 5.5V9M5.5 12H2.5M7.5 19h9M9.5 14.5V19M14.5 14.5V19" {...p} /></>)}
       {name === 'camera' && (<><Path d="M4 8h3l2-3h6l2 3h3v11H4z" {...f} /><Circle cx="12" cy="13" r="3.5" {...p} /></>)}
     </Svg>
   );
