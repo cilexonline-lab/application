@@ -13,11 +13,12 @@ type Item = { key: string; label: string; desc: string; icon: IconName; kind: st
 // Servizi Luxury: nessun prezzo; ogni voce apre la richiesta dedicata (WhatsApp precompilato). Le descrizioni sono generiche, non promesse.
 const ITEMS: Item[] = [
   { key: 'yacht', label: 'lxYacht', desc: 'lxYachtD', icon: 'yacht', kind: 'boat' },
-  { key: 'boatparty', label: 'lxBoatParty', desc: 'lxBoatPartyD', icon: 'party', kind: 'boat' },
-  { key: 'excursions', label: 'lxExcursions', desc: 'lxExcursionsD', icon: 'compass', kind: 'concierge' },
-  { key: 'openbar', label: 'lxOpenBar', desc: 'lxOpenBarD', icon: 'cocktail', kind: 'concierge' },
   { key: 'vip', label: 'table', desc: 'lxVipD', icon: 'table', kind: 'table' },
   { key: 'villas', label: 'lxVillas', desc: 'lxVillasD', icon: 'villa', kind: 'villa' },
+  { key: 'transfer', label: 'lxTransfer', desc: 'lxTransferD', icon: 'car', kind: 'concierge' },
+  { key: 'chef', label: 'lxChef', desc: 'lxChefD', icon: 'dining', kind: 'concierge' },
+  { key: 'celebrations', label: 'lxCelebrations', desc: 'lxCelebrationsD', icon: 'party', kind: 'concierge' },
+  { key: 'heli', label: 'lxHeli', desc: 'lxHeliD', icon: 'helicopter', kind: 'concierge' },
   { key: 'bespoke', label: 'lxBespoke', desc: 'lxBespokeD', icon: 'sparkle', kind: 'concierge' },
 ];
 
