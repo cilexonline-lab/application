@@ -18,7 +18,7 @@ const ITEMS: Item[] = [
   { key: 'transfer', label: 'lxTransfer', desc: 'lxTransferD', icon: 'car', kind: 'concierge' },
   { key: 'chef', label: 'lxChef', desc: 'lxChefD', icon: 'dining', kind: 'concierge' },
   { key: 'celebrations', label: 'lxCelebrations', desc: 'lxCelebrationsD', icon: 'party', kind: 'concierge' },
-  { key: 'heli', label: 'lxHeli', desc: 'lxHeliD', icon: 'helicopter', kind: 'concierge' },
+  { key: 'jet', label: 'lxJet', desc: 'lxJetD', icon: 'jet', kind: 'concierge' },
   { key: 'bespoke', label: 'lxBespoke', desc: 'lxBespokeD', icon: 'sparkle', kind: 'concierge' },
 ];
 
