@@ -5,6 +5,7 @@ import SectionTransition from './src/components/SectionTransition';
 import { DarkTheme, NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import HomeScreen from './src/screens/HomeScreen';
 import ExploreScreen from './src/screens/ExploreScreen';
@@ -98,12 +99,15 @@ const luxuryHeader = ({ navigation }: any) => ({
   ) : null),
 });
 
+const sheetOpts = { headerShown: false, presentation: 'transparentModal' as const, animation: 'none' as const, contentStyle: { backgroundColor: 'transparent' } };
+
 export default function App() {
   const t = useT();
   const navRef = useNavigationContainerRef();
   const [route, setRoute] = useState<string | undefined>('Home');
   const sync = () => setRoute((navRef as any).getCurrentRoute()?.name);
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <SafeAreaProvider>
       <ContentProvider>
       <StoreProvider>
@@ -126,14 +130,14 @@ export default function App() {
           })}
         >
           <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
-          <Stack.Screen name="ClubDetail" component={ClubDetailScreen} options={heroHeader} />
-          <Stack.Screen name="PlaceDetail" component={PlaceDetailScreen} options={{ title: '' }} />
+          <Stack.Screen name="ClubDetail" component={ClubDetailScreen} options={sheetOpts} />
+          <Stack.Screen name="PlaceDetail" component={PlaceDetailScreen} options={sheetOpts} />
           <Stack.Screen name="Itineraries" component={ItinerariesScreen} options={{ title: '' }} />
           <Stack.Screen name="Standard" component={StandardScreen} options={{ title: '' }} />
           <Stack.Screen name="Luxury" component={LuxuryScreen} options={luxuryHeader} />
           <Stack.Screen name="LuxuryRequest" component={LuxuryRequestScreen} options={luxuryHeader} />
           <Stack.Screen name="Stays" component={StaysScreen} options={{ title: '' }} />
-          <Stack.Screen name="StayDetail" component={StayDetailScreen} options={{ title: '' }} />
+          <Stack.Screen name="StayDetail" component={StayDetailScreen} options={sheetOpts} />
           <Stack.Screen name="Request" component={RequestScreen} options={{ title: '' }} />
           <Stack.Screen name="Info" component={InfoScreen} options={{ title: '' }} />
           <Stack.Screen name="EventDetail" component={EventDetailScreen} options={heroHeader} />
@@ -146,5 +150,6 @@ export default function App() {
       </StoreProvider>
       </ContentProvider>
     </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
