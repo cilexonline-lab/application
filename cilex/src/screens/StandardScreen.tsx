@@ -8,9 +8,10 @@ import { colors, radius, space } from '../theme';
 
 type Item = { key: string; label: string; icon: IconName; go: (nav: any, t: (k: string) => string) => void };
 const ITEMS: Item[] = [
-  { key: 'clubs', label: 'stdClubs', icon: 'music', go: (n) => n.navigate('Clubs', { seg: 'club' }) },
-  { key: 'beach', label: 'stdBeach', icon: 'umbrella', go: (n) => n.navigate('Clubs', { seg: 'beach' }) },
-  { key: 'food', label: 'stdFood', icon: 'dining', go: (n) => n.navigate('Clubs', { seg: 'restaurant' }) },
+  { key: 'clubs', label: 'stdClubs', icon: 'music', go: (n) => n.navigate('Tabs', { screen: 'Clubs', params: { seg: 'club' } }) },
+  { key: 'beach', label: 'stdBeach', icon: 'umbrella', go: (n) => n.navigate('Tabs', { screen: 'Clubs', params: { seg: 'beach' } }) },
+  { key: 'food', label: 'stdFood', icon: 'dining', go: (n) => n.navigate('Tabs', { screen: 'Clubs', params: { seg: 'restaurant' } }) },
+
   { key: 'table', label: 'table', icon: 'table', go: (n) => n.navigate('Request', { kind: 'table' }) },
   { key: 'openbar', label: 'stdOpenBar', icon: 'cocktail', go: (n, t) => n.navigate('Request', { kind: 'concierge', note: `Standard · ${t('stdOpenBar')}` }) },
   { key: 'boatparty', label: 'stdBoatParty', icon: 'party', go: (n, t) => n.navigate('Request', { kind: 'boat', note: `Standard · ${t('stdBoatParty')}` }) },
