@@ -6,13 +6,16 @@ import { useT } from '../i18n';
 import { tap } from '../haptics';
 import { colors, radius, space } from '../theme';
 
-type Item = { key: string; label: string; icon: IconName; go: (nav: any) => void };
+type Item = { key: string; label: string; icon: IconName; go: (nav: any, t: (k: string) => string) => void };
 const ITEMS: Item[] = [
   { key: 'clubs', label: 'stdClubs', icon: 'music', go: (n) => n.navigate('Tabs', { screen: 'Clubs', params: { seg: 'club' } }) },
   { key: 'beach', label: 'stdBeach', icon: 'umbrella', go: (n) => n.navigate('Tabs', { screen: 'Clubs', params: { seg: 'beach' } }) },
   { key: 'food', label: 'stdFood', icon: 'dining', go: (n) => n.navigate('Tabs', { screen: 'Clubs', params: { seg: 'restaurant' } }) },
-  { key: 'map', label: 'tabMap', icon: 'map', go: (n) => n.navigate('Tabs', { screen: 'Map3D' }) },
+
   { key: 'table', label: 'table', icon: 'table', go: (n) => n.navigate('Request', { kind: 'table' }) },
+  { key: 'openbar', label: 'stdOpenBar', icon: 'cocktail', go: (n, t) => n.navigate('Request', { kind: 'concierge', note: `Standard · ${t('stdOpenBar')}` }) },
+  { key: 'boatparty', label: 'stdBoatParty', icon: 'party', go: (n, t) => n.navigate('Request', { kind: 'boat', note: `Standard · ${t('stdBoatParty')}` }) },
+  { key: 'formentera', label: 'stdFormentera', icon: 'compass', go: (n, t) => n.navigate('Request', { kind: 'concierge', note: `Standard · ${t('stdFormentera')}` }) },
 ];
 
 // Standard: identità CILEX (nero + azzurro). Club, eventi, ristoranti, beach club, Selezione Cilex.
@@ -25,7 +28,7 @@ export default function StandardScreen() {
       <Text style={s.h1}>{t('worldStandard')}</Text>
       <Text style={s.sub}>{t('worldStandardSub')}</Text>
       {ITEMS.map((it) => (
-        <Pressable key={it.key} accessibilityRole="button" onPress={() => { tap(); it.go(nav); }} style={({ pressed }) => [s.row, pressed && { opacity: 0.85 }]}>
+        <Pressable key={it.key} accessibilityRole="button" onPress={() => { tap(); it.go(nav, t); }} style={({ pressed }) => [s.row, pressed && { opacity: 0.85 }]}>
           <View style={s.ic}><Icon name={it.icon} size={22} color={colors.brand} /></View>
           <Text style={s.label}>{t(it.label)}</Text>
           <Icon name="chevron" size={20} color={colors.muted} />

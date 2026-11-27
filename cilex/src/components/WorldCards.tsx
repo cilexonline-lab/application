@@ -19,7 +19,7 @@ export default function WorldCards({ compact }: { compact?: boolean }) {
         </Pressable>
         <Pressable accessibilityRole="button" accessibilityLabel={t('worldLuxury')} onPress={() => { tap(); nav.navigate('Luxury'); }} style={({ pressed }) => [s.tile, s.worldLux, pressed && { opacity: 0.85 }]}>
           <Text style={[s.worldKicker, type.luxury.kicker, { color: luxury.brand }]} numberOfLines={2}>{t('worldLuxuryKicker').toUpperCase()}</Text>
-          <Text style={[s.tileTitle, type.luxury.title, { color: luxury.text }]}>{t('worldLuxury')}</Text>
+          <Text style={[s.tileTitle, type.luxury.brand, { color: luxury.text }]}>{t('worldLuxury')}</Text>
         </Pressable>
       </View>
     );
@@ -37,7 +37,7 @@ export default function WorldCards({ compact }: { compact?: boolean }) {
       <Pressable accessibilityRole="button" accessibilityLabel={t('worldLuxury')} onPress={() => { tap(); nav.navigate('Luxury'); }} style={({ pressed }) => [s.world, s.worldLux, pressed && { opacity: 0.85 }]}>
         <View style={{ flex: 1 }}>
           <Text style={[s.worldKicker, type.luxury.kicker, { color: luxury.brand }]}>{t('worldLuxuryKicker').toUpperCase()}</Text>
-          <Text style={[s.worldTitle, type.luxury.title, { color: luxury.text }]}>{t('worldLuxury')}</Text>
+          <Text style={[s.worldTitle, type.luxury.brand, { color: luxury.text }]}>{t('worldLuxury')}</Text>
           <Text style={[s.worldSub, { color: luxury.muted }]}>{t('worldLuxurySub')}</Text>
         </View>
         <Icon name="chevron" size={22} color={luxury.brand} />
